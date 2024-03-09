@@ -3,12 +3,13 @@ import Lipsum from "../components/Lipsum.vue";
 </script>
 
 <template>
-  <div>
+  <div id="lipsum">
     <Lipsum />
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
+#lipsum {
+  height: 100%;
 }
 </style>
