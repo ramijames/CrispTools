@@ -1,99 +1,108 @@
-<script setup>
+<script>
 import { ref, computed, watch } from "vue";
-import { RouterLink, RouterView } from "vue-router";
-import Header from "./Header.vue";
 
-import { LoremIpsum } from "lorem-ipsum";
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4,
+export default {
+  data() {
+    return {
+      typescales: {
+        MinorSecond: { value: 1.067, label: "Minor Second", selected: false },
+        MajorSecond: { value: 1.125, label: "Major Second", selected: false },
+        MinorThird: { value: 1.2, label: "Minor Third", selected: true },
+        MajorThird: { value: 1.25, label: "Major Third", selected: false },
+        PerfectFourth: {
+          value: 1.333,
+          label: "Perfect Fourth",
+          selected: false,
+        },
+        AugmentedFourth: {
+          value: 1.414,
+          label: "Augmented Fourth",
+          selected: false,
+        },
+        PerfectFifth: { value: 1.5, label: "Perfect Fifth", selected: false },
+        GoldenRatio: { value: 1.618, label: "Golden Ratio", selected: false },
+      },
+      baseSize: 16,
+      selectedTypeScale: "MinorThird",
+    };
   },
-  wordsPerSentence: {
-    max: 16,
-    min: 4,
+  setup() {
+    const typeSizes = (scale, baseSize) => {
+      const type = {
+        h1: `${baseSize * scale * scale * scale * scale * scale}px`,
+        h2: `${baseSize * scale * scale * scale * scale}px`,
+        h3: `${baseSize * scale * scale * scale}px`,
+        h4: `${baseSize * scale * scale}px`,
+        h5: `${baseSize * scale}px`,
+        p: `${baseSize}px`,
+        small: `${baseSize / scale}px`,
+      };
+
+      return type;
+    };
+
+    return {
+      typeSizes,
+    };
   },
-});
-
-let numParagraphs = ref(1);
-let paragraphs = ref(lorem.generateParagraphs(numParagraphs.value));
-let showPopup = ref(false);
-
-const generateParagraphs = () => {
-  paragraphs.value = lorem.generateParagraphs(numParagraphs.value);
+  mounted() {
+    console.log("mounted");
+  },
+  methods: {
+    copyToClipboard() {
+      navigator.clipboard.writeText(paragraphs.value);
+      showPopup.value = true;
+      setTimeout(() => {
+        showPopup.value = false;
+      }, 2000);
+      console.log("Paragraph copied to clipboard");
+    },
+  },
 };
-
-watch(numParagraphs, generateParagraphs);
-
-const copyToClipboard = async () => {
-  try {
-    await navigator.clipboard.writeText(paragraphs.value);
-    showPopup.value = true;
-    setTimeout(() => {
-      showPopup.value = false;
-    }, 2000);
-    console.log('Paragraph copied to clipboard');
-  } catch (err) {
-    console.error('Failed to copy paragraph: ', err);
-  }
-};
-
 </script>
 
 <template>
   <div class="wrapper">
-    <section class="panel-group">
-      <section class="p-8 pt-24 flex bg-white items-center flex-col">
-        <h4 class="text-center text-7xl font-bold text-black">
-          Fluid Type Scale
-        </h4>
-        <p class="text-center my-4 text-2xl max-w-3xl text-black">
-          Generate a set of CSS styles that are based on a fluid type scale.
-        </p>
-      </section>
-      <section class="flex gap-x-1 p-4 border-solid border-t border-gray-200">
-        <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label><input
-          type="number"
-          v-model="numParagraphs"
-          min="1"
-          max="10"
-          step="1"
-          class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-        />
-        <button
-          @click="numParagraphs = 1"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+    <section id="type-scale-input">
+      <select
+        v-model="selectedTypeScale"
+        class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option disabled value="Select a type scale">
+          Select a type scale
+        </option>
+        <option
+          v-for="(scale, key) in typescales"
+          :key="key"
+          :value="key"
+          :selected="scale.selected"
         >
-          Reset
-        </button>
-        <button
-          @click="copyToClipboard()"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Copy
-        </button>
-        <button
-          @click="generateParagraphs"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow"
-        >
-          Regenerate
-        </button>
-      </section>
-      <section class="flex flex-col items-center justify-center">
-        <div class="max-w-3xl">
-          <div class="my-4">
-            <div class="font-bold text-xl mb-2">Generated Text</div>
-            <p class="text-gray-700 text-base">
-              <transition name="fade">
-                <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow-lg">
-                  Copied to clipboard!
-                </div>
-              </transition>
-              <p v-html="paragraphs"></p>
-            </p>
-          </div>
-        </div>
+          {{ scale.label }}
+        </option>
+      </select>
+      <input
+        type="number"
+        v-model="baseSize"
+        class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        value="16"
+      />
+    </section>
+    <section id="type-scale-output">
+      <section class="output">
+        <ul>
+          <li
+            v-for="(size, key) in typeSizes(
+              typescales[selectedTypeScale].value,
+              baseSize
+            )"
+            :key="key"
+            :style="{
+              fontSize: size,
+            }"
+          >
+            {{ key }}: {{ size }}
+          </li>
+        </ul>
       </section>
     </section>
   </div>

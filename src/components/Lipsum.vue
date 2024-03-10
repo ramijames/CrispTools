@@ -1,7 +1,5 @@
 <script setup>
 import { ref, computed, watch } from "vue";
-import { RouterLink, RouterView } from "vue-router";
-import Header from "./Header.vue";
 
 import { LoremIpsum } from "lorem-ipsum";
 
