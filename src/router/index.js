@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LipsumView from "../views/LipsumView.vue";
+import FluidTypeView from "../views/FluidTypeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: "/lipsum",
       name: "lipsum",
       component: LipsumView,
+    },
+    {
+      path: "/fluid-type-scale",
+      name: "fluid-type-scale",
+      component: FluidTypeView,
     },
     // {
     //   path: "/lipsum",

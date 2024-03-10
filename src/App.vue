@@ -1,30 +1,4 @@
-<!-- <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import Header from "./components/Header.vue";
-</script>
-
 <template>
-  <div class="wrapper">
-    <Header />
-    <RouterView />
-  </div>
-</template>
-
-<style scoped>
-#toolbar {
-  justify-content: space-between;
-}
-</style> -->
-
-<template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-  -->
   <div>
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog
@@ -84,7 +58,7 @@ import Header from "./components/Header.vue";
                 <div class="flex h-16 shrink-0 items-center">
                   <img
                     class="h-8 w-auto"
-                    src="/crisp-logo-emblem.svg"
+                    src="/crisp-logo-white.svg"
                     alt="Crisp Tools"
                   />
                 </div>
@@ -159,12 +133,12 @@ import Header from "./components/Header.vue";
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6"
+        class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-black bg-black p-6"
       >
         <div class="flex h-16 shrink-0 items-center">
           <img
-            class="h-8 w-auto"
-            src="/crisp-logo-emblem.svg"
+            class="w-auto h-12"
+            src="/crisp-logo-black.svg"
             alt="Crisp Tools"
           />
         </div>
@@ -177,21 +151,21 @@ import Header from "./components/Header.vue";
                     v-if="!item.children"
                     :href="item.href"
                     :class="[
-                      item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                      'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700',
+                      item.current ? 'bg-black' : 'hover:bg-black',
+                      'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-white',
                     ]"
                     >{{ item.name }}</a
                   >
-                  <Disclosure as="div" v-else v-slot="{ open }">
+                  <Disclosure as="div" v-model="open" v-else v-slot="{ open }">
                     <DisclosureButton
                       :class="[
-                        item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                        'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700',
+                        item.current ? 'bg-black' : 'hover:bg-black',
+                        'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-white',
                       ]"
                     >
                       <ChevronRightIcon
                         :class="[
-                          open ? 'rotate-90 text-gray-500' : 'text-gray-400',
+                          open ? 'rotate-90 text-white' : 'text-white',
                           'h-5 w-5 shrink-0',
                         ]"
                         aria-hidden="true"
@@ -201,11 +175,12 @@ import Header from "./components/Header.vue";
                     <DisclosurePanel as="ul" class="mt-1 px-2">
                       <li v-for="subItem in item.children" :key="subItem.name">
                         <DisclosureButton
+                          @click="open = true"
                           as="a"
                           :href="subItem.href"
                           :class="[
-                            subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                            'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700',
+                            subItem.current ? 'bg-black' : 'hover:bg-black',
+                            'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-white',
                           ]"
                           >{{ subItem.name }}</DisclosureButton
                         >
@@ -237,12 +212,8 @@ import Header from "./components/Header.vue";
     </div>
 
     <main class="lg:pl-72">
-      <div class="xl:pl-96">
-        <div class="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-          <!-- Main area -->
-          <RouterView />
-        </div>
-      </div>
+      <!-- Main area -->
+      <RouterView />
     </main>
   </div>
 </template>
@@ -264,6 +235,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 const route = useRoute();
 
 let navigation = ref([]);
+let open = ref(false);
 
 watch(
   route,
@@ -272,7 +244,8 @@ watch(
       { name: "Dashboard", href: "/", current: newRoute.path === "/" },
       {
         name: "Type Tools",
-        current: false,
+        current:
+          newRoute.path === "/lipsum" || newRoute.path === "/fluid-type-scale",
         children: [
           {
             name: "Lorem Ipsum",

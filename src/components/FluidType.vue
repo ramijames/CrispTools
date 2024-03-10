@@ -46,10 +46,10 @@ const copyToClipboard = async () => {
     <section class="panel-group">
       <section class="p-8 pt-24 flex bg-white items-center flex-col">
         <h4 class="text-center text-7xl font-bold text-black">
-          Lorem Ipsum Generator
+          Fluid Type Scale
         </h4>
         <p class="text-center my-4 text-2xl max-w-3xl text-black">
-          Generate paragraphs of placeholder for use in your designs when the actual content isn't available.
+          Generate a set of CSS styles that are based on a fluid type scale.
         </p>
       </section>
       <section class="flex gap-x-1 p-4 border-solid border-t border-gray-200">

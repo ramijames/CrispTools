@@ -2,7 +2,7 @@
 
 <template>
   <section id="logo">
-    <img src="/crisp-logo-black.svg" alt="CRISP" />
+    <img src="/crisp-logo-white.svg" alt="CRISP" />
   </section>
 </template>
 
