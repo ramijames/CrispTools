@@ -1,268 +1,339 @@
 <template>
-  <div>
-    <TransitionRoot as="template" :show="sidebarOpen">
-      <Dialog
-        as="div"
-        class="relative z-50 lg:hidden"
-        @close="sidebarOpen = false"
-      >
-        <TransitionChild
-          as="template"
-          enter="transition-opacity ease-linear duration-300"
-          enter-from="opacity-0"
-          enter-to="opacity-100"
-          leave="transition-opacity ease-linear duration-300"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
-        >
-          <div class="fixed inset-0 bg-gray-900/80" />
-        </TransitionChild>
-
-        <div class="fixed inset-0 flex">
-          <TransitionChild
-            as="template"
-            enter="transition ease-in-out duration-300 transform"
-            enter-from="-translate-x-full"
-            enter-to="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leave-from="translate-x-0"
-            leave-to="-translate-x-full"
-          >
-            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
-              <TransitionChild
-                as="template"
-                enter="ease-in-out duration-300"
-                enter-from="opacity-0"
-                enter-to="opacity-100"
-                leave="ease-in-out duration-300"
-                leave-from="opacity-100"
-                leave-to="opacity-0"
-              >
-                <div
-                  class="absolute left-full top-0 flex w-16 justify-center pt-5"
-                >
-                  <button
-                    type="button"
-                    class="-m-2.5 p-2.5"
-                    @click="sidebarOpen = false"
-                  >
-                    <span class="sr-only">Close sidebar</span>
-                    <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
-                  </button>
-                </div>
-              </TransitionChild>
-              <!-- Sidebar component, swap this element with another sidebar if you like -->
-              <div
-                class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2"
-              >
-                <div class="flex h-16 shrink-0 items-center">
-                  <img
-                    class="h-8 w-auto"
-                    src="/crisp-logo-white.svg"
-                    alt="Crisp Tools"
-                  />
-                </div>
-                <nav class="flex flex-1 flex-col">
-                  <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                    <li>
-                      <ul role="list" class="-mx-2 space-y-1">
-                        <li v-for="item in navigation" :key="item.name">
-                          <a
-                            v-if="!item.children"
-                            :href="item.href"
-                            :class="[
-                              item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
-                              'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700',
-                            ]"
-                            >{{ item.name }}</a
-                          >
-                          <Disclosure as="div" v-else v-slot="{ open }">
-                            <DisclosureButton
-                              :class="[
-                                item.current
-                                  ? 'bg-gray-50'
-                                  : 'hover:bg-gray-50',
-                                'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700',
-                              ]"
-                            >
-                              <ChevronRightIcon
-                                :class="[
-                                  open
-                                    ? 'rotate-90 text-gray-500'
-                                    : 'text-gray-400',
-                                  'h-5 w-5 shrink-0',
-                                ]"
-                                aria-hidden="true"
-                              />
-                              {{ item.name }}
-                            </DisclosureButton>
-                            <DisclosurePanel as="ul" class="mt-1 px-2">
-                              <li
-                                v-for="subItem in item.children"
-                                :key="subItem.name"
-                              >
-                                <DisclosureButton
-                                  as="a"
-                                  :href="subItem.href"
-                                  :class="[
-                                    subItem.current
-                                      ? 'bg-gray-50'
-                                      : 'hover:bg-gray-50',
-                                    'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700',
-                                  ]"
-                                  >{{ subItem.name }}</DisclosureButton
-                                >
-                              </li>
-                            </DisclosurePanel>
-                          </Disclosure>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </DialogPanel>
-          </TransitionChild>
-        </div>
-      </Dialog>
-    </TransitionRoot>
-
-    <!-- Static sidebar for desktop -->
-    <div
-      class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
+  <header class="bg-white">
+    <nav
+      class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+      aria-label="Global"
     >
-      <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <div
-        class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-black bg-black p-6"
-      >
-        <div class="flex h-16 shrink-0 items-center">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Crisp Tools</span>
           <img
-            class="w-auto h-12"
-            src="/crisp-logo-black.svg"
+            class="h-8 w-auto"
+            src="/crisp-logo-white.svg"
             alt="Crisp Tools"
           />
-        </div>
-        <nav class="flex flex-1 flex-col">
-          <ul role="list" class="flex flex-1 flex-col gap-y-7">
-            <li>
-              <ul role="list" class="-mx-2 space-y-1">
-                <li v-for="item in navigation" :key="item.name">
-                  <a
-                    v-if="!item.children"
-                    :href="item.href"
-                    :class="[
-                      item.current ? 'bg-black' : 'hover:bg-black',
-                      'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-white',
-                    ]"
-                    >{{ item.name }}</a
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button
+          type="button"
+          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          @click="mobileMenuOpen = true"
+        >
+          <span class="sr-only">Open main menu</span>
+          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+        </button>
+      </div>
+      <PopoverGroup class="hidden lg:flex lg:gap-x-12">
+        <Popover class="relative">
+          <PopoverButton
+            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+          >
+            Typography
+            <ChevronDownIcon
+              class="h-5 w-5 flex-none text-gray-400"
+              aria-hidden="true"
+            />
+          </PopoverButton>
+
+          <transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-1"
+          >
+            <PopoverPanel
+              class="absolute -right-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+            >
+              <div class="p-4">
+                <div
+                  v-for="item in products"
+                  :key="item.name"
+                  class="group relative flex gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                >
+                  <div
+                    class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"
                   >
-                  <Disclosure as="div" v-model="open" v-else v-slot="{ open }">
-                    <DisclosureButton
-                      :class="[
-                        item.current ? 'bg-black' : 'hover:bg-black',
-                        'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-white',
-                      ]"
+                    <component
+                      :is="item.icon"
+                      class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div class="flex-auto">
+                    <a
+                      :href="item.href"
+                      class="block font-semibold text-gray-900"
                     >
-                      <ChevronRightIcon
-                        :class="[
-                          open ? 'rotate-90 text-white' : 'text-white',
-                          'h-5 w-5 shrink-0',
-                        ]"
-                        aria-hidden="true"
-                      />
                       {{ item.name }}
-                    </DisclosureButton>
-                    <DisclosurePanel as="ul" class="mt-1 px-2">
-                      <li v-for="subItem in item.children" :key="subItem.name">
-                        <DisclosureButton
-                          @click="open = true"
-                          as="a"
-                          :href="subItem.href"
-                          :class="[
-                            subItem.current ? 'bg-black' : 'hover:bg-black',
-                            'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-white',
-                          ]"
-                          >{{ subItem.name }}</DisclosureButton
-                        >
-                      </li>
-                    </DisclosurePanel>
-                  </Disclosure>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+                      <span class="absolute inset-0" />
+                    </a>
+                    <p class="mt-1 text-gray-600">{{ item.description }}</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"
+              >
+                <a
+                  v-for="item in callsToAction"
+                  :key="item.name"
+                  :href="item.href"
+                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                >
+                  <component
+                    :is="item.icon"
+                    class="h-5 w-5 flex-none text-gray-400"
+                    aria-hidden="true"
+                  />
+                  {{ item.name }}
+                </a>
+              </div>
+            </PopoverPanel>
+          </transition>
+        </Popover>
 
-    <div
-      class="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden"
+        <!-- <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
+          >Features</a
+        >
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
+          >Marketplace</a
+        > -->
+
+        <!-- <Popover class="relative">
+          <PopoverButton
+            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+          >
+            Company
+            <ChevronDownIcon
+              class="h-5 w-5 flex-none text-gray-400"
+              aria-hidden="true"
+            />
+          </PopoverButton>
+
+          <transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-1"
+          >
+            <PopoverPanel
+              class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5"
+            >
+              <a
+                v-for="item in company"
+                :key="item.name"
+                :href="item.href"
+                class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                >{{ item.name }}</a
+              >
+            </PopoverPanel>
+          </transition>
+        </Popover> -->
+      </PopoverGroup>
+      <!-- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
+          >Log in <span aria-hidden="true">&rarr;</span></a
+        >
+      </div> -->
+    </nav>
+    <Dialog
+      as="div"
+      class="lg:hidden"
+      @close="mobileMenuOpen = false"
+      :open="mobileMenuOpen"
     >
-      <button
-        type="button"
-        class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
-        @click="sidebarOpen = true"
+      <div class="fixed inset-0 z-10" />
+      <DialogPanel
+        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
       >
-        <span class="sr-only">Open sidebar</span>
-        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-      </button>
-      <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">
-        Dashboard
-      </div>
-    </div>
+        <div class="flex items-center justify-between">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Your Company</span>
+            <img
+              class="h-8 w-auto"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              alt=""
+            />
+          </a>
+          <button
+            type="button"
+            class="-m-2.5 rounded-md p-2.5 text-gray-700"
+            @click="mobileMenuOpen = false"
+          >
+            <span class="sr-only">Close menu</span>
+            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
+                <DisclosureButton
+                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Typography
+                  <ChevronDownIcon
+                    :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
+                    aria-hidden="true"
+                  />
+                </DisclosureButton>
+                <DisclosurePanel class="mt-2 space-y-2">
+                  <DisclosureButton
+                    v-for="item in [...products, ...callsToAction]"
+                    :key="item.name"
+                    as="a"
+                    :href="item.href"
+                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >{{ item.name }}</DisclosureButton
+                  >
+                </DisclosurePanel>
+              </Disclosure>
 
-    <main class="lg:pl-72">
-      <!-- Main area -->
-      <RouterView />
-    </main>
-  </div>
+              <!-- <a
+                href="#"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >Features</a
+              >
+              <a
+                href="#"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >Marketplace</a
+              > -->
+
+              <!-- <Disclosure as="div" class="-mx-3" v-slot="{ open }">
+                <DisclosureButton
+                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Company
+                  <ChevronDownIcon
+                    :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
+                    aria-hidden="true"
+                  />
+                </DisclosureButton>
+                <DisclosurePanel class="mt-2 space-y-2">
+                  <DisclosureButton
+                    v-for="item in company"
+                    :key="item.name"
+                    as="a"
+                    :href="item.href"
+                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >{{ item.name }}</DisclosureButton
+                  >
+                </DisclosurePanel>
+              </Disclosure> -->
+            </div>
+            <!-- <div class="py-6">
+              <a
+                href="#"
+                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >Log in</a
+              >
+            </div> -->
+          </div>
+        </div>
+      </DialogPanel>
+    </Dialog>
+  </header>
+
+  <main class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <!-- Main area -->
+    <RouterView />
+  </main>
 </template>
 
 <script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronRightIcon } from "@heroicons/vue/20/solid";
 import { useRoute } from "vue-router";
 
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
-  TransitionChild,
-  TransitionRoot,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel,
 } from "@headlessui/vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
+import {
+  MusicalNoteIcon,
+  DocumentTextIcon,
+  Bars3Icon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  XMarkIcon,
+} from "@heroicons/vue/24/outline";
+import {
+  ChevronDownIcon,
+  PhoneIcon,
+  PlayCircleIcon,
+} from "@heroicons/vue/20/solid";
 
-const route = useRoute();
-
-let navigation = ref([]);
-let open = ref(false);
-
-watch(
-  route,
-  (newRoute) => {
-    navigation.value = [
-      { name: "Dashboard", href: "/", current: newRoute.path === "/" },
-      {
-        name: "Type Tools",
-        current:
-          newRoute.path === "/lipsum" || newRoute.path === "/fluid-type-scale",
-        children: [
-          {
-            name: "Lorem Ipsum",
-            href: "/lipsum",
-            current: newRoute.path === "/lipsum",
-          },
-          {
-            name: "Fluid Type Scale",
-            href: "/fluid-type-scale",
-            current: newRoute.path === "/fluid-type-scale",
-          },
-        ],
-      },
-    ];
+const products = [
+  {
+    name: "Lorem Ipsum",
+    description: "Generate placeholder text",
+    href: "/lipsum",
+    icon: DocumentTextIcon,
   },
-  { immediate: true }
-);
+  {
+    name: "Type Scale",
+    description: "Create a simple typographic scale",
+    href: "/fluid-type-scale",
+    icon: MusicalNoteIcon,
+  },
+];
+// const callsToAction = [
+//   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+//   { name: "Contact sales", href: "#", icon: PhoneIcon },
+// ];
+// const company = [
+//   { name: "About us", href: "#" },
+//   { name: "Careers", href: "#" },
+//   { name: "Support", href: "#" },
+//   { name: "Press", href: "#" },
+//   { name: "Blog", href: "#" },
+// ];
 
-const sidebarOpen = ref(false);
+const mobileMenuOpen = ref(false);
+
+// const route = useRoute();
+
+// let navigation = ref([]);
+// let open = ref(false);
+
+// watch(
+//   route,
+//   (newRoute) => {
+//     navigation.value = [
+//       { name: "Dashboard", href: "/", current: newRoute.path === "/" },
+//       {
+//         name: "Type Tools",
+//         current:
+//           newRoute.path === "/lipsum" || newRoute.path === "/fluid-type-scale",
+//         children: [
+//           {
+//             name: "Lorem Ipsum",
+//             href: "/lipsum",
+//             current: newRoute.path === "/lipsum",
+//           },
+//           {
+//             name: "Fluid Type Scale",
+//             href: "/fluid-type-scale",
+//             current: newRoute.path === "/fluid-type-scale",
+//           },
+//         ],
+//       },
+//     ];
+//   },
+//   { immediate: true }
+// );
+
+// const sidebarOpen = ref(false);
 </script>

@@ -46,11 +46,11 @@ const copyToClipboard = async () => {
         <h4 class="text-center text-7xl font-bold text-black">
           Lorem Ipsum Generator
         </h4>
-        <p class="text-center my-4 text-2xl max-w-3xl text-black">
+        <p class="text-center my-4 text-2xl text-black">
           Generate paragraphs of placeholder for use in your designs when the actual content isn't available.
         </p>
       </section>
-      <section class="flex gap-x-1 p-4 border-solid border-t border-gray-200">
+      <section class="flex p-4 border-solid border-t border-gray-200">
         <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label><input
           type="number"
           v-model="numParagraphs"
@@ -79,7 +79,6 @@ const copyToClipboard = async () => {
         </button>
       </section>
       <section class="flex flex-col items-center justify-center">
-        <div class="max-w-3xl">
           <div class="my-4">
             <div class="font-bold text-xl mb-2">Generated Text</div>
             <p class="text-gray-700 text-base">
@@ -91,7 +90,6 @@ const copyToClipboard = async () => {
               <p v-html="paragraphs"></p>
             </p>
           </div>
-        </div>
       </section>
     </section>
   </div>
@@ -99,9 +97,6 @@ const copyToClipboard = async () => {
 
 <style scoped>
 #toolbar {
-  justify-content: space-between;
-  border-left: 0;
-  border-top: 0;
-  border-right: 0;
+  
 }
 </style>

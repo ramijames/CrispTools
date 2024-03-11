@@ -22,32 +22,49 @@ export default {
         PerfectFifth: { value: 1.5, label: "Perfect Fifth", selected: false },
         GoldenRatio: { value: 1.618, label: "Golden Ratio", selected: false },
       },
+      units: {
+        px: { label: "px", selected: true },
+        rem: { label: "rem", selected: false },
+      },
       baseSize: 16,
       selectedTypeScale: "MinorThird",
+      selectedUnit: "px",
     };
   },
   setup() {
     const typeSizes = (scale, baseSize) => {
       const type = {
-        h1: `${baseSize * scale * scale * scale * scale * scale}px`,
-        h2: `${baseSize * scale * scale * scale * scale}px`,
-        h3: `${baseSize * scale * scale * scale}px`,
-        h4: `${baseSize * scale * scale}px`,
-        h5: `${baseSize * scale}px`,
-        p: `${baseSize}px`,
-        small: `${baseSize / scale}px`,
+        h1: `${baseSize * scale * scale * scale * scale * scale}`,
+        h2: `${baseSize * scale * scale * scale * scale}`,
+        h3: `${baseSize * scale * scale * scale}`,
+        h4: `${baseSize * scale * scale}`,
+        h5: `${baseSize * scale}`,
+        p: `${baseSize}`,
+        small: `${baseSize / scale}`,
       };
 
       return type;
     };
 
+    const baseSize = ref(16);
+    const selectedUnit = ref("px");
+
+    const convertedBaseSize = computed(() => {
+      if (selectedUnit.value === "px") {
+        return baseSize.value;
+      } else if (selectedUnit.value === "rem") {
+        return baseSize.value / 16;
+      }
+    });
+
     return {
       typeSizes,
+      convertedBaseSize,
+      baseSize,
+      selectedUnit,
     };
   },
-  mounted() {
-    console.log("mounted");
-  },
+  mounted() {},
   methods: {
     copyToClipboard() {
       navigator.clipboard.writeText(paragraphs.value);
@@ -56,6 +73,18 @@ export default {
         showPopup.value = false;
       }, 2000);
       console.log("Paragraph copied to clipboard");
+    },
+    convertRemToPx(rem) {
+      const baseFontSize = parseFloat(
+        getComputedStyle(document.documentElement).fontSize
+      );
+      return rem * baseFontSize;
+    },
+    convertPxToRem(px) {
+      const baseFontSize = parseFloat(
+        getComputedStyle(document.documentElement).fontSize
+      );
+      return px / baseFontSize;
     },
   },
 };
@@ -80,14 +109,37 @@ export default {
           {{ scale.label }}
         </option>
       </select>
-      <input
-        type="number"
-        v-model="baseSize"
+      <select
+        v-model="selectedUnit"
         class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-        value="16"
-      />
+      >
+        <option disabled value="Select a unit">Select a unit</option>
+        <option
+          v-for="(unit, key) in units"
+          :key="key"
+          :value="key"
+          :selected="unit.selected"
+        >
+          {{ unit.label }}
+        </option>
+      </select>
+      <div class="mb-4 px-2 w-full">
+        <label class="block mb-1 text-sm" for="input1">{{
+          selectedUnit
+        }}</label>
+
+        <input
+          type="number"
+          value="16"
+          v-model="convertedBaseSize"
+          id="convertedBaseSize"
+          class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+          autofocus
+          placeholder="Base size"
+        />
+      </div>
     </section>
-    <section id="type-scale-output">
+    <section id="type-scale-output columns-2">
       <section class="output">
         <ul>
           <li
@@ -97,13 +149,14 @@ export default {
             )"
             :key="key"
             :style="{
-              fontSize: size,
+              fontSize: size + selectedUnit,
             }"
           >
             {{ key }}: {{ size }}
           </li>
         </ul>
       </section>
+      <section>test</section>
     </section>
   </div>
 </template>
