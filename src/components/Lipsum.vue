@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from "vue";
-
+import Button from './Button.vue';
 import { LoremIpsum } from "lorem-ipsum";
 
 const lorem = new LoremIpsum({
@@ -37,6 +37,13 @@ const copyToClipboard = async () => {
   }
 };
 
+const tabs = [
+
+
+  { name: 'Paragraphs', href: '#', current: true },
+  { name: 'Words', href: '#', current: false },
+]
+
 </script>
 
 <template>
@@ -47,10 +54,10 @@ const copyToClipboard = async () => {
           Lorem Ipsum Generator
         </h4>
         <p class="text-center my-4 text-2xl text-black">
-          Generate paragraphs of placeholder for use in your designs when the actual content isn't available.
+          Generate text content for use in your designs and mockups.
         </p>
       </section>
-      <section class="flex p-4 border-solid border-t border-gray-200">
+      <section class="flex p-4 gap-2 border-solid border-t border-gray-200">
         <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label><input
           type="number"
           v-model="numParagraphs"
@@ -59,24 +66,21 @@ const copyToClipboard = async () => {
           step="1"
           class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         />
-        <button
-          @click="numParagraphs = 1"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Reset
-        </button>
-        <button
-          @click="copyToClipboard()"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Copy
-        </button>
-        <button
-          @click="generateParagraphs"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow"
-        >
-          Regenerate
-        </button>
+        <Button
+          btnType="secondary"
+          btnText="Reset"
+          :onClick="numParagraphs = 1" 
+        />
+        <Button
+          btnType="secondary"
+          btnText="Copy"
+          :onClick="copyToClipboard" 
+        />
+        <Button
+          btnType="primary"
+          btnText="Regenerate"
+          :onClick="generateParagraphs" 
+        />
       </section>
       <section class="flex flex-col items-center justify-center">
           <div class="my-4">

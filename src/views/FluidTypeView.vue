@@ -3,7 +3,7 @@ import FluidType from "../components/FluidType.vue";
 </script>
 
 <template>
-  <div id="fluid-type">
+  <div id="fluid-type" class="w-full">
     <FluidType />
   </div>
 </template>
