@@ -18,6 +18,11 @@ let numParagraphs = ref(1);
 let paragraphs = ref(lorem.generateParagraphs(numParagraphs.value));
 let showPopup = ref(false);
 
+function reset() {
+  numParagraphs.value = 1;
+  generateParagraphs();
+}
+
 const generateParagraphs = () => {
   paragraphs.value = lorem.generateParagraphs(numParagraphs.value);
 };
@@ -36,13 +41,6 @@ const copyToClipboard = async () => {
     console.error('Failed to copy paragraph: ', err);
   }
 };
-
-const tabs = [
-
-
-  { name: 'Paragraphs', href: '#', current: true },
-  { name: 'Words', href: '#', current: false },
-]
 
 </script>
 
@@ -69,7 +67,7 @@ const tabs = [
         <Button
           btnType="secondary"
           btnText="Reset"
-          :onClick="numParagraphs = 1" 
+          :onClick="reset" 
         />
         <Button
           btnType="secondary"

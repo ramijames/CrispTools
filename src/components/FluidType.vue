@@ -32,15 +32,21 @@ export default {
     };
   },
   setup() {
+    function truncateToThree(num) {
+      return Math.trunc(num * 1000) / 1000;
+    }
+
     const typeSizes = (scale, baseSize) => {
       const type = {
-        h1: `${baseSize * scale * scale * scale * scale * scale}`,
-        h2: `${baseSize * scale * scale * scale * scale}`,
-        h3: `${baseSize * scale * scale * scale}`,
-        h4: `${baseSize * scale * scale}`,
-        h5: `${baseSize * scale}`,
-        p: `${baseSize}`,
-        small: `${baseSize / scale}`,
+        h1: `${truncateToThree(
+          baseSize * scale * scale * scale * scale * scale
+        )}`,
+        h2: `${truncateToThree(baseSize * scale * scale * scale * scale)}`,
+        h3: `${truncateToThree(baseSize * scale * scale * scale)}`,
+        h4: `${truncateToThree(baseSize * scale * scale)}`,
+        h5: `${truncateToThree(baseSize * scale)}`,
+        p: `${truncateToThree(baseSize)}`,
+        small: `${truncateToThree(baseSize / scale)}`,
       };
 
       return type;
@@ -148,7 +154,7 @@ export default {
           <input
             type="number"
             value="16"
-            v-model="convertedBaseSize"
+            v-model="baseSize"
             id="convertedBaseSize"
             class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
             autofocus
@@ -156,25 +162,33 @@ export default {
           />
         </div>
       </section>
-      <section class="my-4 flex flex-row items-center justify-center">
-        <section id="typography" class="w-50">
-          <ul>
+      <section class="my-4">
+        <section id="typography" class="w-full">
+          <ul class="flex flex-col justify-center gap-4">
             <li
+              class="flex items-center flex-row"
               v-for="(size, key) in typeSizes(
                 typescales[selectedTypeScale].value,
                 baseSize
               )"
               :key="key"
-              :style="{
-                fontSize: size + selectedUnit,
-              }"
             >
-              {{ key }}: {{ size }}
+              <span
+                class="border text-slate-400 b-1 b-slate-200 p-1 rounded-md block w-16 text-center mx-4 text-sm"
+                >{{ size }}</span
+              >
+              <span
+                :style="{
+                  fontSize: size + selectedUnit,
+                }"
+                class="text-ellipsis truncate"
+                ><span class="text-slate-400">{{ key }}</span> Vexed nymphs go
+                for quick waltz job</span
+              >
             </li>
           </ul>
         </section>
-        <section id="cssoutput"></section>
-        output
+        <section id="cssoutput" class="w-full">output</section>
       </section>
     </section>
   </div>
