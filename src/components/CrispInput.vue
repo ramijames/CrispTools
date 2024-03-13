@@ -6,6 +6,7 @@
     :type="type"
     :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
+    min="1"
   />
 </template>
 
@@ -15,7 +16,7 @@ import { ref, watch, computed } from "vue";
 export default {
   props: {
     modelValue: {
-      type: Number,
+      type: [Number, String],
       default: null,
     },
     type: {

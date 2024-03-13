@@ -1,53 +1,85 @@
-<script setup>
+<script>
 import { ref, computed, watch } from "vue";
 import Button from './Button.vue';
+import CrispInput from './CrispInput.vue';
 import { LoremIpsum } from "lorem-ipsum";
 
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4,
+export default {
+  data() {
+    return {
+
+    };
   },
-  wordsPerSentence: {
-    max: 16,
-    min: 4,
+  setup() {
+    const lorem = new LoremIpsum({
+      sentencesPerParagraph: {
+        max: 8,
+        min: 4,
+      },
+      wordsPerSentence: {
+        max: 16,
+        min: 4,
+      },
+    });
+
+    let numParagraphs = ref(1);
+    let paragraphs = ref(lorem.generateParagraphs(numParagraphs.value));
+    let showPopup = ref(false);
+
+    const generateParagraphs = () => {
+      paragraphs.value = lorem.generateParagraphs(numParagraphs.value);
+    };
+
+    watch(numParagraphs, generateParagraphs);
+
+    const copyToClipboard = () => {
+      navigator.clipboard.writeText(paragraphs.value);
+      showPopup.value = true;
+      setTimeout(() => {
+        showPopup.value = false;
+      }, 2000);
+      console.log("Paragraph copied to clipboard");
+    };
+
+    const reset = () => {
+      numParagraphs.value = 1;
+      generateParagraphs();
+    };
+
+    return {
+      numParagraphs,
+      paragraphs,
+      showPopup,
+      generateParagraphs,
+      copyToClipboard,
+      reset,
+    };
+
   },
-});
+  components: {
+    Button,
+    CrispInput,
+  },
+  methods: {
 
-let numParagraphs = ref(1);
-let paragraphs = ref(lorem.generateParagraphs(numParagraphs.value));
-let showPopup = ref(false);
-
-function reset() {
-  numParagraphs.value = 1;
-  generateParagraphs();
-}
-
-const generateParagraphs = () => {
-  paragraphs.value = lorem.generateParagraphs(numParagraphs.value);
+    
+  },
+  watch: {
+    numParagraphs: function (val) {
+      console.log(val);
+    },
+  },
 };
 
-watch(numParagraphs, generateParagraphs);
 
-const copyToClipboard = async () => {
-  try {
-    await navigator.clipboard.writeText(paragraphs.value);
-    showPopup.value = true;
-    setTimeout(() => {
-      showPopup.value = false;
-    }, 2000);
-    console.log('Paragraph copied to clipboard');
-  } catch (err) {
-    console.error('Failed to copy paragraph: ', err);
-  }
-};
+
 
 </script>
 
 <template>
   <div class="wrapper">
     <section class="panel-group">
-      <section class="p-8 pt-24 flex bg-white items-center flex-col">
+      <section class="p-8 pt-24 flex items-center flex-col">
         <h4 class="text-center text-7xl font-bold text-black">
           Lorem Ipsum Generator
         </h4>
@@ -55,15 +87,17 @@ const copyToClipboard = async () => {
           Generate text content for use in your designs and mockups.
         </p>
       </section>
-      <section class="flex p-4 gap-2 border-solid border-t border-gray-200">
-        <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label><input
+      <section class="flex p-4 gap-2">
+        <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label>
+        <!-- <input
           type="number"
           v-model="numParagraphs"
           min="1"
           max="10"
           step="1"
           class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-        />
+        /> -->
+        <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"
           btnText="Reset"
@@ -89,7 +123,9 @@ const copyToClipboard = async () => {
                   Copied to clipboard!
                 </div>
               </transition>
-              <p v-html="paragraphs"></p>
+              <p>
+                {{ paragraphs }}
+              </p>
             </p>
           </div>
       </section>

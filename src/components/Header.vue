@@ -46,14 +46,14 @@ const mobileMenuOpen = ref(false);
 <template>
   <header class="max-w-7xl w-full">
     <nav
-      class="flex flex-row max-w-7xl items-center justify-between p-6 lg:px-8"
+      class="flex flex-row max-w-7xl items-center justify-between"
       aria-label="Global"
     >
       <div class="flex lg:flex-1">
-        <a href="/" class="-m-1.5 p-1.5">
+        <a href="/" class="">
           <span class="sr-only">Crisp Tools</span>
           <img
-            class="h-8 w-auto"
+            class="h-20 w-auto"
             src="/crisp-logo-white.svg"
             alt="Crisp Tools"
           />

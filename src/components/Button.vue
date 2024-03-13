@@ -24,13 +24,13 @@ export default {
     buttonClasses() {
       switch (this.btnType) {
         case "primary":
-          return "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow";
+          return "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-600 rounded";
         case "secondary":
-          return "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow";
+          return "bg-white hover:bg-blue-100 text-blue-600 font-semibold py-2 px-4 border border-blue-400 rounded";
         case "danger":
-          return "bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 border border-red-400 rounded shadow";
+          return "bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 border border-red-400 rounded";
         default:
-          return "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow";
+          return "bg-white hover:bg-blue-100 text-blue-600 font-semibold py-2 px-4 border border-blue-400 rounded";
       }
     },
   },

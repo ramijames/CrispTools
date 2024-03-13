@@ -100,7 +100,7 @@ export default {
 <template>
   <div class="wrapper w-full">
     <section class="panel-group w-full">
-      <section class="p-8 pt-24 flex bg-white items-center flex-col w-full">
+      <section class="p-8 pt-24 flex items-center flex-col w-full">
         <h4 class="text-center text-7xl font-bold text-black">
           Type Scale Generator
         </h4>
@@ -108,14 +108,12 @@ export default {
           Generate text content for use in your designs and mockups.
         </p>
       </section>
-      <section
-        class="flex p-4 gap-2 border-solid border-t border-gray-200 w-full"
-      >
+      <section class="flex p-4 gap-2 w-full">
         <div class="mb-4 w-1/3">
           <label class="block mb-1 text-sm" for="input1">Scale Ratio</label>
           <select
             v-model="selectedTypeScale"
-            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline"
           >
             <option disabled value="Select a type scale">
               Select a type scale
@@ -134,7 +132,7 @@ export default {
           <label class="block mb-1 text-sm" for="input1">Unit</label>
           <select
             v-model="selectedUnit"
-            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline"
           >
             <option disabled value="Select a unit">Select a unit</option>
             <option
@@ -151,16 +149,6 @@ export default {
           <label class="block mb-1 text-sm" for="input1"
             >Basesize in {{ selectedUnit }}</label
           >
-
-          <!-- <input
-            type="number"
-            value="16"
-            v-model="baseSize"
-            id="convertedBaseSize"
-            class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
-            autofocus
-            placeholder="Base size"
-          /> -->
           <CrispInput v-model="baseSize" type="number" inputType="secondary" />
         </div>
       </section>
