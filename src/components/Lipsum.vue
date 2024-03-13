@@ -65,7 +65,7 @@ export default {
     
   },
   watch: {
-    numParagraphs: function (val) {
+    lorem: function (val) {
       console.log(val);
     },
   },
@@ -78,6 +78,11 @@ export default {
 
 <template>
   <div class="wrapper">
+    <transition name="fade">
+      <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow-lg">
+        Copied to clipboard!
+      </div>
+    </transition>
     <section class="panel-group">
       <section class="p-8 pt-24 flex items-center flex-col">
         <h4 class="text-center text-7xl font-bold text-black">
@@ -105,24 +110,19 @@ export default {
         />
         <Button
           btnType="secondary"
-          btnText="Copy"
-          :onClick="copyToClipboard" 
+          btnText="Regenerate"
+          :onClick="generateParagraphs" 
         />
         <Button
           btnType="primary"
-          btnText="Regenerate"
-          :onClick="generateParagraphs" 
+          btnText="Copy"
+          :onClick="copyToClipboard" 
         />
       </section>
       <section class="flex flex-col items-center justify-center">
           <div class="my-4">
             <div class="font-bold text-xl mb-2">Generated Text</div>
             <p class="text-gray-700 text-base">
-              <transition name="fade">
-                <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow-lg">
-                  Copied to clipboard!
-                </div>
-              </transition>
               <p>
                 {{ paragraphs }}
               </p>

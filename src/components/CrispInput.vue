@@ -5,7 +5,7 @@
     autofocus
     :type="type"
     :placeholder="placeholder"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', Number($event.target.value))"
     min="1"
   />
 </template>
