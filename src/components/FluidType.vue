@@ -1,5 +1,6 @@
 <script>
 import { ref, computed, watch } from "vue";
+import CrispInput from "./CrispInput.vue";
 
 export default {
   data() {
@@ -26,12 +27,14 @@ export default {
         px: { label: "px", selected: true },
         rem: { label: "rem", selected: false },
       },
-      baseSize: 16,
+      // baseSize: 18,
       selectedTypeScale: "MinorThird",
       selectedUnit: "px",
     };
   },
   setup() {
+    const baseSize = ref(18);
+
     function truncateToThree(num) {
       return Math.trunc(num * 1000) / 1000;
     }
@@ -47,30 +50,28 @@ export default {
         h5: `${truncateToThree(baseSize * scale)}`,
         p: `${truncateToThree(baseSize)}`,
         small: `${truncateToThree(baseSize / scale)}`,
+        // h1: `12`,
       };
 
       return type;
     };
 
-    const baseSize = ref(16);
-    const selectedUnit = ref("px");
-
-    const convertedBaseSize = computed(() => {
-      if (selectedUnit.value === "px") {
-        return baseSize.value;
-      } else if (selectedUnit.value === "rem") {
-        return baseSize.value / 16;
-      }
-    });
+    // const convertedBaseSize = computed(() => {
+    //   if (selectedUnit.value === "px") {
+    //     return baseSize.value;
+    //   } else if (selectedUnit.value === "rem") {
+    //     return baseSize.value / 16;
+    //   }
+    // });
 
     return {
       typeSizes,
-      convertedBaseSize,
       baseSize,
-      selectedUnit,
     };
   },
-  mounted() {},
+  components: {
+    CrispInput,
+  },
   methods: {
     copyToClipboard() {
       navigator.clipboard.writeText(paragraphs.value);
@@ -80,18 +81,18 @@ export default {
       }, 2000);
       console.log("Paragraph copied to clipboard");
     },
-    convertRemToPx(rem) {
-      const baseFontSize = parseFloat(
-        getComputedStyle(document.documentElement).fontSize
-      );
-      return rem * baseFontSize;
-    },
-    convertPxToRem(px) {
-      const baseFontSize = parseFloat(
-        getComputedStyle(document.documentElement).fontSize
-      );
-      return px / baseFontSize;
-    },
+    // convertRemToPx(rem) {
+    //   const baseFontSize = parseFloat(
+    //     getComputedStyle(document.documentElement).fontSize
+    //   );
+    //   return rem * baseFontSize;
+    // },
+    // convertPxToRem(px) {
+    //   const baseFontSize = parseFloat(
+    //     getComputedStyle(document.documentElement).fontSize
+    //   );
+    //   return px / baseFontSize;
+    // },
   },
 };
 </script>
@@ -151,7 +152,7 @@ export default {
             >Basesize in {{ selectedUnit }}</label
           >
 
-          <input
+          <!-- <input
             type="number"
             value="16"
             v-model="baseSize"
@@ -159,7 +160,8 @@ export default {
             class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
             autofocus
             placeholder="Base size"
-          />
+          /> -->
+          <CrispInput v-model="baseSize" type="number" inputType="secondary" />
         </div>
       </section>
       <section class="my-4">
