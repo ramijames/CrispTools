@@ -1,10 +1,16 @@
 <script setup></script>
 
 <template>
-  <footer class="mx-auto max-w-7xl my-24">
+  <footer class="mx-auto max-w-7xl my-24 flex flex-row justify-between w-full">
     <p class="text-center text-base text-gray-500">
       Made with ♥ by
       <a class="text-blue-400" href="https://www.ramijames.com">Rami James</a>
+    </p>
+    <p class="text-center text-base text-gray-500">
+      Star on
+      <a class="text-blue-400" href="https://github.com/ramijames/crisp-tools"
+        >Github</a
+      >
     </p>
   </footer>
 </template>

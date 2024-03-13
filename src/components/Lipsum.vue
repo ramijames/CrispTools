@@ -92,7 +92,7 @@ export default {
           Generate text content for use in your designs and mockups.
         </p>
       </section>
-      <section class="flex p-4 gap-2">
+      <section class="flex p-4 gap-2 border-b b-slate-200">
         <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label>
         <!-- <input
           type="number"

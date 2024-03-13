@@ -108,7 +108,7 @@ export default {
           Generate text content for use in your designs and mockups.
         </p>
       </section>
-      <section class="flex p-4 gap-2 w-full">
+      <section class="flex p-4 gap-2 w-full border-b b-slate-200">
         <div class="mb-4 w-1/3">
           <label class="block mb-1 text-sm" for="input1">Scale Ratio</label>
           <select
