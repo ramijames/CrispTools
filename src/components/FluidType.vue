@@ -29,12 +29,21 @@ export default {
       },
       // baseSize: 18,
       selectedTypeScale: "MinorThird",
-      selectedUnit: "px",
     };
   },
   setup() {
     const baseSize = ref(18);
+    const selectedUnit = ref("px");
+    let previousUnit = ref("px");
 
+    watch(selectedUnit, (newUnit, oldUnit) => {
+      previousUnit.value = oldUnit;
+      if (newUnit === "rem" && oldUnit === "px") {
+        baseSize.value /= 16;
+      } else if (newUnit === "px" && oldUnit === "rem") {
+        baseSize.value *= 16;
+      }
+    });
     function truncateToThree(num) {
       return Math.trunc(num * 1000) / 1000;
     }
@@ -50,23 +59,15 @@ export default {
         h5: `${truncateToThree(baseSize * scale)}`,
         p: `${truncateToThree(baseSize)}`,
         small: `${truncateToThree(baseSize / scale)}`,
-        // h1: `12`,
       };
 
       return type;
     };
 
-    // const convertedBaseSize = computed(() => {
-    //   if (selectedUnit.value === "px") {
-    //     return baseSize.value;
-    //   } else if (selectedUnit.value === "rem") {
-    //     return baseSize.value / 16;
-    //   }
-    // });
-
     return {
       typeSizes,
       baseSize,
+      selectedUnit,
     };
   },
   components: {
@@ -81,18 +82,6 @@ export default {
       }, 2000);
       console.log("Paragraph copied to clipboard");
     },
-    // convertRemToPx(rem) {
-    //   const baseFontSize = parseFloat(
-    //     getComputedStyle(document.documentElement).fontSize
-    //   );
-    //   return rem * baseFontSize;
-    // },
-    // convertPxToRem(px) {
-    //   const baseFontSize = parseFloat(
-    //     getComputedStyle(document.documentElement).fontSize
-    //   );
-    //   return px / baseFontSize;
-    // },
   },
 };
 </script>
@@ -105,7 +94,7 @@ export default {
           Type Scale Generator
         </h4>
         <p class="text-center my-4 text-2xl text-black">
-          Generate text content for use in your designs and mockups.
+          Generate a type scale based on a base size and a scale ratio
         </p>
       </section>
       <section class="flex p-4 gap-2 w-full border-b b-slate-200">
@@ -164,8 +153,8 @@ export default {
               :key="key"
             >
               <span
-                class="border text-slate-400 b-1 b-slate-200 p-1 rounded-md block w-16 text-center mx-4 text-sm"
-                >{{ size }}</span
+                class="border text-slate-400 b-1 b-slate-200 p-2 rounded-md block w-24 text-center mx-4 text-sm"
+                >{{ size }}{{ selectedUnit }}</span
               >
               <span
                 :style="{
@@ -178,7 +167,35 @@ export default {
             </li>
           </ul>
         </section>
-        <section id="cssoutput" class="w-full">output</section>
+        <section id="cssoutput" class="w-full">
+          <pre>
+            <code>
+
+                .h1 {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).h1 }}{{ selectedUnit }};
+                }
+                .h2 {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).h2 }}{{ selectedUnit }};
+                }
+                .h3 {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).h3 }}{{ selectedUnit }};
+                }
+                .h4 {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).h4 }}{{ selectedUnit }};
+                }
+                .h5 {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).h5 }}{{ selectedUnit }};
+                }
+                .p {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).p }}{{ selectedUnit }};
+                }
+                .small {
+                  font-size: {{ typeSizes(typescales[selectedTypeScale].value, baseSize).small }}{{ selectedUnit }};
+                }
+
+            </code>
+          </pre>
+        </section>
       </section>
     </section>
   </div>

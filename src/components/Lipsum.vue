@@ -89,19 +89,11 @@ export default {
           Lorem Ipsum Generator
         </h4>
         <p class="text-center my-4 text-2xl text-black">
-          Generate text content for use in your designs and mockups.
+          Generate text content for use in your designs and mockups
         </p>
       </section>
       <section class="flex p-4 gap-2 border-b b-slate-200">
         <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label>
-        <!-- <input
-          type="number"
-          v-model="numParagraphs"
-          min="1"
-          max="10"
-          step="1"
-          class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-        /> -->
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"
