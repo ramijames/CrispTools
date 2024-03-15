@@ -3,6 +3,10 @@ import { ref, computed, watch } from "vue";
 import CrispInput from "./shared/CrispInput.vue";
 import Button from "./shared/Button.vue";
 import {Tabs, Tab} from 'vue3-tabs-component';
+import PlainCSS from "./statictypegen/plaincss.vue";
+import CSSVariables from "./statictypegen/cssvariables.vue";
+import SASSVariables from "./statictypegen/sassvariables.vue";
+import TailwindStyles from "./statictypegen/tailwindstyles.vue";
 
 export default {
   data() {
@@ -91,6 +95,10 @@ export default {
     Button,
     Tabs,
     Tab,
+    PlainCSS,
+    CSSVariables,
+    SASSVariables,
+    TailwindStyles,
   },
   methods: {
     copyToClipboard() {
@@ -193,69 +201,16 @@ export default {
         <section id="cssoutput" class="w-full border-t my-8 b-slate-200">
           <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
             <tab name="Plain CSS" >
-              <div class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
-                <pre v-highlightjs>
-                  <code class="css">html {font-size: 16px;}
-
-body {
-  font-family: sans-serif;
-  font-weight: false;
-  line-height: 1.65;
-}
-
-p {
-  font-size: 1em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: sans-serif;
-  font-weight: true;
-  line-height: 1.15;
-}
-
-h1,
-.text-size-h1 {
-  font-family: sans-serif;
-  font-weight: 700;
-  margin-top: 0;
-  font-size: 3.05em;
-}
-
-h2,
-.text-size-h2 { font-size: 2.44em; }
-
-h3,
-.text-size-h3 { font-size: 1.95em; }
-
-h4,
-.text-size-h4 { font-size: 1.56em; }
-
-h5,
-.text-size-h5 { font-size: 1.25em; }
-
-.text-caption { font-size: 0.8em; }
-
-small,
-.text-small {
-  font-size: 0.64em;
-}
-{{ generateCssOutput }}
-                </code>
-              </pre>
-            </div>
+              <PlainCSS />
             </tab>
             <tab name="CSS Variables">
-              <p>This is the content of Tab 2</p>
+              <CSSVariables />
             </tab>
             <tab name="SASS Variables">
-              <p>This is the content of Tab 3</p>
+              <SASSVariables />
             </tab>
             <tab name="Tailwind">
-              <p>This is the content of Tab 3</p>
+              <TailwindStyles />
             </tab>
           </tabs>
         </section>
