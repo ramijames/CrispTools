@@ -1,7 +1,7 @@
 <script>
 import { ref, computed, watch } from "vue";
-import Button from './Button.vue';
-import CrispInput from './CrispInput.vue';
+import Button from './shared/Button.vue';
+import CrispInput from './shared/CrispInput.vue';
 import { LoremIpsum } from "lorem-ipsum";
 
 export default {
@@ -130,3 +130,4 @@ export default {
   
 }
 </style>
+./shared/Button.vue./shared/CrispInput.vue

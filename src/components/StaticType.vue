@@ -1,7 +1,7 @@
 <script>
 import { ref, computed, watch } from "vue";
-import CrispInput from "./CrispInput.vue";
-import Button from "./Button.vue";
+import CrispInput from "./shared/CrispInput.vue";
+import Button from "./shared/Button.vue";
 import {Tabs, Tab} from 'vue3-tabs-component';
 
 export default {

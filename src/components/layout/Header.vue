@@ -35,7 +35,7 @@ const products = [
   {
     name: "Type Scale",
     description: "Create a simple typographic scale",
-    href: "/fluid-type-scale",
+    href: "/static-type-scale",
     icon: MusicalNoteIcon,
   },
 ];
