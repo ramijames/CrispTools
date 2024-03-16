@@ -1,5 +1,5 @@
 <script>
-import { ref, computed, watch } from "vue";
+import { ref, watch, reactive } from "vue";
 import CrispInput from "./shared/CrispInput.vue";
 import Button from "./shared/Button.vue";
 import {Tabs, Tab} from 'vue3-tabs-component';
@@ -11,30 +11,10 @@ import TailwindStyles from "./statictypegen/tailwindstyles.vue";
 export default {
   data() {
     return {
-      // typescales: {
-      //   MinorSecond: { value: 1.067, label: "Minor Second", selected: false },
-      //   MajorSecond: { value: 1.125, label: "Major Second", selected: false },
-      //   MinorThird: { value: 1.2, label: "Minor Third", selected: true },
-      //   MajorThird: { value: 1.25, label: "Major Third", selected: false },
-      //   PerfectFourth: {
-      //     value: 1.333,
-      //     label: "Perfect Fourth",
-      //     selected: false,
-      //   },
-      //   AugmentedFourth: {
-      //     value: 1.414,
-      //     label: "Augmented Fourth",
-      //     selected: false,
-      //   },
-      //   PerfectFifth: { value: 1.5, label: "Perfect Fifth", selected: false },
-      //   GoldenRatio: { value: 1.618, label: "Golden Ratio", selected: false },
-      // },
       units: {
         px: { label: "px", selected: true },
         rem: { label: "rem", selected: false },
       },
-      // baseSize: 18,
-      // selectedTypeScale: "MinorThird",
     };
   },
   setup() {
@@ -51,6 +31,7 @@ export default {
         baseSize.value *= 16;
       }
     });
+
     function truncateToThree(num) {
       return Math.trunc(num * 1000) / 1000;
     }
@@ -118,10 +99,10 @@ export default {
     <section class="panel-group w-full">
       <section class="p-8 pt-24 flex items-center flex-col w-full">
         <h4 class="text-center text-7xl font-bold text-black">
-          Type Scale Generator
+          Static Type Scale
         </h4>
         <p class="text-center my-4 text-2xl text-black">
-          Generate a type scale based on a base size and a scale ratio
+          Generate a static type scale based on a base size and a scale ratio
         </p>
       </section>
       <section class="flex p-4 gap-2 w-full border-b b-slate-200">
@@ -201,16 +182,16 @@ export default {
         <section id="cssoutput" class="w-full border-t my-8 b-slate-200">
           <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
             <tab name="Plain CSS" >
-              <PlainCSS />
+              <PlainCSS :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
             </tab>
             <tab name="CSS Variables">
-              <CSSVariables />
+              <CSSVariables :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
             </tab>
             <tab name="SASS Variables">
-              <SASSVariables />
+              <SASSVariables :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
             </tab>
             <tab name="Tailwind">
-              <TailwindStyles />
+              <TailwindStyles :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
             </tab>
           </tabs>
         </section>

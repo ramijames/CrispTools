@@ -1,54 +1,56 @@
+<script>
+import { ref, watch } from 'vue';
+
+export default {
+  name: "PlainCSS",
+
+  setup(props) {
+    const baseSizeInternal = ref(props.baseSize);
+
+    watch(() => props.baseSize, (newBaseSize) => {
+      baseSizeInternal.value = newBaseSize;
+    }, { immediate: true });
+
+    return {
+      baseSizeInternal
+    };
+  },
+  props: {
+    baseSize: {
+      type: Number,
+      default: 18,
+    },
+    typeSizes: {
+      type: Object,
+      default: () => ({
+        h1: "44.789",
+        h2: "37.324",
+        h3: "31.103",
+        h4: "25.919",
+        h5: "21.599",
+        p: "18",
+        small: "15"
+      }),
+    },
+    selectedUnit: {
+      type: String,
+      default: "px",
+    },
+  },
+  };
+</script>
+
 <template>
-  <div class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
+  <div :key="PlainCSS" class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
     <pre v-highlightjs>
-      <code class="css">html {font-size: 16px;}
-
-body {
-  font-family: sans-serif;
-  font-weight: false;
-  line-height: 1.65;
-}
-
-p {
-  font-size: 1em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: sans-serif;
-  font-weight: true;
-  line-height: 1.15;
-}
-
-h1,
-.text-size-h1 {
-  font-family: sans-serif;
-  font-weight: 700;
-  margin-top: 0;
-  font-size: 3.05em;
-}
-
-h2,
-.text-size-h2 { font-size: 2.44em; }
-
-h3,
-.text-size-h3 { font-size: 1.95em; }
-
-h4,
-.text-size-h4 { font-size: 1.56em; }
-
-h5,
-.text-size-h5 { font-size: 1.25em; }
-
-.text-caption { font-size: 0.8em; }
-
-small,
-.text-small {
-  font-size: 0.64em;
-}
+      <code class="css">
+h1 { font-size: {{ typeSizes.h1 }}{{ selectedUnit }}; }
+h2 { font-size: {{ typeSizes.h2 }}{{ selectedUnit }}; }
+h3 { font-size: {{ typeSizes.h3 }}{{ selectedUnit }}; }
+h4 { font-size: {{ typeSizes.h4 }}{{ selectedUnit }}; }
+h5 { font-size: {{ typeSizes.h5 }}{{ selectedUnit }}; }
+p { font-size: {{ typeSizes.p }}{{ selectedUnit }}; }
+small { font-size: {{ typeSizes.small }}{{ selectedUnit }}; }
       </code>
     </pre>
   </div>

@@ -8,6 +8,8 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 const app = createApp(App);
 
+app.config.productionTip = false
+
 app.use(router);
 app.use(VueHighlightJS);
 app.mount("#app");
