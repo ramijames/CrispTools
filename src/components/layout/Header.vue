@@ -33,8 +33,8 @@ const products = [
     icon: DocumentTextIcon,
   },
   {
-    name: "Type Scale",
-    description: "Create a simple typographic scale",
+    name: "Static Type Scale",
+    description: "Create a static typographic scale",
     href: "/static-type-scale",
     icon: MusicalNoteIcon,
   },
@@ -198,11 +198,11 @@ const mobileMenuOpen = ref(false);
       >
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
+            <span class="sr-only">Crisp Tools</span>
             <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
+              class="h-20 w-auto"
+              src="/crisp-logo-white.svg"
+              alt="Crisp Tools"
             />
           </a>
           <button
