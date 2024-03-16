@@ -38,6 +38,12 @@ const products = [
     href: "/static-type-scale",
     icon: MusicalNoteIcon,
   },
+  {
+    name: "Word Counter",
+    description: "Count words in your text",
+    href: "/word-counter",
+    icon: DocumentTextIcon,
+  },
 ];
 
 const mobileMenuOpen = ref(false);
@@ -74,7 +80,7 @@ const mobileMenuOpen = ref(false);
           <PopoverButton
             class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
           >
-            Typography
+            Type Tools
             <ChevronDownIcon
               class="h-5 w-5 flex-none text-gray-400"
               aria-hidden="true"
@@ -221,7 +227,7 @@ const mobileMenuOpen = ref(false);
                 <DisclosureButton
                   class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Typography
+                  Type Tools
                   <ChevronDownIcon
                     :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
                     aria-hidden="true"
@@ -229,7 +235,7 @@ const mobileMenuOpen = ref(false);
                 </DisclosureButton>
                 <DisclosurePanel class="mt-2 space-y-2">
                   <DisclosureButton
-                    v-for="item in [...products, ...callsToAction]"
+                    v-for="item in [...products]"
                     :key="item.name"
                     as="a"
                     :href="item.href"
