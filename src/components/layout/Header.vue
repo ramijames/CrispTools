@@ -18,6 +18,7 @@ import {
   ChartPieIcon,
   CursorArrowRaysIcon,
   XMarkIcon,
+  MagnifyingGlassCircleIcon,
 } from "@heroicons/vue/24/outline";
 import {
   ChevronDownIcon,
@@ -39,10 +40,10 @@ const products = [
     icon: MusicalNoteIcon,
   },
   {
-    name: "Word Counter",
-    description: "Count words in your text",
+    name: "Text Analysis",
+    description: "Word counter and keywords analysis tool",
     href: "/word-counter",
-    icon: DocumentTextIcon,
+    icon: MagnifyingGlassCircleIcon,
   },
 ];
 

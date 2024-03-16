@@ -31,7 +31,7 @@ export default {
     // Keyword Extractor
     const keywords = ref([]);
     const keywordCounts = ref(0);
-    const limit = ref(10); // initial limit
+    const limit = ref(5); // initial limit
 
     const showMore = () => {
       limit.value += 5;
@@ -91,8 +91,31 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
-    <section class="panel-group">
+  <div class="title py-10">
+    <h1 class="text-4xl font-bold text-black">Text Analysis</h1>
+    <p class="text-2xl text-black">Word analysis tool and keyword extractor</p>
+  </div>
+  <div class="flex flex-row">
+    <section class="main flex flex-col w-3/4">
+      <section class="count">
+        <div class="flex flex-row gap-6 py-2 justify-between block appearance-none w-full bg-slate-100 border px-4 py-2 pr-8 border-b-0 rounded-t-lg">
+          <div class="text-md text-black">{{ wordCount }} words</div>
+          <div class="text-md text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</div>
+        </div>
+      </section>
+      <section class="textblock">
+        <textarea v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded-b-lg focus:outline-none focus:shadow-outline">Paste your text here</textarea>
+      </section>
+    </section>
+    <section class="main flex flex-col w-1/4">
+      <div class="font-bold text-xl mb-2">Keywords</div>
+      <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword">
+        {{ keyword }}:{{ count[0] }} {{ count[1] }} 
+      </div>
+      
+      <button v-if="text" @click="showMore">Show more</button>
+    </section>
+    <!-- <section class="panel-group">
       <section class="p-8 pt-24 flex items-center flex-col">
         <h4 class="text-center text-7xl font-bold text-black">
           Word Counter
@@ -122,12 +145,13 @@ export default {
               </div>
               <div class="font-bold text-xl mb-2">Keywords</div>
               <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword">
-                {{ keyword }}: {{ count }}
+                {{ keyword }}:{{ count[0] }} {{ count[1] }} 
               </div>
-              <button @click="showMore">Show more</button>
+              
+              <button v-if="text" @click="showMore">Show more</button>
             </section>
       </section>
-    </section>
+    </section> -->
   </div>
 </template>
 
