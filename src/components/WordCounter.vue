@@ -42,7 +42,11 @@ export default {
     };
 
     watch(text, () => {
-      const extractionResult = keywordExtractor.extract(text.value, {
+      
+      // Remove special characters from the text before extracting keywords
+      let cleanedText = text.value.replace(/–|-|■|•|●|►|▼|▲|▶|◀|◆|◇/g, ' ');
+
+      const extractionResult = keywordExtractor.extract(cleanedText, {
         language: "english",
         remove_digits: true,
         return_changed_case: true,
@@ -129,43 +133,6 @@ export default {
         />
       </section>
     </section>
-    <!-- <section class="panel-group">
-      <section class="p-8 pt-24 flex items-center flex-col">
-        <h4 class="text-center text-7xl font-bold text-black">
-          Word Counter
-        </h4>
-        <p class="text-center my-4 text-2xl text-black">
-          Check how many words, sentences, or paragraphs your text has
-        </p>
-      </section>
-      <section class="flex p-4 gap-2 border-b b-slate-200">
-        
-      </section>
-      <section class="flex flex-row items-center justify-top my-6 w-full">
-            <section class="counter w-1/2 min-h-96 bg-yellow-50 p-6">
-              <div class="font-bold text-xl mb-2">Paste your text</div>
-              <p class="text-gray-700 text-base">
-                <textarea v-model="text" id="wordCounterBox" rows="10" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">Paste your text here</textarea>
-              </p>
-            </section>
-            <section class="analysis w-1/2 min-h-96 bg-neutral-100 p-6">
-              <div class="font-bold text-xl mb-2">Analysis</div>
-              <div class="panel">
-                <ul>
-                  <li>Words: {{ wordCount }}</li>
-                  <li>Sentences: {{ sentenceCount }}</li>
-                  <li>Paragraphs: {{ paragraphCount }}</li>
-                </ul>
-              </div>
-              <div class="font-bold text-xl mb-2">Keywords</div>
-              <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword">
-                {{ keyword }}:{{ count[0] }} {{ count[1] }} 
-              </div>
-              
-              <button v-if="text" @click="showMore">Show more</button>
-            </section>
-      </section>
-    </section> -->
   </div>
 </template>
 
