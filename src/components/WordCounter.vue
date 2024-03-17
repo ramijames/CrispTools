@@ -2,6 +2,10 @@
 import { ref, computed, watch } from "vue";
 import Button from './shared/Button.vue';
 import keywordExtractor from 'keyword-extractor';
+import {
+  DocumentTextIcon
+} from "@heroicons/vue/24/outline";
+
 
 export default {
   data() {
@@ -75,7 +79,7 @@ export default {
   },
   components: {
     Button,
-
+    DocumentTextIcon
   },
   methods: {
     
@@ -108,12 +112,22 @@ export default {
       </section>
     </section>
     <section class="main flex flex-col w-1/4">
-      <div class="font-bold text-xl mb-2">Keywords</div>
-      <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword">
-        {{ keyword }}:{{ count[0] }} {{ count[1] }} 
-      </div>
-      
-      <button v-if="text" @click="showMore">Show more</button>
+      <section v-if="!text" class="flex flex-col items-center text-center p-8 text-neutral-400">
+        <DocumentTextIcon class="h-12 w-12 mb-2" />
+        No text to analyze
+      </section>
+      <section v-if="text" class="px-8">
+        <div class="font-bold text-xl mb-4">Keywords</div>
+        <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword" class="flex flex-row mb-2">
+          <!--{{ keyword }}: --> <div class="text-sm rounded rounded-full bg-slate-100 text-slate-500 text-center px-4 mr-2">{{ count[1] }}</div> {{ count[0] }} 
+        </div>
+        
+        <Button
+          btnType="secondary"
+          btnText="Show more"
+          :onClick="showMore" 
+        />
+      </section>
     </section>
     <!-- <section class="panel-group">
       <section class="p-8 pt-24 flex items-center flex-col">
