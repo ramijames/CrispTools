@@ -18,9 +18,9 @@ export default {
     };
   },
   setup() {
-    const baseSize = ref(18);
+    const baseSize = ref(16);
     const selectedUnit = ref("px");
-    const selectedTypeScale =  ref("MinorThird");
+    const selectedTypeScale =  ref("MajorSecond");
     let previousUnit = ref("px");
 
     watch(selectedUnit, (newUnit, oldUnit) => {
@@ -151,7 +151,7 @@ export default {
         </li>
       </ul>
     </div>
-    <div class="lg:w-1/2 sm:w-full bg-slate-900">
+    <div class="lg:w-1/2 sm:w-full bg-blue-900">
       <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
         <tab name="Plain CSS" >
           <PlainCSS :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
@@ -178,7 +178,7 @@ export default {
 .tabs-component-tabs {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 1rem;
 }
 
@@ -199,8 +199,9 @@ export default {
 }
 
 .is-inactive {
-  background-color: rgb(245, 245, 245);
-  color:rgb(37, 99, 235);
+  background-color: transparent;
+  border-color:rgb(37, 99, 235);
+  color:white;
 }
 
 .css.hljs {
