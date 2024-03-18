@@ -83,17 +83,34 @@ export default {
         Copied to clipboard!
       </div>
     </transition>
-    <section class="panel-group">
-      <section class="p-8 pt-24 flex items-center flex-col">
-        <h4 class="text-center text-7xl font-bold text-black">
-          Lorem Ipsum Generator
-        </h4>
-        <p class="text-center my-4 text-2xl text-black">
-          Generate text content for use in your designs and mockups
-        </p>
+    <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
+      <section id="title" class="flex flex-col justify-center pr-24">
+        <h4 class="text-md font-semibold text-black">Lorem Ipsum Generator</h4>
+        <p class="text-xs text-slate-800">Generate text content for use in your designs and mockups</p>
       </section>
-      <section class="flex p-4 gap-2 border-b b-slate-200">
-        <label class="px-4 py-2 pr-8 font-semibold">Paragraphs</label>
+      <section id="toolbar" class="flex flex-auto flex-row gap-2">
+        <!-- <div class="w-1/3">
+          <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
+          <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
+            <option disabled value="Select a type scale">Select a type scale</option>
+            <option v-for="(scale, key) in typescales" :key="key" :value="key" :selected="scale.selected" >
+              {{ scale.label }}
+            </option>
+          </select>
+        </div>
+        <div class="w-1/3">
+          <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
+          <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
+            <option disabled value="Select a unit">Select a unit</option>
+            <option v-for="(unit, key) in units" :key="key" :value="key" :selected="unit.selected" >
+              {{ unit.label }}
+            </option>
+          </select>
+        </div>
+        <div class="w-1/3">
+          <label class="block mb-1 font-semibold text-sm" for="input1">Basesize in {{ selectedUnit }}</label>
+          <CrispInput v-model="baseSize" type="number" inputType="secondary" />
+        </div> -->
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"
@@ -111,22 +128,14 @@ export default {
           :onClick="copyToClipboard" 
         />
       </section>
-      <section class="flex flex-col items-center justify-center">
-          <div class="my-4">
-            <div class="font-bold text-xl mb-2">Generated Text</div>
-            <p class="text-gray-700 text-base">
-              <p>
-                {{ paragraphs }}
-              </p>
-            </p>
-          </div>
-      </section>
+    </section>
+    <section id="workspace" class="flex lg:flex-row md:flex-col">
+      <div class="w-full bg-white flex flex-col items-center">
+        <div class="max-w-3xl p-24 text-black">
+          <h3 class="font-bold text-xl mb-2">Generated Text</h3>
+          <p>{{ paragraphs }}</p>
+        </div>
+      </div>
     </section>
   </div>
 </template>
-
-<style scoped>
-#toolbar {
-  
-}
-</style>
