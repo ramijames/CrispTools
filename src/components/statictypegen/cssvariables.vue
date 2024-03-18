@@ -41,10 +41,8 @@ export default {
 </script>
 
 <template>
-  <div :key="CSSVariables" class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
-    <pre v-highlightjs>
-      <code class="css">
-:root {
+  <div :key="CSSVariables" class="">
+    <pre v-highlightjs><code class="css">:root {
   --text-size-sm: {{ typeSizes.small }}{{ selectedUnit }};
   --text-size-base: {{ typeSizes.p }}{{ selectedUnit }};
   --text-size-md: {{ typeSizes.h5 }}{{ selectedUnit }};

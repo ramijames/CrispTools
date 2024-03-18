@@ -41,17 +41,13 @@ export default {
 </script>
 
 <template>
-  <div :key="PlainCSS" class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
-    <pre v-highlightjs>
-      <code class="css">
-h1 { font-size: {{ typeSizes.h1 }}{{ selectedUnit }}; }
+  <div :key="PlainCSS" v-highlightjs>
+    <pre ><code class="css">h1 { font-size: {{ typeSizes.h1 }}{{ selectedUnit }}; }
 h2 { font-size: {{ typeSizes.h2 }}{{ selectedUnit }}; }
 h3 { font-size: {{ typeSizes.h3 }}{{ selectedUnit }}; }
 h4 { font-size: {{ typeSizes.h4 }}{{ selectedUnit }}; }
 h5 { font-size: {{ typeSizes.h5 }}{{ selectedUnit }}; }
 p { font-size: {{ typeSizes.p }}{{ selectedUnit }}; }
-small { font-size: {{ typeSizes.small }}{{ selectedUnit }}; }
-      </code>
-    </pre>
+small { font-size: {{ typeSizes.small }}{{ selectedUnit }}; }</code></pre>
   </div>
 </template>

@@ -1,16 +1,9 @@
 <script setup></script>
 
 <template>
-  <footer class="mx-auto max-w-7xl my-24 flex flex-row justify-between w-full">
-    <p class="text-center text-base text-gray-500">
-      Made with ♥ by
-      <a class="text-blue-400" href="https://www.ramijames.com">Rami James</a>
-    </p>
-
-    <a
-      class="flex flex-row items-center gap-2 hover:bg-blue-100 text-blue-600 font-semibold py-2 px-4 border border-blue-100 rounded"
-      href="https://github.com/ramijames/crisp-tools"
-    >
+  <footer class="mx-auto flex flex-row justify-between w-full">
+    <p class="text-center text-base text-white">Made with ♥ by <a class="text-blue-400" href="https://www.ramijames.com">Rami James</a></p>
+    <a class="flex flex-row items-center gap-2 text-blue-600 font-semibold" href="https://github.com/ramijames/crisp-tools">
       <svg
         height="32px"
         id="Layer_1"
@@ -32,3 +25,9 @@
     >
   </footer>
 </template>
+
+<style scoped>
+  path {
+    fill: #fff;
+  }
+</style>

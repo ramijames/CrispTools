@@ -41,17 +41,13 @@ export default {
 </script>
 
 <template>
-  <div :key="SASSVariables" class="mx-auto max-w-7xl bg-gray-900 shadow-2xl sm:rounded-3xl sm:p-16">
-    <pre v-highlightjs>
-      <code class="css">
-$text-size-sm: {{ typeSizes.small }}{{ selectedUnit }};
+  <div :key="SASSVariables" class="">
+    <pre v-highlightjs><code class="css">$text-size-sm: {{ typeSizes.small }}{{ selectedUnit }};
 $text-size-base: {{ typeSizes.p }}{{ selectedUnit }};
 $text-size-md: {{ typeSizes.h5 }}{{ selectedUnit }};
 $text-size-lg: {{ typeSizes.h4 }}{{ selectedUnit }};
 $text-size-xl: {{ typeSizes.h3 }}{{ selectedUnit }};
 $text-size-2xl: {{ typeSizes.h2 }}{{ selectedUnit }};
-$text-size-3xl: {{ typeSizes.h1 }}{{ selectedUnit }};
-      </code>
-    </pre>
+$text-size-3xl: {{ typeSizes.h1 }}{{ selectedUnit }};</code></pre>
   </div>
 </template>
