@@ -95,13 +95,13 @@ export default {
 </script>
 
 <template>
-  <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
-    <section id="title" class="flex flex-col justify-center pr-24">
+  <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+    <section id="title" class="flex flex-col justify-center">
       <h4 class="text-md font-semibold text-black">Static Type Scale</h4>
       <p class="text-xs text-slate-800">Generate a static type scale based on a base size and a scale ratio</p>
     </section>
-    <section id="toolbar" class="flex flex-auto flex-row gap-2">
-      <div class="w-1/3">
+    <section id="toolbar" class="flex flex-auto flex-col sm:flex-row gap-2 pt-4">
+      <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
         <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
           <option disabled value="Select a type scale">Select a type scale</option>
@@ -110,7 +110,7 @@ export default {
           </option>
         </select>
       </div>
-      <div class="w-1/3">
+      <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
         <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
           <option disabled value="Select a unit">Select a unit</option>
@@ -119,14 +119,14 @@ export default {
           </option>
         </select>
       </div>
-      <div class="w-1/3">
+      <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Basesize in {{ selectedUnit }}</label>
         <CrispInput v-model="baseSize" type="number" inputType="secondary" />
       </div>
     </section>
   </section>
-  <section id="workspace" class="flex lg:flex-row md:flex-col">
-    <div class="lg:w-1/2 sm:w-full border-r py-8 bg-white">
+  <section id="workspace" class="flex flex-col md:flex-row">
+    <div class="w-full md:w-1/2 md:border-r py-8 bg-white">
       <ul class="flex flex-col justify-center gap-4">
         <li
           class="flex items-center flex-row"
@@ -151,7 +151,7 @@ export default {
         </li>
       </ul>
     </div>
-    <div class="lg:w-1/2 sm:w-full bg-blue-900">
+    <div class="w-full md:w-1/2 bg-blue-900">
       <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
         <tab name="Plain CSS" >
           <PlainCSS :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />

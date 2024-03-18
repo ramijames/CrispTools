@@ -18,8 +18,16 @@ import Footer from "./components/layout/Footer.vue";
 </script>
 
 <style scoped>
-.main-gradient {
-  background: linear-gradient(135deg,  #cbf983 0%,#ffffff 5%);
+.main-gradient::after {
+  background: linear-gradient(135deg,  #cbf983 0%,#ffffff 35%);
+  z-index: -1;
+  width: 100px;
+  height:100px;
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  content:'';
 }
 </style>
 
