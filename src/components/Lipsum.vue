@@ -26,6 +26,7 @@ export default {
     let paragraphs = ref(lorem.generateParagraphs(numParagraphs.value));
     let showPopup = ref(false);
 
+    // Buttons
     const generateParagraphs = () => {
       paragraphs.value = lorem.generateParagraphs(numParagraphs.value);
     };
@@ -62,18 +63,11 @@ export default {
   },
   methods: {
 
-    
   },
   watch: {
-    lorem: function (val) {
-      console.log(val);
-    },
+
   },
 };
-
-
-
-
 </script>
 
 <template>
@@ -89,28 +83,6 @@ export default {
         <p class="text-xs text-slate-800">Generate text content for use in your designs and mockups</p>
       </section>
       <section id="toolbar" class="flex flex-auto flex-row gap-2">
-        <!-- <div class="w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
-          <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
-            <option disabled value="Select a type scale">Select a type scale</option>
-            <option v-for="(scale, key) in typescales" :key="key" :value="key" :selected="scale.selected" >
-              {{ scale.label }}
-            </option>
-          </select>
-        </div>
-        <div class="w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
-          <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
-            <option disabled value="Select a unit">Select a unit</option>
-            <option v-for="(unit, key) in units" :key="key" :value="key" :selected="unit.selected" >
-              {{ unit.label }}
-            </option>
-          </select>
-        </div>
-        <div class="w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Basesize in {{ selectedUnit }}</label>
-          <CrispInput v-model="baseSize" type="number" inputType="secondary" />
-        </div> -->
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"
