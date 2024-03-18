@@ -99,41 +99,44 @@ export default {
 </script>
 
 <template>
-  <div class="title py-10">
-    <h1 class="text-4xl font-bold text-black">Text Analysis</h1>
-    <p class="text-2xl text-black">Word analysis tool and keyword extractor</p>
-  </div>
-  <div class="flex flex-row">
-    <section class="main flex flex-col w-3/4">
-      <section class="count">
-        <div class="flex flex-row gap-6 py-2 justify-between block appearance-none w-full bg-slate-100 border px-4 py-2 pr-8 border-b-0 rounded-t-lg">
-          <div class="text-md text-black">{{ wordCount }} words</div>
-          <div class="text-md text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</div>
+  <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
+    <section id="title" class="flex flex-col justify-center pr-24">
+      <h4 class="text-md font-semibold text-black">Text Analysis</h4>
+      <p class="text-xs text-slate-800">Word analysis tool and keyword extractor</p>
+    </section>
+    <section id="toolbar" class="flex flex-auto flex-row gap-2">
+      <section class="count w-full">
+        <div class="flex flex-row gap-6 py-2 justify-end block appearance-none w-full">
+          <div class="text-4xl text-black">{{ wordCount }} words, 
+          <span class="text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</span></div>
         </div>
       </section>
-      <section class="textblock">
-        <textarea v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded-b-lg focus:outline-none focus:shadow-outline">Paste your text here</textarea>
-      </section>
     </section>
-    <section class="main flex flex-col w-1/4">
-      <section v-if="!text" class="flex flex-col items-center text-center p-8 text-neutral-400">
+  </section>
+  <section id="workspace" class="flex lg:flex-row md:flex-col">
+    <div class="lg:w-3/4 sm:w-full border-r bg-white">
+      <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white p-4 focus:outline-none">Paste your text here</textarea>
+    </div>
+    <div class="lg:w-1/4 sm:w-full bg-blue-900">
+      <section v-if="!text" class="flex flex-col items-center text-center p-8 text-blue-400 h-full justify-center">
         <DocumentTextIcon class="h-12 w-12 mb-2" />
         No text to analyze
       </section>
-      <section v-if="text" class="px-8">
-        <div class="font-bold text-xl mb-4">Keywords</div>
-        <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword" class="flex flex-row mb-2">
-          <!--{{ keyword }}: --> <div class="text-sm rounded rounded-full bg-slate-100 text-slate-500 text-center px-4 mr-2">{{ count[1] }}</div> {{ count[0] }} 
+      <section v-if="text" class="p-8">
+        <div class="font-bold text-xl text-white mb-4">Keywords</div>
+        <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword" class="flex flex-row mb-2 text-white">
+          <div class="text-sm rounded rounded-full bg-blue-600 text-blue-200 text-center px-4 mr-2">{{ count[1] }}</div> {{ count[0] }} 
         </div>
         
         <Button
-          btnType="secondary"
+          btnType="primary"
           btnText="Show more"
           :onClick="showMore" 
+          class="mt-4 w-full"
         />
       </section>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
