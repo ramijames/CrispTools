@@ -57,10 +57,11 @@ const mobileMenuOpen = ref(false);
   <header class="w-full">
     <nav class="flex flex-row items-center justify-between gap-6" aria-label="Global" >
       <div class="flex lg:flex-1">
-        <a href="/" class="">
+        <a href="/" class="flex flex-row gap-2 justify-center items-center">
           <span class="sr-only">Crisp Tools</span>
           <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"
           />
+          <span class="text-xl font-semibold text-green-500">Crisp Tools</span>
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -71,7 +72,7 @@ const mobileMenuOpen = ref(false);
       </div>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" >
+          <PopoverButton class="flex items-center gap-x-1 text-lg font-semibold leading-6 text-blue-600" >
             Text Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -100,7 +101,7 @@ const mobileMenuOpen = ref(false);
       </PopoverGroup>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-        <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" >
+        <PopoverButton class="flex items-center gap-x-1 text-lg font-semibold leading-6 text-blue-600" >
             CSS Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>

@@ -95,9 +95,9 @@ export default {
 </script>
 
 <template>
-  <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 bg-white border-b w-full justify-between">
+  <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
     <section id="title" class="flex flex-col justify-center pr-24">
-      <h4 class="text-md font-bold text-black">Static Type Scale</h4>
+      <h4 class="text-md font-semibold text-black">Static Type Scale</h4>
       <p class="text-xs text-slate-800">Generate a static type scale based on a base size and a scale ratio</p>
     </section>
     <section id="toolbar" class="flex flex-auto flex-row gap-2">
