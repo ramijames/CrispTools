@@ -99,25 +99,25 @@ export default {
 </script>
 
 <template>
-  <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
-    <section id="title" class="flex flex-col justify-center pr-24">
+  <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+    <section id="title" class="flex flex-col justify-center">
       <h4 class="text-md font-semibold text-black">Text Analysis</h4>
       <p class="text-xs text-slate-800">Word analysis tool and keyword extractor</p>
     </section>
     <section id="toolbar" class="flex flex-auto flex-row gap-2">
       <section class="count w-full">
-        <div class="flex flex-row gap-6 py-2 justify-end block appearance-none w-full">
+        <div class="flex flex-row gap-6 py-2 justify-start block appearance-none w-full">
           <div class="text-4xl text-black">{{ wordCount }} words, 
           <span class="text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</span></div>
         </div>
       </section>
     </section>
   </section>
-  <section id="workspace" class="flex lg:flex-row md:flex-col">
-    <div class="lg:w-3/4 sm:w-full border-r bg-white">
+  <section id="workspace" class="flex flex-col md:flex-row">
+    <div class="w-full md:w-3/4  border-r bg-white">
       <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white p-4 focus:outline-none">Paste your text here</textarea>
     </div>
-    <div class="lg:w-1/4 sm:w-full bg-blue-900">
+    <div class="w-full md:w-1/4  bg-blue-900">
       <section v-if="!text" class="flex flex-col items-center text-center p-8 text-blue-400 h-full justify-center">
         <DocumentTextIcon class="h-12 w-12 mb-2" />
         No text to analyze

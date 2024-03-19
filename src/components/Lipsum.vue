@@ -73,16 +73,16 @@ export default {
 <template>
   <div class="wrapper">
     <transition name="fade">
-      <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow-lg">
+      <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
         Copied to clipboard!
       </div>
     </transition>
-    <section id="powerbar" class="flex flex-1 flex-row p-4 lg:px-6 border-b w-full justify-between">
-      <section id="title" class="flex flex-col justify-center pr-24">
+    <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+      <section id="title" class="flex flex-col justify-center">
         <h4 class="text-md font-semibold text-black">Lorem Ipsum Generator</h4>
         <p class="text-xs text-slate-800">Generate text content for use in your designs and mockups</p>
       </section>
-      <section id="toolbar" class="flex flex-auto flex-row gap-2">
+      <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-2 py-4">
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"
@@ -103,7 +103,7 @@ export default {
     </section>
     <section id="workspace" class="flex lg:flex-row md:flex-col">
       <div class="w-full bg-white flex flex-col items-center">
-        <div class="max-w-3xl p-24 text-black">
+        <div class="max-w-3xl p-8 md:p-24 text-black">
           <h3 class="font-bold text-xl mb-2">Generated Text</h3>
           <p>{{ paragraphs }}</p>
         </div>

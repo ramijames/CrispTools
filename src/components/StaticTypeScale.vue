@@ -103,7 +103,7 @@ export default {
     <section id="toolbar" class="flex flex-auto flex-col sm:flex-row gap-2 pt-4">
       <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
-        <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
+        <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
           <option disabled value="Select a type scale">Select a type scale</option>
           <option v-for="(scale, key) in typescales" :key="key" :value="key" :selected="scale.selected" >
             {{ scale.label }}
@@ -112,7 +112,7 @@ export default {
       </div>
       <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
-        <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline">
+        <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
           <option disabled value="Select a unit">Select a unit</option>
           <option v-for="(unit, key) in units" :key="key" :value="key" :selected="unit.selected" >
             {{ unit.label }}
@@ -137,7 +137,7 @@ export default {
           :key="key"
         >
           <span
-            class="border text-slate-400 b-1 b-slate-200 p-2 rounded-md block w-24 text-center mx-4 text-sm"
+            class="border text-green-500 b-1 b-green-400 p-2 rounded-md block w-24 text-center mx-4 text-sm"
             >{{ size }}{{ selectedUnit }}</span
           >
           <span
@@ -145,7 +145,7 @@ export default {
               fontSize: size + selectedUnit,
             }"
             class="text-ellipsis truncate"
-            ><span class="text-slate-400">{{ key }}</span> Vexed nymphs go
+            ><span class="text-green-500">{{ key }}</span> Vexed nymphs go
             for quick waltz job</span
           >
         </li>
