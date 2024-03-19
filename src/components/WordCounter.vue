@@ -1,5 +1,5 @@
 <script>
-import { ref, computed, watch } from "vue";
+import { ref, watch } from "vue";
 import Button from './shared/Button.vue';
 import keywordExtractor from 'keyword-extractor';
 import {
