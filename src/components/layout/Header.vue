@@ -128,51 +128,6 @@ const mobileMenuOpen = ref(false);
           </transition>
         </Popover>
       </PopoverGroup>
-        <!-- <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Features</a
-        >
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Marketplace</a
-        > -->
-
-        <!-- <Popover class="relative">
-          <PopoverButton
-            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
-          >
-            Company
-            <ChevronDownIcon
-              class="h-5 w-5 flex-none text-gray-400"
-              aria-hidden="true"
-            />
-          </PopoverButton>
-
-          <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 translate-y-1"
-            enter-to-class="opacity-100 translate-y-0"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 translate-y-0"
-            leave-to-class="opacity-0 translate-y-1"
-          >
-            <PopoverPanel
-              class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5"
-            >
-              <a
-                v-for="item in company"
-                :key="item.name"
-                :href="item.href"
-                class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
-                >{{ item.name }}</a
-              >
-            </PopoverPanel>
-          </transition>
-        </Popover> -->
-      
-      <!-- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Log in <span aria-hidden="true">&rarr;</span></a
-        >
-      </div> -->
     </nav>
     <Dialog
       as="div"
@@ -185,13 +140,14 @@ const mobileMenuOpen = ref(false);
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
       >
         <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
+          <a href="#" class="-m-1.5 p-1.5 flex flex-row items-center">
             <span class="sr-only">Crisp Tools</span>
             <img
               class="h-20 w-auto"
               src="/crisp-logo-white.svg"
               alt="Crisp Tools"
             />
+            <span class="text-3xl ml-4 font-semibold text-green-500">Crisp Tools</span>
           </a>
           <button
             type="button"
@@ -209,7 +165,7 @@ const mobileMenuOpen = ref(false);
                 <DisclosureButton
                   class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Type Tools
+                  Text Tools
                   <ChevronDownIcon
                     :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
                     aria-hidden="true"
@@ -217,7 +173,7 @@ const mobileMenuOpen = ref(false);
                 </DisclosureButton>
                 <DisclosurePanel class="mt-2 space-y-2">
                   <DisclosureButton
-                    v-for="item in [...products]"
+                    v-for="item in [...text]"
                     :key="item.name"
                     as="a"
                     :href="item.href"
@@ -226,23 +182,11 @@ const mobileMenuOpen = ref(false);
                   >
                 </DisclosurePanel>
               </Disclosure>
-
-              <!-- <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Features</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Marketplace</a
-              > -->
-
-              <!-- <Disclosure as="div" class="-mx-3" v-slot="{ open }">
+              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
                 <DisclosureButton
                   class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  CSS Tools
                   <ChevronDownIcon
                     :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
                     aria-hidden="true"
@@ -250,7 +194,7 @@ const mobileMenuOpen = ref(false);
                 </DisclosureButton>
                 <DisclosurePanel class="mt-2 space-y-2">
                   <DisclosureButton
-                    v-for="item in company"
+                    v-for="item in [...css]"
                     :key="item.name"
                     as="a"
                     :href="item.href"
@@ -258,7 +202,7 @@ const mobileMenuOpen = ref(false);
                     >{{ item.name }}</DisclosureButton
                   >
                 </DisclosurePanel>
-              </Disclosure> -->
+              </Disclosure>
             </div>
             <!-- <div class="py-6">
               <a
