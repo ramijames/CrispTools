@@ -4,6 +4,7 @@ import LipsumView from "../views/LipsumView.vue";
 import StaticTypeView from "../views/StaticTypeView.vue";
 import IconGenView from "../views/IconGenView.vue";
 import WordCounterView from "../views/WordCounterView.vue";
+import PaletteGeneratorView from "../views/PaletteGeneratorView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: "/word-counter",
       name: "word-counter",
       component: WordCounterView,
+    },
+    {
+      path: "/palette-generator",
+      name: "palette-generator",
+      component: PaletteGeneratorView,
     },
   ],
 });
