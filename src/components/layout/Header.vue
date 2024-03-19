@@ -15,16 +15,12 @@ import {
   MusicalNoteIcon,
   DocumentTextIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
   XMarkIcon,
   SwatchIcon,
   MagnifyingGlassCircleIcon,
 } from "@heroicons/vue/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
 } from "@heroicons/vue/20/solid";
 
 const text = [

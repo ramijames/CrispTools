@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cyhnkckali/vue3-color-picker": "^1.1.4",
     "@headlessui/vue": "^1.7.19",
     "@heroicons/vue": "^2.1.1",
     "keyword-extractor": "^0.0.28",
     "lorem-ipsum": "^2.0.8",
+    "tinycolor2": "^1.6.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
     "vue3-highlightjs": "^1.0.5",

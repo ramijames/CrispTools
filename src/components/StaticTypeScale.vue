@@ -23,6 +23,7 @@ export default {
     const selectedTypeScale =  ref("MajorSecond");
     let previousUnit = ref("px");
 
+    // REM to PX and vice versa
     watch(selectedUnit, (newUnit, oldUnit) => {
       previousUnit.value = oldUnit;
       if (newUnit === "rem" && oldUnit === "px") {
@@ -36,6 +37,7 @@ export default {
       return Math.trunc(num * 1000) / 1000;
     }
 
+    // Calculate type sizes
     const typeSizes = (scale, baseSize) => {
       const type = {
         h1: `${truncateToThree(
@@ -52,6 +54,7 @@ export default {
       return type;
     };
 
+    // Type scales
     const typescales = {
       MinorSecond: { value: 1.067, label: "Minor Second", selected: false },
       MajorSecond: { value: 1.125, label: "Major Second", selected: false },
