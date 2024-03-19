@@ -106,8 +106,8 @@ export default {
     </section>
     <section id="toolbar" class="flex flex-auto flex-row gap-2">
       <section class="count w-full">
-        <div class="flex flex-row gap-6 py-2 justify-start block appearance-none w-full">
-          <div class="text-4xl text-black">{{ wordCount }} words, 
+        <div class="flex flex-row gap-6 py-2 items-center justify-start block appearance-none w-full">
+          <div class="text-lg md:text-2xl text-black">{{ wordCount }} words, 
           <span class="text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</span></div>
         </div>
       </section>
