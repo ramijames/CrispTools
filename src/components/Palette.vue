@@ -19,7 +19,7 @@ export default {
     };
   },
   setup() {
-    const selectedColor = ref("#FF0000");
+    const selectedColor = ref("#000000");
     const colorPalette = ref([]);
 
     const selectedColorPaletteType = ref("Complementary");
@@ -41,7 +41,34 @@ export default {
       6: { label: "6", selected: false },
     };
 
-    
+    watch([selectedColor, selectedColorPaletteType], ([newColor, newType]) => {
+      const color = tinycolor(newColor);
+      let colors;
+      switch (newType) {
+        case 'Complementary':
+          colors = [color, color.complement()];
+          break;
+        case 'Analogous':
+          colors = color.analogous(selectedColorPaletteSize.value, selectedColorPaletteSize.value);
+          break;
+        case 'Triadic':
+          colors = color.triad();
+          break;
+        case 'SplitComplementary':
+          colors = color.splitcomplement();
+          break;
+        case 'Tetradic':
+          colors = color.tetrad();
+          break;
+        case 'Monochromatic':
+          colors = color.monochromatic(selectedColorPaletteSize.value);
+          break;
+        default:
+          colors = [color];
+      }
+      colorPalette.value = colors.map(c => c.toHexString());
+      console.log(colorPalette.value);
+    });
 
     return {
       colorPalette,
@@ -97,13 +124,13 @@ export default {
           <PopoverGroup class="hidden lg:flex lg:gap-x-12">
             <Popover class="relative">
               <PopoverButton class="block appearance-none w-full bg-white border hover:border-blue-500 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10" >
-                <div id="currentColor" class=""></div>
+                <div id="currentColor" :style="{ backgroundColor: selectedColor }"></div>
                 <!-- <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/> -->
               </PopoverButton>
 
               <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
                 <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
-                  <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
+                  <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
                 </PopoverPanel>
               </transition>
             </Popover>
@@ -151,7 +178,6 @@ export default {
 }
 
 #currentColor {
-  background-color: #FF0000;
   width: 84px;
   height: 40px;
   box-shadow: inset white 0px 0px 0px 2px; 

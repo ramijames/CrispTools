@@ -117,19 +117,19 @@ export default {
     <div class="w-full md:w-3/4  border-r bg-white">
       <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white p-4 focus:outline-none">Paste your text here</textarea>
     </div>
-    <div class="w-full md:w-1/4  bg-blue-900">
-      <section v-if="!text" class="flex flex-col items-center text-center p-8 text-blue-400 h-full justify-center">
+    <div class="w-full md:w-1/4  bg-neutral-50">
+      <section v-if="!text" class="flex flex-col items-center text-center p-8 text-neutral-200 h-full justify-center">
         <DocumentTextIcon class="h-12 w-12 mb-2" />
         No text to analyze
       </section>
       <section v-if="text" class="p-8">
-        <div class="font-bold text-xl text-white mb-4">Keywords</div>
-        <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword" class="flex flex-row mb-2 text-white">
-          <div class="text-sm rounded rounded-full bg-blue-600 text-blue-200 text-center px-4 mr-2">{{ count[1] }}</div> {{ count[0] }} 
+        <div class="font-bold text-md text-black mb-4 border-b pb-4">Keywords</div>
+        <div v-for="(count, keyword) in Object.entries(keywords).slice(0, limit)" :key="keyword" class="flex flex-row mb-2 text-black">
+          <div class="text-sm rounded rounded-full bg-neutral-200 text-neutral-500 text-center px-4 mr-2">{{ count[1] }}</div> {{ count[0] }} 
         </div>
         
         <Button
-          btnType="primary"
+          btnType="secondary"
           btnText="Show more"
           :onClick="showMore" 
           class="mt-4 w-full"
