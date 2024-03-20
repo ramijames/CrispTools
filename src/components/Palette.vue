@@ -1,5 +1,5 @@
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import Button from './shared/Button.vue';
 import CrispInput from './shared/CrispInput.vue';
 import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
@@ -50,8 +50,10 @@ export default {
     const inputColor = ref("#008EFF");
     const colorPalette = ref([]);
     const selectedColor = ref("#008EFF");
-    const spinDegree = ref(30);
+    const spinDegree = ref(60);
     const numberOfColors = ref(12);
+    const saturation = ref(100);
+    const lightness = ref(50);
 
     // Convert hex to rgb using tinycolor
     const hexToRgb = (hex) => {
@@ -76,61 +78,41 @@ export default {
       return colors;
     };
 
-    // Function to detect most red color in the colors array
-    const mostRed = (colors) => {
-      let red = 0;
-      let redColor = "";
-      for (let i = 0; i < colors.length; i++) {
-        const color = tinycolor(colors[i]);
-        if (color._r > red) {
-          red = color._r;
-          redColor = color.toHexString();
-        }
-      }
-      return redColor;
-    };
+    // Function to take the input color and generate a yellow color
 
-    // Function to detect most green color in the colors array
-    const mostGreen = (colors) => {
-      let green = 0;
-      let greenColor = "";
-      for (let i = 0; i < colors.length; i++) {
-        const color = tinycolor(colors[i]);
-        if (color._g > green) {
-          green = color._g;
-          greenColor = color.toHexString();
-        }
-      }
-      return greenColor;
-    };
 
-    // Function to detect most blue color in the colors array
-    const mostBlue = (colors) => {
-      let blue = 0;
-      let blueColor = "";
-      for (let i = 0; i < colors.length; i++) {
-        const color = tinycolor(colors[i]);
-        if (color._b > blue) {
-          blue = color._b;
-          blueColor = color.toHexString();
-        }
-      }
-      return blueColor;
-    };
+    // Function to take the input color and generate a blue color
 
-    // Function to return the most yellow color in the colors array
-    const mostYellow = (colors) => {
-      let yellow = 0;
-      let yellowColor = "";
-      for (let i = 0; i < colors.length; i++) {
-        const color = tinycolor(colors[i]);
-        if (color._r > 200 && color._g > 200) {
-          yellow = color._r + color._g;
-          yellowColor = color.toHexString();
-        }
-      }
-      return yellowColor;
-    };
+
+    // Function to take the input color and generate a red color
+    const generateRed = computed(() => {
+      const selectedColorSaturation = tinycolor(selectedColor.value).toHsl().s;
+      return tinycolor.fromRatio({
+        h: 0, // hue for red
+        s: selectedColorSaturation, // saturation from selectedColor
+        l: 0.5 // middle lightness
+      }).lighten(20).toHexString();
+    });
+
+    // Function to take the input color and generate a green color
+    const generateGreen = computed(() => {
+      const selectedColorSaturation = tinycolor(selectedColor.value).toHsl().s;
+      return tinycolor.fromRatio({
+        h: 120, // hue for green
+        s: selectedColorSaturation, // saturation from selectedColor
+        l: 0.5 // middle lightness
+      }).lighten(20).toHexString();
+    });
+
+    // Function to take the input color and generate a yellow color
+    const generateYellow = computed(() => {
+      const selectedColorSaturation = tinycolor(selectedColor.value).toHsl().s;
+      return tinycolor.fromRatio({
+        h: 60, // hue for yellow
+        s: selectedColorSaturation, // saturation from selectedColor
+        l: 0.5 // middle lightness
+      }).lighten(20).toHexString();
+    });
 
     // Function to take the most blue color and make it lighter and grayer and return it as the "neutral color"
     const neutralColor = (color) => {
@@ -140,37 +122,63 @@ export default {
     // For the background color, we want to take the primary color and make it very, very light
     // So we need a function that will take the selectedColor and make it very light
     const backgroundColor = (color) => {
-      return tinycolor(color).lighten(50).toHexString();
+      // This should detect how light the color is and then decide how much to lighten it. 
+      // For colors that are already light, it should lighten it less
+      if (tinycolor(color).isLight()) {
+        return tinycolor(color).lighten(20).toHexString();
+      } else {
+        return tinycolor(color).lighten(47).toHexString();
+      }
+    };
+
+    // For the border color, we want a slightly darker version of the background color
+    const borderColor = (color) => {
+      return tinycolor(color).darken(10).toHexString();
+    };
+
+    // For the shadow color, we want a dark, desaturated version of the selected color
+    const shadowColor = (color) => {
+      return tinycolor(color).darken(20).desaturate(50).toHexString();
     };
     
 
     // Watch the selected color and generate a palette based on the input color
     watch(selectedColor, (newVal) => {
       colorPalette.value = generatePalette(newVal, numberOfColors.value, spinDegree.value);
+      saturation.value = tinycolor(newVal).toHsl().s * 100;
+      lightness.value = tinycolor(newVal).toHsl().l * 100;
     });
 
     // This needs to run when the component is mounted 
     colorPalette.value = generatePalette(selectedColor.value, numberOfColors.value, spinDegree.value);
+    saturation.value = tinycolor(selectedColor.value).toHsl().s * 100;
+    lightness.value = tinycolor(selectedColor.value).toHsl().l * 100;
 
     // For text we will want to take the most blue color and make it darker
     // So we need a function that will take the most blue color and make it darker
     const textColor = (color) => {
-      return tinycolor(color).darken(70).toHexString();
+      return tinycolor(color).darken(44).toHexString();
     };
 
     return {
       inputColor,
       colorPalette,
       selectedColor,
-      mostBlue,
-      mostGreen,
-      mostRed,
-      mostYellow,
       neutralColor,
       textColor,
       backgroundColor,
+      borderColor,
+      shadowColor,
       rgbToHex,
-      hexToRgb
+      hexToRgb,
+      tinycolor,
+      spinDegree,
+      generatePalette,
+      generateRed,
+      generateGreen,
+      generateYellow,
+      saturation,
+      lightness
     };
 
   },
@@ -203,8 +211,8 @@ export default {
   <div class="wrapper">
     <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
-        <h4 class="text-md font-semibold text-black">Palette Generator</h4>
-        <p class="text-xs text-slate-800">Easy to use palette generator</p>
+        <h4 class="text-md font-semibold text-black">User Interface Color Palette Generator</h4>
+        <p class="text-xs text-slate-800">Easy to use palette generator for building coordinated colors for use in UIs</p>
       </section>
       <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-4 py-4 flex-start">
         <!-- 
@@ -230,7 +238,6 @@ export default {
             </Popover>
           </PopoverGroup>
         </div>
-        <CrispInput v-model="spinDegree" type="number" label="Spin degree" placeholder="30" class="w-20" />
       </section>
     </section>
     <section id="workspace" class="flex lg:flex-row md:flex-col">
@@ -248,68 +255,110 @@ export default {
             // - The link color (same as accent color)
             // - The hover color (same as accent color)
             // - The active color (same as secondary color)
-            // - The focus color (same as secondary color)
             // - The disabled color (neutralColor)
             // - The success color (mostGreen)
             // - The warning color (mostRed)
             // - The error color (mostYellow)
             // - The info color (mostBlue)
-            // - The neutral color (neutralColor)
       -->
-      <section id="palette" class="p-24">
-        <h4 class="text-md font-semibold text-black">Palette</h4>
-        <div class="flex flex-row flex-wrap gap-4 w-full">
-          <div v-for="(color, index) in colorPalette" :key="index" class="flex flex-col w-20 gap-2">
+      <section id="palette" class="p-6 border-r">
+        <h4 class="text-lg font-semibold text-black pb-4">UI Palette Colors</h4>
+        <div class="flex flex-col flex-wrap gap-4 w-full">
+          <!-- <div v-for="(color, index) in colorPalette" :key="index" class="flex flex-col w-20 gap-2">
             <div class="w-20 h-12" :style="{ backgroundColor: color }"></div>
             <p class="text-xs text-center text-slate-700">{{ color }}</p>
+          </div> -->
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Primary Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: selectedColor }"></div>
+            <p class="text-xs text-center text-slate-700">{{ rgbToHex(selectedColor) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(selectedColor) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Secondary Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: colorPalette[4] }"></div>
+            <p class="text-xs text-center text-slate-700">{{ colorPalette[4] }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(colorPalette[4])  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Accent Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: colorPalette[8] }"></div>
+            <p class="text-xs text-center text-slate-700">{{ colorPalette[8] }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(colorPalette[8])  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Background Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: backgroundColor(selectedColor) }"></div>
+            <p class="text-xs text-center text-slate-700">{{ backgroundColor(selectedColor) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(backgroundColor(selectedColor))  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Text Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: textColor(selectedColor) }"></div>
+            <p class="text-xs text-center text-slate-700">{{ textColor(selectedColor) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(textColor(selectedColor))  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Border Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: borderColor(backgroundColor(selectedColor)) }"></div>
+            <p class="text-xs text-center text-slate-700">{{ borderColor(backgroundColor(selectedColor)) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(borderColor(backgroundColor(selectedColor)))  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Shadow Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: shadowColor(selectedColor) }"></div>
+            <p class="text-xs text-center text-slate-700">{{ shadowColor(selectedColor) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(shadowColor(selectedColor))  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Link Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: selectedColor }"></div>
+            <p class="text-xs text-center text-slate-700">{{ selectedColor }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(selectedColor) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Link Hover Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: tinycolor(selectedColor).darken(15).toHexString()  }"></div>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).darken(15).toHexString() }}</p>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).darken(15).toRgbString()  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Link Active Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: tinycolor(selectedColor).lighten(15).toHexString()  }"></div>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).lighten(15).toHexString() }}</p>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).lighten(15).toRgbString()  }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Disabled Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: neutralColor(selectedColor) }"></div>
+            <p class="text-xs text-center text-slate-700">{{ neutralColor(selectedColor) }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(neutralColor(selectedColor)) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Success Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: generateGreen }"></div>
+            <p class="text-xs text-center text-slate-700">{{ generateGreen }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(generateGreen) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Error Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: generateRed }"></div>
+            <p class="text-xs text-center text-slate-700">{{ generateRed }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(generateRed) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Warning Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: generateYellow }"></div>
+            <p class="text-xs text-center text-slate-700">{{ generateYellow }}</p>
+            <p class="text-xs text-center text-slate-700">{{ hexToRgb(generateYellow) }}</p>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <div class="text-xs font-bold w-40">Info Color</div>
+            <div class="w-20 h-6" :style="{ backgroundColor: tinycolor(selectedColor).lighten(30).toHexString() }"></div>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).lighten(30).toHexString() }}</p>
+            <p class="text-xs text-center text-slate-700">{{ tinycolor(selectedColor).lighten(30).toRgbString() }}</p>
           </div>
         </div>
-        <!-- <table>
-          <thead>
-            <tr>
-              <th class="text-xs text-slate-400">Color name</th>
-              <th class="text-xs text-slate-400">Hex code</th>
-              <th class="text-xs text-slate-400">Show the color</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-xs text-slate-700">Primary color</td>
-              <td class="text-xs text-slate-700">{{ rgbToHex(selectedColor) }}</td>
-              <td class="text-xs text-slate-700">
-                <div class="w-4 h-4" :style="{ backgroundColor: selectedColor }"></div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-xs text-slate-700">Secondary color</td>
-              <td class="text-xs text-slate-700">{{ colorPalette[1] }}</td>
-              <td class="text-xs text-slate-700">
-                <div class="w-4 h-4" :style="{ backgroundColor: colorPalette[1] }"></div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-xs text-slate-700">Accent color</td>
-              <td class="text-xs text-slate-700">{{ colorPalette[2] }}</td>
-              <td class="text-xs text-slate-700">
-                <div class="w-4 h-4" :style="{ backgroundColor: colorPalette[2] }"></div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-xs text-slate-700">Background color</td>
-              <td class="text-xs text-slate-700">{{ backgroundColor(selectedColor) }}</td>
-              <td class="text-xs text-slate-700">
-                <div class="w-4 h-4" :style="{ backgroundColor: backgroundColor(selectedColor) }"></div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-xs text-slate-700">Text color</td>
-              <td class="text-xs text-slate-700">{{ textColor(mostBlue(colorPalette)) }}</td>
-              <td class="text-xs text-slate-700">
-                <div class="w-4 h-4" :style="{ backgroundColor: textColor(mostBlue(colorPalette)) }"></div>
-              </td>
-            </tr>
-          </tbody>
-        </table> -->
       </section>    
     </section>
   </div>
