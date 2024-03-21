@@ -233,53 +233,31 @@ export default {
         <h4 class="text-md font-semibold text-black">User Interface Color Palette Generator</h4>
         <p class="text-xs text-slate-800">Easy to use palette generator for building coordinated colors for use in UIs</p>
       </section>
-      <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-4 py-4 flex-start">
-        <!-- 
-          - Number of colors
-          - Generator method as a select dropdown
-          - Primary color select
-          - Random palette button
-         -->
-        <div class="flex flex-row md:flex-col">
-          <label class="block mb-1 text-xs text-slate-400" for="input1">Primary color</label>
-          <PopoverGroup class="hidden lg:flex lg:gap-x-12">
-            <Popover class="relative">
-              <PopoverButton class="block appearance-none w-full bg-white border hover:border-blue-500 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10" >
-                <div id="currentColor" :style="{ backgroundColor: selectedColor }"></div>
-                <!-- <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/> -->
-              </PopoverButton>
-
-              <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-                <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
-                  <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
-                </PopoverPanel>
-              </transition>
-            </Popover>
-          </PopoverGroup>
-        </div>
-      </section>
     </section>
-    <section id="workspace" class="flex flex-col justify-center items-center">
-      <!-- 
-        I now want to display these colors in a nicely formatted table
-        with the color, the hex value, and the rgb value
-
-            // - The primary color (selectedColor)
-            // - The secondary color (random color from the palette)
-            // - The accent color (random color from the palette)
-            // - The background color (backgroundColor)
-            // - The text color (textColor)
-            // - The border color (selectedColor)
-            // - The shadow color (selectedColor)
-            // - The link color (same as accent color)
-            // - The hover color (same as accent color)
-            // - The active color (same as secondary color)
-            // - The disabled color (neutralColor)
-            // - The success color (mostGreen)
-            // - The warning color (mostRed)
-            // - The error color (mostYellow)
-            // - The info color (mostBlue)
-      -->
+    <section id="workspace" class="flex flex-col container mx-auto p-8">
+      <section id="intro" class="flex flex-row gap-4 items-center px-6">
+        <section id="toolbar" class="flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+            <PopoverGroup class="flex">
+              <Popover class="relative">
+                <PopoverButton class="block appearance-none w-full bg-white border hover:border-blue-500 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10" >
+                  <div id="currentColor" :style="{ backgroundColor: selectedColor }"></div>
+                </PopoverButton>
+                <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
+                  <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
+                    <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
+                  </PopoverPanel>
+                </transition>
+              </Popover>
+            </PopoverGroup>
+            <!-- <label class="block mb-1 text-xs text-slate-400 text-center" for="input1">Primary color</label> -->
+          </div>
+        </section>
+        <section id="explainer">
+          <h2 class="text-black text-xl">Click to select your primary color</h2>
+          <h3 class="text-black text-md">All of the other colors will be generated from this one selection</h3>
+        </section>
+      </section>
       <section class="h-full">
         <ExampleContent :colors="colorPaletteObject" />
       </section>
@@ -304,9 +282,9 @@ export default {
           </div>
           <div class="flex flex-row gap-2 items-center">
             <div class="text-xs w-32">Accent Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: colorPalette[5] }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[8] }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[8])  }}</p>
+            <div class="w-6 h-6 rounded" :style="{ backgroundColor: colorPalette[11] }"></div>
+            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[11] }}</p>
+            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[11])  }}</p>
           </div>
           <div class="flex flex-row gap-2 items-center">
             <div class="text-xs w-32">Background Color</div>
