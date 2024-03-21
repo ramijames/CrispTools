@@ -80,14 +80,29 @@ export default {
       return colors;
     };
 
-    const backgroundColor = computed(() => {
-      if (tinycolor(selectedColor.value).isLight()) {
-        return tinycolor(selectedColor.value).lighten(30).toHexString();
-      } else {
-        return tinycolor(selectedColor.value).lighten(47).toHexString();
-      }
+    // const backgroundColor = computed(() => {
+    //   if (tinycolor(selectedColor.value).isLight()) {
+    //     return tinycolor(selectedColor.value).lighten(35).toHexString();
+    //   } else {
+    //     return tinycolor(selectedColor.value).lighten(49).toHexString();
+    //   }
+    // });
+
+    const currentHue = computed(() => {
+      return tinycolor(selectedColor.value).toHsl().h;
     });
 
+    const backgroundColor = computed(() => {
+      const selectedColorHue = tinycolor(selectedColor.value).toHsl().s;
+      const selectedColorSaturation = tinycolor(selectedColor.value).toHsl().s;
+      return tinycolor.fromRatio({
+        h: selectedColorHue, // hue from selectedColor
+        s: 0.4, // saturation from selectedColor
+        l: 0.98 // middle lightness
+      }).toHexString();
+    });
+
+    // const backgroundColor = computed(() => { return tinycolor(selectedColor.value).lighten(48).desaturate(90).toHexString(); });
     const textColor = computed(() => { return tinycolor(selectedColor.value).darken(44).toHexString(); });
     const borderColor = computed(() => { return tinycolor(backgroundColor.value).darken(10).toHexString(); });
     const shadowColor = computed(() => { return tinycolor(selectedColor.value).darken(20).desaturate(50).toHexString(); });
@@ -244,7 +259,7 @@ export default {
         </div>
       </section>
     </section>
-    <section id="workspace" class="flex lg:flex-row md:flex-col">
+    <section id="workspace" class="flex flex-col justify-center items-center">
       <!-- 
         I now want to display these colors in a nicely formatted table
         with the color, the hex value, and the rgb value
@@ -265,7 +280,7 @@ export default {
             // - The error color (mostYellow)
             // - The info color (mostBlue)
       -->
-      <section class="w-full h-full">
+      <section class="h-full">
         <ExampleContent :colors="colorPaletteObject" />
       </section>
       <section id="palette" class="p-6 border-l right-0 top-0 h-screen min-w-[24rem]">

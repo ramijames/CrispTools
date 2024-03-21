@@ -53,8 +53,8 @@ export default {
 </script>
 
 <template>
-  <div class="m-6">
-    <section id="appchrome" class="h-full border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100" :style="{ shadowColor: colors.shadow }">
+  <div class="m-6 max-w-[54rem]">
+    <section id="appchrome" class="overflow-hidden border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100" :style="{ shadowColor: colors.shadow }">
       <section id="chromebar" class="flex flex-row bg-white p-2">
         <section id="mockui" class="w-24 flex flex-row gap-2 items-center pl-2">
           <span class="close" :style="{ backgroundColor: colors.error }"></span>
@@ -62,9 +62,9 @@ export default {
           <span class="expand" :style="{ backgroundColor: colors.success }"></span>
         </section>
         <section id="chromebuttons" class="flex flex-row gap-2">
-          <button :style="{ color: colors.link, borderColor: colors.border, shadowColor: colors.shadow  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 bg-white shadow-sm ring-neutral-100" ><HomeIcon class="h-4 w-4" /> Dashboard</button>
-          <button :style="{ color: colors.link, backgroundColor: colors.background, shadowColor: colors.shadow, hoverColor: colors.link  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Listing</button>
-          <button :style="{ color: colors.link, backgroundColor: colors.background, shadowColor: colors.shadow, hoverColor: colors.link  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Profile</button>
+          <button :style="{ color: colors.link, shadowColor: colors.shadow  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 bg-white shadow-sm ring-neutral-100" ><HomeIcon class="h-4 w-4" /> Dashboard</button>
+          <button :style="{ color: colors.link, shadowColor: colors.shadow, color: colors.text  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Listing</button>
+          <button :style="{ color: colors.link, shadowColor: colors.shadow, color: colors.text  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Profile</button>
         </section>
       </section>
       <section id="display" :style="{ backgroundColor: colors.background }">
