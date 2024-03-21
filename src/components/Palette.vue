@@ -82,7 +82,7 @@ export default {
 
     const backgroundColor = computed(() => {
       if (tinycolor(selectedColor.value).isLight()) {
-        return tinycolor(selectedColor.value).lighten(20).toHexString();
+        return tinycolor(selectedColor.value).lighten(30).toHexString();
       } else {
         return tinycolor(selectedColor.value).lighten(47).toHexString();
       }

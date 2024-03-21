@@ -54,25 +54,24 @@ export default {
 
 <template>
   <div class="m-6">
-    <section id="appchrome" class="h-full border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100">
-      <section id="chromebar" class="flex flex-row bg-neutral-50 p-2">
+    <section id="appchrome" class="h-full border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100" :style="{ shadowColor: colors.shadow }">
+      <section id="chromebar" class="flex flex-row bg-white p-2">
         <section id="mockui" class="w-24 flex flex-row gap-2 items-center pl-2">
-          <span class="close bg-neutral-200"></span>
-          <span class="minimize bg-neutral-200"></span>
-          <span class="expand bg-neutral-200"></span>
+          <span class="close" :style="{ backgroundColor: colors.error }"></span>
+          <span class="minimize" :style="{ backgroundColor: colors.warning }"></span>
+          <span class="expand" :style="{ backgroundColor: colors.success }"></span>
         </section>
         <section id="chromebuttons" class="flex flex-row gap-2">
-          <button :style="{ color: colors.text }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 bg-white shadow-sm ring-neutral-100"><HomeIcon class="h-4 w-4" /> Dashboard</button>
-          <button :style="{ color: colors.text }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 hover:bg-neutral-200"><HomeIcon class="h-4 w-4 text-blue-400" /> Listing</button>
-          <button :style="{ color: colors.text }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 hover:bg-neutral-200"><HomeIcon class="h-4 w-4 text-blue-400" /> Profile</button>
+          <button :style="{ color: colors.link, borderColor: colors.border, shadowColor: colors.shadow  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border border-neutral-200 bg-white shadow-sm ring-neutral-100" ><HomeIcon class="h-4 w-4" /> Dashboard</button>
+          <button :style="{ color: colors.link, backgroundColor: colors.background, shadowColor: colors.shadow, hoverColor: colors.link  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Listing</button>
+          <button :style="{ color: colors.link, backgroundColor: colors.background, shadowColor: colors.shadow, hoverColor: colors.link  }" class="btn flex flex-row gap-1 p-2 text-xs text-grey-600 w-44 text-left rounded border" ><HomeIcon class="h-4 w-4" /> Profile</button>
         </section>
       </section>
-      <section id="display">
-        <section id="displaycontent">
+      <section id="display" :style="{ backgroundColor: colors.background }">
+        <section id="displaycontent" class="p-4">
           <section id="displayheader">
             <h1 :style="{ color: tinycolor(colors.primary).toHexString() }">Dashboard</h1>
             <p>Here is the dashboard content</p>
-            <!-- Render all colors -->
             <ul>
               <li v-for="(color, name) in colors" :key="name">
                 <span :style="{ color: color }">{{ name }}: {{ color }}</span>
