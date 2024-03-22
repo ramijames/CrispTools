@@ -7,6 +7,7 @@ import VueHighlightJS from 'vue3-highlightjs'
 import 'highlight.js/styles/atom-one-dark.css'
 import '@cyhnkckali/vue3-color-picker/dist/style.css'
 
+
 const app = createApp(App);
 
 app.config.productionTip = false
