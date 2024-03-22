@@ -49,9 +49,9 @@ export default {
     // So with that, we ned a user to input just one color, and then we can 
     // generate the rest of the palette based on that color.
     // We'll need these to set up the color picker
-    const inputColor = ref("#008EFF");
+    const inputColor = ref("#1E83D3");
     const colorPalette = ref([]);
-    const selectedColor = ref("#008EFF");
+    const selectedColor = ref("#1E83D3");
     const spinDegree = ref(60);
     const numberOfColors = ref(12);
     const saturation = ref(100);
@@ -105,10 +105,10 @@ export default {
     // const backgroundColor = computed(() => { return tinycolor(selectedColor.value).lighten(48).desaturate(90).toHexString(); });
     const textColor = computed(() => { return tinycolor(selectedColor.value).darken(44).toHexString(); });
     const borderColor = computed(() => { return tinycolor(backgroundColor.value).darken(10).toHexString(); });
-    const shadowColor = computed(() => { return tinycolor(selectedColor.value).darken(20).desaturate(50).toHexString(); });
+    const shadowColor = computed(() => { return tinycolor(selectedColor.value).darken(20).toHexString(); });
     const linkColor = computed(() => { return tinycolor(selectedColor.value).toHexString(); });
-    const hoverColor = computed(() => { return tinycolor(selectedColor.value).darken(15).toHexString(); });
-    const activeColor = computed(() => { return tinycolor(selectedColor.value).lighten(20).toHexString(); });
+    const hoverColor = computed(() => { return tinycolor(selectedColor.value).lighten(5).toHexString(); });
+    const activeColor = computed(() => { return tinycolor(selectedColor.value).darken(5).toHexString(); });
     const disabledColor = computed(() => { return tinycolor(selectedColor.value).lighten(35).desaturate(75).toHexString(); });
     const infoColor = computed(() => { return tinycolor(selectedColor.value).lighten(35).toHexString(); });
 
@@ -126,8 +126,8 @@ export default {
       return tinycolor.fromRatio({
         h: 120, // hue for green
         s: selectedColorSaturation, // saturation from selectedColor
-        l: 0.5 // middle lightness
-      }).lighten(20).toHexString();
+        l: 0.42 // middle lightness
+      }).toHexString();
     });
 
     const yellowColor = computed(() => {
@@ -230,136 +230,173 @@ export default {
   <div class="wrapper">
     <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
-        <h4 class="text-md font-semibold text-black">User Interface Color Palette Generator</h4>
+        <h1 class="text-md font-semibold text-black">User Interface Color Palette Generator</h1>
         <p class="text-xs text-slate-800">Easy to use palette generator for building coordinated colors for use in UIs</p>
       </section>
+      <PopoverGroup class="pt-4 ">
+        <Popover class="relative">
+          <PopoverButton class="block appearance-none bg-white rounded-lg overflow-hidden p-1 focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/5 hover:ring-slate-700/40" >
+            <div id="currentColor" class="rounded-md" :style="{ backgroundColor: selectedColor }"></div>
+          </PopoverButton>
+          <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
+            <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
+              <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
+            </PopoverPanel>
+          </transition>
+        </Popover>
+      </PopoverGroup>
     </section>
-    <section id="workspace" class="flex flex-col container mx-auto p-8">
-      <section id="intro" class="flex flex-row gap-4 items-center px-6">
-        <section id="toolbar" class="flex flex-col gap-4">
-          <div class="flex flex-col gap-2">
-            <PopoverGroup class="flex">
-              <Popover class="relative">
-                <PopoverButton class="block appearance-none w-full bg-white border hover:border-blue-500 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10" >
-                  <div id="currentColor" :style="{ backgroundColor: selectedColor }"></div>
-                </PopoverButton>
-                <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-                  <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
-                    <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
-                  </PopoverPanel>
-                </transition>
-              </Popover>
-            </PopoverGroup>
-            <!-- <label class="block mb-1 text-xs text-slate-400 text-center" for="input1">Primary color</label> -->
+    <section id="workspace" class="flex flex-col container mx-auto py-6 w-full">
+      
+      <!-- 1. Preview your palette -->
+      <section id="intro" class="flex flex-col gap-4 items-center px-10 w-full">
+        <section id="explainer" class="w-full relative">
+          <h2 class="text-black text-2xl">Preview your Palette</h2>
+          <h3 class="text-black text-xs text-slate-600">Here you can see the generated palette and their suggested uses</h3>
+          <Button
+            btnType="small"
+            btnText="Show RGB"
+            :onClick="toggleColorFormat"
+            v-if="showHex === true" 
+            class="absolute right-0 top-0"
+          />
+          <Button
+            btnType="small"
+            btnText="Show HEX"
+            :onClick="toggleColorFormat"
+            v-if="showHex === false" 
+            class="absolute right-0 top-0"
+          />
+        </section>
+        <section id="colorpreview" class="w-full">
+          <div class="flex flex-row gap-2">
+            <div class="w-1/3 h-20 rounded flex flex-col justify-center" :style="{ backgroundColor: selectedColor }">
+              <p class="text-md text-center text-white/60">Primary Color</p>
+              <p class="text-xs text-center text-white/60 mt-1">{{ rgbToHex(selectedColor) }}</p>
+            </div>
+            <div class="w-1/3 h-20 rounded flex flex-col justify-center" :style="{ backgroundColor: colorPalette[4] }">
+              <p class="text-md text-center text-white/60">Secondary Color</p>
+              <p class="text-xs text-center text-white/60 mt-1">{{ rgbToHex(colorPalette[4]) }}</p>
+            </div>
+            <div class="w-1/3 h-20 rounded flex flex-col justify-center" :style="{ backgroundColor: colorPalette[5] }">
+              <p class="text-md text-center text-white/60">Accent Color</p>
+              <p class="text-xs text-center text-white/60 mt-1">{{ rgbToHex(colorPalette[5]) }}</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 py-2" id="palette">
+            <div class="flex flex-row w-full">
+              <div class="w-1/3 flex flex-col gap-1">
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Primary Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: selectedColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ rgbToHex(selectedColor) }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(selectedColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Secondary Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: colorPalette[4] }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[4] }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[4])  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Accent Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: colorPalette[11] }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[11] }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[11])  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Background Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: backgroundColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ backgroundColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(backgroundColor)  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Text Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: textColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ textColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(textColor)  }}</p>
+                </div>
+              </div>
+              <div class="w-1/3 flex flex-col gap-1">
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Border Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: borderColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ borderColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(borderColor)  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Shadow Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: shadowColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ shadowColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(shadowColor)  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Link Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: linkColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ rgbToHex(linkColor) }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(linkColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Link Hover Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: hoverColor  }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ hoverColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(hoverColor).toRgbString()  }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Link Active Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: activeColor  }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ activeColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(activeColor).toRgbString()  }}</p>
+                </div>
+              </div>
+              <div class="w-1/3 flex flex-col gap-1">
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Disabled Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: disabledColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ disabledColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(disabledColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Success Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: greenColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ greenColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(greenColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Error Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: redColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ redColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(redColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Warning Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: yellowColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ yellowColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(yellowColor) }}</p>
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                  <div class="text-xs w-32">Info Color</div>
+                  <div class="w-12 h-2 rounded" :style="{ backgroundColor: infoColor }"></div>
+                  <p class="text-xs text-center text-slate-700" v-if="showHex">{{ infoColor }}</p>
+                  <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(infoColor).toRgbString() }}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
-        <section id="explainer">
-          <h2 class="text-black text-xl">Click to select your primary color</h2>
-          <h3 class="text-black text-md">All of the other colors will be generated from this one selection</h3>
-        </section>
       </section>
-      <section class="h-full">
+
+      <!-- 2. Example content -->
+      <section class="h-full p-6 flex flex-col">
+        <section id="explainer" class="p-4">
+          <h2 class="text-black text-2xl">Live Example</h2>
+          <h3 class="text-black text-xs text-slate-600">Check out how it will look in an application</h3>
+        </section>
         <ExampleContent :colors="colorPaletteObject" />
       </section>
-      <section id="palette" class="p-6 border-l right-0 top-0 h-screen min-w-[24rem]">
-        <div class="flex flex-row justify-between items-center">
-          <h4 class="text-lg font-semibold text-black pb-4">UI Palette Colors</h4>
-          <button @click="toggleColorFormat">{{ showHex ? 'Show RGB' : 'Show Hex' }}</button>
-        </div>
-        
-        <div class="flex flex-col flex-wrap w-full gap-1">
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Primary Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: selectedColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ rgbToHex(selectedColor) }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(selectedColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Secondary Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: colorPalette[4] }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[4] }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[4])  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Accent Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: colorPalette[11] }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ colorPalette[11] }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(colorPalette[11])  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Background Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: backgroundColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ backgroundColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(backgroundColor)  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Text Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: textColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ textColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(textColor)  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Border Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: borderColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ borderColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(borderColor)  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Shadow Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: shadowColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ shadowColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(shadowColor)  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Link Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: linkColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ rgbToHex(linkColor) }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(linkColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Link Hover Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: hoverColor  }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ hoverColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(hoverColor).toRgbString()  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Link Active Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: activeColor  }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ activeColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(activeColor).toRgbString()  }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Disabled Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: disabledColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ disabledColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(disabledColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Success Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: greenColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ greenColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(greenColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Error Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: redColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ redColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(redColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Warning Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: yellowColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ yellowColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ hexToRgb(yellowColor) }}</p>
-          </div>
-          <div class="flex flex-row gap-2 items-center">
-            <div class="text-xs w-32">Info Color</div>
-            <div class="w-6 h-6 rounded" :style="{ backgroundColor: infoColor }"></div>
-            <p class="text-xs text-center text-slate-700" v-if="showHex">{{ infoColor }}</p>
-            <p class="text-xs text-center text-slate-700" v-else>{{ tinycolor(infoColor).toRgbString() }}</p>
-          </div>
-        </div>
-      </section>    
+      
+      <!-- 3. Output your palette -->
+
     </section>
   </div>
 </template>
@@ -372,9 +409,8 @@ export default {
 }
 
 #currentColor {
-  width: 84px;
-  height: 40px;
-  box-shadow: inset white 0px 0px 0px 2px; 
+  width: 72px;
+  height: 32px;
 }
 
 .colour-area-mask,
