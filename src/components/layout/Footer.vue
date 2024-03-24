@@ -2,8 +2,8 @@
 
 <template>
   <footer class="mx-auto flex flex-col md:flex-row justify-between items-center w-full">
-    <p class="text-center text-base text-black">Made with ♥ by <a class="text-black underline" href="https://www.ramijames.com">Rami James</a></p>
-    <a class="flex flex-row items-center gap-2 text-black underline" href="https://github.com/ramijames/crisp-tools"
+    <p class="text-center text-base text-slate-400">Made with ♥ by <a class="text-slate-400 underline" href="https://www.ramijames.com">Rami James</a></p>
+    <a class="flex flex-row items-center gap-2 text-slate-400 underline" href="https://github.com/ramijames/crisp-tools"
     >
       <svg
         height="32px"

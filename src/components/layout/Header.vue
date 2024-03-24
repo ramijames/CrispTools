@@ -60,14 +60,14 @@ const mobileMenuOpen = ref(false);
 </script>
 
 <template>
-  <header class="w-full">
+  <header class="w-full bg-slate-700 px-4 py-2 border-b">
     <nav class="flex flex-row items-center justify-between gap-6" aria-label="Global" >
       <div class="flex lg:flex-1">
         <a href="/" class="flex flex-row gap-2 justify-center items-center">
           <span class="sr-only">Crisp Tools</span>
-          <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"
+          <img class="h-10 w-auto" src="/crisp-logo-symbol.svg" alt="Crisp Tools"
           />
-          <span class="text-xl font-semibold text-green-500">Crisp Tools</span>
+          <span class="text-xl font-semibold text-white">Crisp Tools</span>
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -78,7 +78,7 @@ const mobileMenuOpen = ref(false);
       </div>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-lg font-semibold leading-6 text-blue-600" >
+          <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white" >
             Color Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -107,7 +107,7 @@ const mobileMenuOpen = ref(false);
       </PopoverGroup>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-lg font-semibold leading-6 text-blue-600" >
+          <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white" >
             Text Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -136,7 +136,7 @@ const mobileMenuOpen = ref(false);
       </PopoverGroup>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-        <PopoverButton class="flex items-center gap-x-1 text-lg font-semibold leading-6 text-blue-600" >
+        <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white" >
             CSS Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>

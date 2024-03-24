@@ -21,9 +21,9 @@ export default {
       { id: 3, name: 'Avg. Click Rate', stat: '24.57%', icon: CursorArrowRaysIcon, change: '3.2%', changeType: 'decrease' },
     ]
 
-    // watch(() => props.colors, (newColors) => {
-    //   console.log(newColors);
-    // }, { immediate: true });
+    watch(() => props.colors, (newColors) => {
+      console.log(newColors);
+    }, { immediate: true });
 
     return {
       colors: props.colors,
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="px-4">
     <section id="appchrome" class="overflow-hidden border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100 w-full" :style="{ shadowColor: colors.shadow }">
       <section id="chromebar" class="flex flex-row bg-white p-2 border-b">
         <section id="mockui" class="w-24 flex flex-row gap-2 items-center pl-2">

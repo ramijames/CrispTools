@@ -215,10 +215,10 @@ export default {
 
 <template>
   <div class="wrapper">
-    <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+    <section id="powerbar" class="flex flex-1 flex-col px-4 py-2 bg-white w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
-        <h1 class="text-md font-semibold text-black">User Interface Color Palette Generator</h1>
-        <p class="text-xs text-slate-800">Easy to use palette generator for building coordinated colors for use in UIs</p>
+        <h1 class="text-base text-slate-600">User Interface Color Palette Generator</h1>
+        <p class="text-xs text-slate-400">Easy to use palette generator for building coordinated colors for use in UIs</p>
       </section>
       <!-- <PopoverGroup class="pt-4 ">
         <Popover class="relative">
@@ -239,7 +239,7 @@ export default {
       <div class="mx-auto w-full  grow lg:flex">
         <!-- Left sidebar & main wrapper -->
         <div class="shrink-0 w-80">
-          <h2 class="text-slate-400 bg-slate-100 border-b py-1 px-4 text-xs uppercase">Color Palette Generator</h2>
+          <h2 class="text-slate-400 py-2 px-4 text-xs uppercase">Color Palette</h2>
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <!-- <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/> -->
             <!-- 1. Preview your palette -->
@@ -409,8 +409,8 @@ export default {
           </div>
         </div>
 
-        <div class="flex-1 flex-col xl:flex border-t border-gray-200 lg:border-l lg:border-t-0 ">
-          <h2 class="text-slate-400 bg-slate-100 border-b py-1 px-4 text-xs uppercase">Live Example</h2>
+        <div class="flex w-full flex-col">
+          <h2 class="text-slate-400 py-2 px-4 text-xs uppercase">Live Example</h2>
           <div class="p-6">
             <ExampleContent :colors="colorPaletteObject" />
           </div>
