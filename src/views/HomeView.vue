@@ -9,7 +9,7 @@
     </div>
     <!-- grid of tools as links to the palette, word counter, static type scale, and lipsum -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4 max-w-3xl mx-auto mb-24">
-      <router-link to="/colors" class="card border p-6 rounded">
+      <router-link to="/palette-generator" class="card border p-6 rounded">
         <div class="card-content">
           <img src="/palette.svg" class="w-12 h-auto pb-6" alt="Color palette">
           <h2 class="text-xl font-semibold">Color Palette</h2>
@@ -23,7 +23,7 @@
           <p class="text-sm text-gray-600">Analyze text content and extract keywords</p>
         </div>
       </router-link>
-      <router-link to="/type-scale" class="card border p-6 rounded">
+      <router-link to="/static-type-scale" class="card border p-6 rounded">
         <div class="card-content">
           <img src="/type-scale.svg" class="w-12 h-auto pb-6" alt="Color palette">
           <h2 class="text-xl font-semibold">Static Type Scale</h2>
