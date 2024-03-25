@@ -77,12 +77,12 @@ export default {
         Copied to clipboard!
       </div>
     </transition>
-    <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+    <section id="powerbar" class="flex flex-1 flex-col p-6 border-b w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
         <h4 class="text-md font-semibold text-black">Lorem Ipsum Generator</h4>
         <p class="text-xs text-slate-800">Generate text content for use in your designs and mockups</p>
       </section>
-      <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-2 py-4">
+      <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-2 pt-2">
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
         <Button
           btnType="secondary"

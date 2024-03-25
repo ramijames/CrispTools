@@ -37,11 +37,11 @@ export default {
     const inputClasses = computed(() => {
       switch (props.inputType) {
         case "primary":
-          return "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10";
+          return "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow text-slate-700 shadow-sm shadow-black/5";
         case "secondary":
-          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10";
+          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
         default:
-          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10";
+          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
       }
     });
 

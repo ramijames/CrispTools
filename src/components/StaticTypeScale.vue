@@ -98,7 +98,7 @@ export default {
 </script>
 
 <template>
-  <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
+  <section id="powerbar" class="flex flex-1 flex-col p-6 border-b w-full justify-between">
     <section id="title" class="flex flex-col justify-center">
       <h4 class="text-md font-semibold text-black">Static Type Scale</h4>
       <p class="text-xs text-slate-800">Generate a static type scale based on a base size and a scale ratio</p>
@@ -106,7 +106,7 @@ export default {
     <section id="toolbar" class="flex flex-auto flex-col sm:flex-row gap-2 pt-4">
       <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
-        <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
+        <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
           <option disabled value="Select a type scale">Select a type scale</option>
           <option v-for="(scale, key) in typescales" :key="key" :value="key" :selected="scale.selected" >
             {{ scale.label }}
@@ -115,7 +115,7 @@ export default {
       </div>
       <div class="w-full sm:w-1/3">
         <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
-        <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
+        <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
           <option disabled value="Select a unit">Select a unit</option>
           <option v-for="(unit, key) in units" :key="key" :value="key" :selected="unit.selected" >
             {{ unit.label }}
@@ -129,7 +129,7 @@ export default {
     </section>
   </section>
   <section id="workspace" class="flex flex-col md:flex-row">
-    <div class="w-full md:w-1/2 md:border-r py-8 bg-white">
+    <div class="w-full md:w-1/2 md:border-r p-6 bg-white">
       <ul class="flex flex-col justify-center gap-4">
         <li
           class="flex items-center flex-row"
@@ -140,7 +140,7 @@ export default {
           :key="key"
         >
           <span
-            class="border text-green-500 b-1 b-green-400 p-2 rounded-md block w-24 text-center mx-4 text-sm"
+            class="border text-green-500 b-1 b-green-400 mr-4 rounded-md block w-24 text-center text-sm"
             >{{ size }}{{ selectedUnit }}</span
           >
           <span
@@ -154,7 +154,7 @@ export default {
         </li>
       </ul>
     </div>
-    <div class="w-full md:w-1/2 bg-blue-900">
+    <div class="w-full md:w-1/2 bg-blue-900 p-6">
       <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
         <tab name="Plain CSS" >
           <PlainCSS :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
@@ -182,7 +182,7 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin: 1rem;
+  margin-bottom: 1rem;
 }
 
 .nav-item {
@@ -208,7 +208,7 @@ export default {
 }
 
 .css.hljs {
-  padding: 1rem;
+  padding: 0rem;
 }
 
 </style>

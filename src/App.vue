@@ -1,12 +1,12 @@
 <template>
-  <main class="mx-auto flex flex-col">
+  <main class="flex flex-col">
     <div class="">
       <Header />
     </div>
-    <div class="bg-white">  
+    <div class="max-w-screen-2xl w-full mx-auto border-l border-r">  
       <RouterView />
     </div>
-    <div class="py-8 px-4 lg:px-6 border-t">
+    <div class="w-full mx-auto p-6 border-t">
       <Footer />
     </div>
   </main>
