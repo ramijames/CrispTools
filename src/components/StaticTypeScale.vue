@@ -100,8 +100,8 @@ export default {
 <template>
   <section id="powerbar" class="flex flex-1 flex-col p-6 border-b w-full justify-between">
     <section id="title" class="flex flex-col justify-center">
-      <h4 class="text-md font-semibold text-black">Static Type Scale</h4>
-      <p class="text-xs text-slate-800">Generate a static type scale based on a base size and a scale ratio</p>
+      <h1 class="text-slate-900 font-semibold text-md">Static Type Scale</h1>
+      <p class="text-sm text-slate-900">Generate a static type scale based on a base size and a scale ratio</p>
     </section>
     <section id="toolbar" class="flex flex-auto flex-col sm:flex-row gap-2 pt-4">
       <div class="w-full sm:w-1/3">

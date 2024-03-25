@@ -79,8 +79,8 @@ export default {
     </transition>
     <section id="powerbar" class="flex flex-1 flex-col p-6 border-b w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
-        <h4 class="text-md font-semibold text-black">Lorem Ipsum Generator</h4>
-        <p class="text-xs text-slate-800">Generate text content for use in your designs and mockups</p>
+        <h1 class="text-slate-900 font-semibold text-md">Lorem Ipsum Generator</h1>
+        <p class="text-sm text-slate-900">Generate text content for use in your designs and mockups</p>
       </section>
       <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-2 pt-2">
         <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />

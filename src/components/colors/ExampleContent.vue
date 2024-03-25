@@ -76,8 +76,8 @@ export default {
 </script>
 
 <template>
-  <div class="px-4">
-    <section id="appchrome" class="overflow-hidden border-1 shadow shadow-xl shadow-md shadow-sm rounded-lg ring-1 ring-neutral-100 w-full" :style="{ shadowColor: colors.shadow }">
+  <div class="">
+    <section id="appchrome" class="overflow-hidden border shadow shadow-xl shadow-md shadow-sm rounded-lg w-full" :style="{ shadowColor: colors.shadow }">
       <section id="chromebar" class="flex flex-row bg-white p-2 border-b">
         <section id="mockui" class="w-24 flex flex-row gap-2 items-center pl-2">
           <span class="close" :style="{ backgroundColor: colors.error }"></span>

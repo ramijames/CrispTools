@@ -101,8 +101,8 @@ export default {
 <template>
   <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
     <section id="title" class="flex flex-col justify-center">
-      <h4 class="text-md font-semibold text-black">Text Analysis</h4>
-      <p class="text-xs text-slate-800">Word analysis tool and keyword extractor</p>
+      <h1 class="text-slate-900 font-semibold text-md">Text Analysis</h1>
+      <p class="text-sm text-slate-900">Word analysis tool and keyword extractor</p>
     </section>
     <section id="toolbar" class="flex flex-auto flex-row gap-2">
       <section class="count w-full">
