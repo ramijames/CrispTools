@@ -5,10 +5,10 @@
 <template>
   <main class="flex flex-start">
 
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-4">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full p-10">
 
       <!-- Color Tools -->
-      <div class="w-full">
+      <div class="flex flex-col gap-2 w-full">
         <div class="flex flex-row justify-between w-full p-2 border-b border-l-4 border-l-lime-500 bg-lime-50">
           <h2 class="text-xl font-semibold">Color Tools</h2>
           <!-- <img src="/palette.svg" class="w-8 h-auto self-center fill-lime-500" alt="Color palette"> -->
@@ -17,13 +17,16 @@
           </svg>
         </div>
         <div class="p-2">
-          <p class="text-sm text-gray-600 pb-2">Tools for building palettes and modifying colors</p>
-          <router-link to="/palette-generator" class="btn mt-4">Color Palette Generator</router-link>
-        </div>  
+          <p class="text-sm text-gray-600 pb-2">Tools for building palettes and colors</p>
+          <ul>
+            <li class="py-2 border-b"><router-link to="/palette-generator" class="btn mt-4 text-lime-500">Color Palette Generator</router-link></li>
+          </ul>
+        </div>
+        <router-link to="/color-tools" class="btn bg-gray-50 rounded py-1 text-center text-gray-500">More Color Tools</router-link>
       </div>
 
       <!-- Typography Tools -->
-      <div class="w-full">
+      <div class="flex flex-col gap-2 w-full">
         <div class="flex flex-row justify-between w-full p-2 border-b border-l-4 border-l-blue-500 bg-blue-50">
           <h2 class="text-xl font-semibold">Typography Tools</h2>
           <!-- <img src="/palette.svg" class="w-8 h-auto self-center fill-lime-500" alt="Color palette"> -->
@@ -34,11 +37,12 @@
         <div class="p-2">
           <p class="text-sm text-gray-600 pb-2">Tools for working with text and typography</p>
           <ul>
-            <li class="py-2 border-b"><router-link to="/word-counter" class="btn mt-4">Lorem Ipsum</router-link></li>
-            <li class="py-2 border-b"><router-link to="/static-type-scale" class="btn mt-4">Static Type Scale</router-link></li>
-            <li class="py-2"><router-link to="/word-counter" class="btn mt-4">Word Counter and Keywords Analysis</router-link></li>
+            <li class="py-2 border-b"><router-link to="/word-counter" class="btn mt-4  text-blue-500">Lorem Ipsum</router-link></li>
+            <li class="py-2 border-b"><router-link to="/static-type-scale" class="btn mt-4  text-blue-500">Static Type Scale</router-link></li>
+            <li class="py-2"><router-link to="/word-counter" class="btn mt-4  text-blue-500">Word Counter and Keywords Analysis</router-link></li>
           </ul>
         </div>  
+        <router-link to="/typography-tools" class="btn bg-gray-50 rounded py-1 text-center text-gray-500">More Typography Tools</router-link>
       </div>
     </section>
 

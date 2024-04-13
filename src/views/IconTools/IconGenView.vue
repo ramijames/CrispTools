@@ -1,5 +1,5 @@
 <script setup>
-import IconGen from "../components/IconGen.vue";
+import IconGen from "@/components/IconGen.vue";
 </script>
 
 <template>

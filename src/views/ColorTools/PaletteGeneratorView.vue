@@ -1,5 +1,5 @@
 <script setup>
-import Palette from "../components/Palette.vue";
+import Palette from "@/components/Palette.vue";
 </script>
 
 <template>

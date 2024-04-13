@@ -1,5 +1,5 @@
 <script setup>
-import WordCounter from "../components/WordCounter.vue";
+import WordCounter from "@/components/WordCounter.vue";
 </script>
 
 <template>

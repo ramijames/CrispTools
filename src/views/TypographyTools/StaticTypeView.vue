@@ -1,5 +1,5 @@
 <script setup>
-import StaticType from "../components/StaticTypeScale.vue";
+import StaticType from "@/components/StaticTypeScale.vue";
 </script>
 
 <template>

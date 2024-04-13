@@ -1,5 +1,5 @@
 <script setup>
-import Lipsum from "../components/Lipsum.vue";
+import Lipsum from "@/components/Lipsum.vue";
 </script>
 
 <template>
