@@ -1,29 +1,15 @@
-# crisp-lorem-ipsum
+# Crisp Tools
 
-This template should help get you started developing with Vue 3 in Vite.
+Crisp Tools are a collection of tools to help designers, developers, and other web-based denizens to accomplish what they need to accomplish during their daily trials and tribulations.
 
-## Recommended IDE Setup
+## Attribution
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Crisp relies on many great software projects out there.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+- Vue.js
+- Vite
+- Tailwind
+- tinycolor2
+- vue3-colorpicker
+- Highlight.js
+- lorem-ipsum
