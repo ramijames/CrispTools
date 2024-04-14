@@ -76,10 +76,10 @@ const mobileMenuOpen = ref(false);
     <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between gap-6" aria-label="Global" >
       <div class="flex lg:flex-1">
         <a href="/" class="flex flex-row gap-2 justify-center items-center">
-          <!-- <span class="sr-only">Crisp Tools</span> -->
-          <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"
-          />
-          <!-- <span class="text-xl text-black">Crisp Tools</span> -->
+          <svg v-if="$route.path !== '/'" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.53492 6.00001H17C17.5523 6.00001 18 6.44773 18 7.00001C18 7.5523 17.5523 8.00001 17 8.00001H3.53492L6.79246 11.2576C7.20251 11.6676 7.20251 12.3324 6.79246 12.7425C6.38241 13.1525 5.71759 13.1525 5.30754 12.7425L0.307538 7.74247C-0.102513 7.33242 -0.102513 6.6676 0.307538 6.25755L5.30754 1.25755C5.71759 0.8475 6.38241 0.8475 6.79246 1.25755C7.20251 1.6676 7.20251 2.33242 6.79246 2.74247L3.53492 6.00001Z" fill="black"/>
+          </svg>
+          <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
         </a>
       </div>
       <div class="flex lg:hidden">

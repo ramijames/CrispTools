@@ -6,6 +6,6 @@
       </svg>
       <h2 class="text-xl font-semibold text-blue-500 self-center">Text Tools</h2>
     </div>
-    <router-link to="/color-tools" class="flex flex-row justify-between px-4 btn bg-blue-500 rounded py-2 text-center text-white">View all</router-link>
+    <router-link v-if="$route.path !== '/text-tools'" to="/text-tools" class="flex flex-row justify-between px-4 btn bg-blue-500 rounded py-2 text-center text-white">View all</router-link>
   </div>
 </template>
