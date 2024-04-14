@@ -6,6 +6,7 @@ import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import tinycolor from "tinycolor2";
 import ExampleContent from './colors/ExampleContent.vue';
 import ColorInput from 'vue-color-input';
+import SectionHeaderColorTools from '@/components/layout/SectionHeaderColorTools.vue';
 
 import {
   Popover,
@@ -195,7 +196,8 @@ export default {
     PopoverGroup,
     PopoverPanel,
     ExampleContent,
-    Vue3ColorPicker
+    Vue3ColorPicker,
+    SectionHeaderColorTools
   },
   methods: {
     toggleColorFormat() {
@@ -217,7 +219,8 @@ export default {
 
 <template>
   <div class="wrapper">
-    <section id="powerbar" class="flex flex-1 flex-col p-6 border-b bg-white w-full justify-between">
+    <SectionHeaderColorTools />
+    <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
         <h1 class="text-slate-900 font-semibold text-md">User Interface Color Palette Generator</h1>
         <p class="text-sm text-slate-900">Easy to use palette generator for building coordinated colors for use in UIs</p>
@@ -241,7 +244,7 @@ export default {
       <div class="mx-auto w-full  grow lg:flex">
         <!-- Left sidebar & main wrapper -->
         <div class="shrink-0 w-80 border-r">
-          <h2 class="text-slate-900 p-6 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Color Palette</h2>
+          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Color Palette</h2>
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
             <!-- 1. Preview your palette -->
@@ -412,8 +415,8 @@ export default {
         </div>
 
         <div class="flex w-full flex-col">
-          <h2 class="text-slate-900 p-6 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Live Example</h2>
-          <div class="p-6">
+          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Live Example</h2>
+          <div class="p-4">
             <ExampleContent :colors="colorPaletteObject" />
           </div>
         </div>

@@ -7,13 +7,17 @@ import IconGenView from "../views/IconTools/IconGenView.vue";
 // Color Tools
 import ColorToolsView from "../views/ColorTools/ColorToolsView.vue";
 import LightenColorView from "../views/ColorTools/LightenColorView.vue";
+import DarkenColorView from "../views/ColorTools/DarkenColorView.vue";
 import PaletteGeneratorView from "../views/ColorTools/PaletteGeneratorView.vue";
 
 // Typography Tools
-import TypographyToolsView from "../views/TypographyTools/TypographyToolsView.vue";
-import LipsumView from "../views/TypographyTools/LipsumView.vue";
-import StaticTypeView from "../views/TypographyTools/StaticTypeView.vue";
-import WordCounterView from "../views/TypographyTools/WordCounterView.vue";
+import TextToolsView from "../views/TextTools/TextToolsView.vue";
+import LipsumView from "../views/TextTools/LipsumView.vue";
+import WordCounterView from "../views/TextTools/WordCounterView.vue";
+
+// CSS Tools
+import CssToolsView from "../views/CssTools/CssToolsView.vue";
+import StaticTypeView from "../views/CssTools/StaticTypeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,29 +28,34 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/typography-tools",
-      name: "typography-tools",
-      component: TypographyToolsView,
+      path: "/text-tools",
+      name: "text-tools",
+      component: TextToolsView,
     },
+        {
+          path: "/text-tools/lipsum",
+          name: "lipsum",
+          component: LipsumView,
+        },
+        {
+          path: "/text-tools/word-counter",
+          name: "word-counter",
+          component: WordCounterView,
+        },
     {
-      path: "/lipsum",
-      name: "lipsum",
-      component: LipsumView,
+      path: "/css-tools",
+      name: "css-tools",
+      component: CssToolsView,
     },
-    {
-      path: "/static-type-scale",
-      name: "static-type-scale",
-      component: StaticTypeView,
-    },
+        {
+          path: "/css-tools/static-type-scale",
+          name: "static-type-scale",
+          component: StaticTypeView,
+        },
     {
       path: "/icon-gen",
       name: "icon-gen",
       component: IconGenView,
-    },
-    {
-      path: "/word-counter",
-      name: "word-counter",
-      component: WordCounterView,
     },
     {
       path: "/color-tools/",
@@ -62,6 +71,11 @@ const router = createRouter({
           path: "/color-tools/lighten-color",
           name: "lighten-color",
           component: LightenColorView,
+        },
+        {
+          path: "/color-tools/darken-color",
+          name: "darken-color",
+          component: DarkenColorView,
         },
   ],
 });

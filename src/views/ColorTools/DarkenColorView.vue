@@ -6,7 +6,7 @@ import CrispInput from '@/components/shared/CrispInput.vue';
 import SectionHeaderColorTools from '@/components/layout/SectionHeaderColorTools.vue';
 
 export default {
-  name: 'LightenColorView',
+  name: 'DarkenColorView',
   components: {
     Vue3ColorPicker,
     CrispInput,
@@ -20,19 +20,19 @@ export default {
   data() {
     return {
       selectedColor: '#409BCD',
-      lightenColors: []
+      darkenColors: []
     }
   },
   watch: {
     selectedColor: function() {
-      this.lightenColors = this.generateLightenColors(this.selectedColor);
+      this.darkenColors = this.generateDarkenColors(this.selectedColor);
     }
   },
   methods: {
-    generateLightenColors(color) {
+    generateDarkenColors(color) {
       let colors = [];
       for (let i = 0; i < 5; i++) {
-        colors.push(tinycolor(color).lighten(i * 5).toHexString());
+        colors.push(tinycolor(color).darken(i * 5).toHexString());
       }
       return colors;
     }
@@ -46,8 +46,8 @@ export default {
     <SectionHeaderColorTools />
     <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
-        <h1 class="text-slate-900 font-semibold text-md">Lighten Colors</h1>
-        <p class="text-sm text-slate-900">Select your color and we will output a set of lighter values</p>
+        <h1 class="text-slate-900 font-semibold text-md">Darken Colors</h1>
+        <p class="text-sm text-slate-900">Select your color and we will output a set of darker values</p>
       </section>
     </section>
     <section id="workspace">
@@ -70,7 +70,7 @@ export default {
           <section class="">
             <div class=" lg:h-[40rem] flex flex-col lg:flex-row flex-wrap justify-center">
               <div 
-                v-for="color in lightenColors" 
+                v-for="color in darkenColors" 
                 :key="color" 
                 class="h-[6rem] lg:h-full lg:w-1/5 flex flex-row lg:flex-col gap-2 justify-center items-center" 
                 :style="{backgroundColor: color}">

@@ -54,6 +54,18 @@ const color = [
     href: "/color-tools/palette-generator",
     icon: SwatchIcon,
   },
+  {
+    name: "Lighten Colors",
+    description: "A set of lighter values",
+    href: "/color-tools/lighten-color",
+    icon: SwatchIcon,
+  },
+  {
+    name: "Darken Colors",
+    description: "A set of darker values",
+    href: "/color-tools/darken-color",
+    icon: SwatchIcon,
+  },
 ];
 
 const mobileMenuOpen = ref(false);
@@ -61,13 +73,13 @@ const mobileMenuOpen = ref(false);
 
 <template>
   <header class="w-full bg-white p-6 border-b">
-    <nav class="max-w-screen-2xl w-full mx-auto px-6 flex flex-row items-center justify-between gap-6" aria-label="Global" >
+    <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between gap-6" aria-label="Global" >
       <div class="flex lg:flex-1">
         <a href="/" class="flex flex-row gap-2 justify-center items-center">
-          <span class="sr-only">Crisp Tools</span>
+          <!-- <span class="sr-only">Crisp Tools</span> -->
           <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"
           />
-          <span class="text-xl text-black">Crisp Tools</span>
+          <!-- <span class="text-xl text-black">Crisp Tools</span> -->
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -78,7 +90,7 @@ const mobileMenuOpen = ref(false);
       </div>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-blue-500" >
+          <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-black" >
             Color Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -107,7 +119,7 @@ const mobileMenuOpen = ref(false);
       </PopoverGroup>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-blue-500" >
+          <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-black" >
             Text Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -136,7 +148,7 @@ const mobileMenuOpen = ref(false);
       </PopoverGroup>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-        <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-blue-500" >
+        <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-black" >
             CSS Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -176,13 +188,13 @@ const mobileMenuOpen = ref(false);
       >
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5 flex flex-row items-center">
-            <span class="sr-only">Crisp Tools</span>
-            <img
+            <!-- <span class="sr-only">Crisp Tools</span> -->
+            <!-- <img
               class="h-20 w-auto"
               src="/crisp-logo-white.svg"
               alt="Crisp Tools"
             />
-            <span class="text-3xl ml-4 font-semibold text-green-500">Crisp Tools</span>
+            <span class="text-3xl ml-4 font-semibold text-green-500">Crisp Tools</span> -->
           </a>
           <button
             type="button"
