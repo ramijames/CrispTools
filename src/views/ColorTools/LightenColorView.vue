@@ -10,6 +10,11 @@ export default {
     Vue3ColorPicker,
     CrispInput
   },
+  setup() {
+    return {
+      tinycolor
+    }
+  },
   data() {
     return {
       selectedColor: '#409BCD',
@@ -64,9 +69,10 @@ export default {
               <div 
                 v-for="color in lightenColors" 
                 :key="color" 
-                class="h-[6rem] lg:h-full lg:w-1/5 flex justify-center items-center" 
+                class="h-[6rem] lg:h-full lg:w-1/5 flex flex-row lg:flex-col gap-2 justify-center items-center" 
                 :style="{backgroundColor: color}">
-                <p class="text-xs text-white text-center p-2">{{ color }}</p>
+                <p class="text-xs p-2 rounded bg-black/20 text-white text-center p-2">{{ color }}</p>
+                <p class="text-xs p-2 rounded bg-black/20 text-white text-center p-2">{{ tinycolor(color).toRgbString() }}</p>
               </div>
             </div>
           </section>
