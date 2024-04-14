@@ -27,13 +27,13 @@ const text = [
   {
     name: "Lorem Ipsum",
     description: "Generate placeholder text",
-    href: "/lipsum",
+    href: "/typography-tools/lipsum",
     icon: DocumentTextIcon,
   },
   {
     name: "Text Analysis",
     description: "Word counter and keywords analysis tool",
-    href: "/word-counter",
+    href: "/typography-tools/word-counter",
     icon: MagnifyingGlassCircleIcon,
   },
 ];
@@ -42,7 +42,7 @@ const css = [
   {
     name: "Static Type Scale",
     description: "Create a static typographic scale",
-    href: "/static-type-scale",
+    href: "/typography-tools/static-type-scale",
     icon: MusicalNoteIcon,
   },
 ];
@@ -51,7 +51,7 @@ const color = [
   {
     name: "Palette Generator",
     description: "Create beautiful color palettes",
-    href: "/palette-generator",
+    href: "/color-tools/palette-generator",
     icon: SwatchIcon,
   },
 ];

@@ -156,6 +156,7 @@ export default {
       colorPalette.value = generatePalette(newVal, numberOfColors.value, spinDegree.value);
       saturation.value = tinycolor(newVal).toHsl().s * 100;
       lightness.value = tinycolor(newVal).toHsl().l * 100;
+      console.log(selectedColor);
     }); 
 
     return {
@@ -193,7 +194,8 @@ export default {
     PopoverButton,
     PopoverGroup,
     PopoverPanel,
-    ExampleContent
+    ExampleContent,
+    Vue3ColorPicker
   },
   methods: {
     toggleColorFormat() {
@@ -241,10 +243,10 @@ export default {
         <div class="shrink-0 w-80 border-r">
           <h2 class="text-slate-900 p-6 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Color Palette</h2>
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
-            <!-- <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/> -->
+            <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
             <!-- 1. Preview your palette -->
             <section id="intro" class="flex flex-col gap-4 items-center w-full">
-              <color-input v-model="selectedColor" position="right bottom" disable-alpha />
+              <!-- <color-input v-model="selectedColor" position="right bottom" disable-alpha /> -->
               <section id="colorpreview" class="w-full">
                 <div class="flex flex-col">
                   <div class="flex flex-row">
