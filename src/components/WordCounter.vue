@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import Button from './shared/Button.vue';
 import keywordExtractor from 'keyword-extractor';
+import SectionHeaderTextTools from '@/components/layout/SectionHeaderTextTools.vue';
 import {
   DocumentTextIcon
 } from "@heroicons/vue/24/outline";
@@ -83,7 +84,8 @@ export default {
   },
   components: {
     Button,
-    DocumentTextIcon
+    DocumentTextIcon,
+    SectionHeaderTextTools
   },
   methods: {
     
@@ -99,6 +101,7 @@ export default {
 </script>
 
 <template>
+  <SectionHeaderTextTools />
   <section id="powerbar" class="flex flex-1 flex-col p-4 lg:px-6 border-b w-full justify-between">
     <section id="title" class="flex flex-col justify-center">
       <h1 class="text-slate-900 font-semibold text-md">Text Analysis</h1>

@@ -21,10 +21,6 @@ import SectionHeaderCssTools from '@/components/layout/SectionHeaderCssTools.vue
             <li class="py-2 border-b"><router-link to="/color-tools/darken-color" class="btn mt-4 text-lime-500">Darken Color</router-link></li>
           </ul>
         </div>
-        <router-link to="/color-tools" class="flex flex-row justify-between px-4 btn bg-lime-500 rounded py-2 text-center text-white">
-          <span>Browse all Color Tools </span>
-          <span>&rarr;</span>
-        </router-link>
       </div>
 
       <!-- Text Tools -->
@@ -33,14 +29,10 @@ import SectionHeaderCssTools from '@/components/layout/SectionHeaderCssTools.vue
         <div class="p-2">
           <p class="text-sm text-gray-600 pb-2">Tools for working with text and typography</p>
           <ul>
-            <li class="py-2 border-b"><router-link to="/text-tools/word-counter" class="btn mt-4  text-blue-500">Lorem Ipsum</router-link></li>
+            <li class="py-2 border-b"><router-link to="/text-tools/lipsum" class="btn mt-4  text-blue-500">Lorem Ipsum</router-link></li>
             <li class="py-2"><router-link to="/text-tools/word-counter" class="btn mt-4  text-blue-500">Word Counter and Keywords Analysis</router-link></li>
           </ul>
-        </div>  
-        <router-link to="/text-tools" class="flex flex-row justify-between px-4 btn bg-blue-500 rounded py-2 text-center text-white">
-          <span>Browse all Text Tools </span>
-          <span>&rarr;</span>
-        </router-link>
+        </div>
       </div>
 
       <!-- Text Tools -->
@@ -51,11 +43,7 @@ import SectionHeaderCssTools from '@/components/layout/SectionHeaderCssTools.vue
           <ul>
             <li class="py-2 border-b"><router-link to="/css-tools/static-type-scale" class="btn mt-4  text-slate-500">Static Type Scale</router-link></li>
           </ul>
-        </div>  
-        <router-link to="/text-tools" class="flex flex-row justify-between px-4 btn bg-slate-500 rounded py-2 text-center text-white">
-          <span>Browse all Text Tools </span>
-          <span>&rarr;</span>
-        </router-link>
+        </div>
       </div>
     </section>
 
