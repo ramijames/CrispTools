@@ -68,6 +68,24 @@ const color = [
   },
 ];
 
+const categories = [
+  {
+    name: "Color Tools",
+    items: color,
+    link: "/color-tools"
+  },
+  {
+    name: "Text Tools",
+    items: text,
+    link: "/text-tools"
+  },
+  {
+    name: "CSS Tools",
+    items: css,
+    link: "/css-tools"
+  }
+];
+
 const mobileMenuOpen = ref(false);
 </script>
 

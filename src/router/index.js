@@ -9,6 +9,7 @@ import ColorToolsView from "../views/ColorTools/ColorToolsView.vue";
 import LightenColorView from "../views/ColorTools/LightenColorView.vue";
 import DarkenColorView from "../views/ColorTools/DarkenColorView.vue";
 import PaletteGeneratorView from "../views/ColorTools/PaletteGeneratorView.vue";
+import HexToRgbConverterView from "../views/ColorTools/HexToRgbConverterView.vue";
 
 // Typography Tools
 import TextToolsView from "../views/TextTools/TextToolsView.vue";
@@ -76,6 +77,11 @@ const router = createRouter({
           path: "/color-tools/darken-color",
           name: "darken-color",
           component: DarkenColorView,
+        },
+        {
+          path: "/color-tools/hex-to-rgb-converter",
+          name: "hex-to-rgb-converter",
+          component: HexToRgbConverterView,
         },
   ],
 });
