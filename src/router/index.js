@@ -18,7 +18,7 @@ import WordCounterView from "../views/TextTools/WordCounterView.vue";
 
 // CSS Tools
 import CssToolsView from "../views/CssTools/CssToolsView.vue";
-import StaticTypeView from "../views/CssTools/StaticTypeView.vue";
+import StaticTypeView from "@/views/CssTools/StaticTypeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

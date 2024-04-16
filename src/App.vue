@@ -3,7 +3,7 @@
     <div class="">
       <Header />
     </div>
-    <div class="max-w-screen-2xl w-full mx-auto border-l border-r">  
+    <div class="w-full mx-auto">  
       <RouterView />
     </div>
     <div class="w-full mx-auto p-6 border-t">

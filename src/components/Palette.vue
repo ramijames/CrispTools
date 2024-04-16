@@ -221,31 +221,18 @@ export default {
   <div class="wrapper">
     <SectionHeaderColorTools />
     <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
-      <section id="title" class="flex flex-col justify-center">
+      <section id="title" class="flex flex-col justify-center w-full max-w-screen-2xl mx-auto">
         <h1 class="text-slate-900 font-semibold text-md">User Interface Color Palette Generator</h1>
         <p class="text-sm text-slate-900">Easy to use palette generator for building coordinated colors for use in UIs</p>
       </section>
-      <!-- <PopoverGroup class="pt-4 ">
-        <Popover class="relative">
-          <PopoverButton class="block appearance-none bg-white rounded-lg overflow-hidden p-1 focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/5 hover:ring-slate-700/40" >
-            <div id="currentColor" class="rounded-md" :style="{ backgroundColor: selectedColor }"></div>
-          </PopoverButton>
-          <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-            <PopoverPanel class="absolute top-full z-10 mt-2 overflow-hidden block appearance-none bg-white border rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
-              <Vue3ColorPicker v-model="selectedColor" mode="solid" :alpha="false" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
-            </PopoverPanel>
-          </transition>
-        </Popover>
-      </PopoverGroup> -->
     </section>
     <section id="workspace">
       
       <!-- 3 column wrapper -->
-      <div class="mx-auto w-full  grow lg:flex">
+      <div class="w-full max-w-screen-2xl mx-auto grow lg:flex">
         <!-- Left sidebar & main wrapper -->
-        <div class="shrink-0 w-80 border-r">
-          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Color Palette</h2>
-          <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
+        <div class="shrink-0 w-70 border-r">
+          <div class="py-4 xl:flex-1 pr-4">
             <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
             <!-- 1. Preview your palette -->
             <section id="intro" class="flex flex-col gap-4 items-center w-full">
@@ -415,8 +402,7 @@ export default {
         </div>
 
         <div class="flex w-full flex-col">
-          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b"><span class="text-green-400">○</span> Live Example</h2>
-          <div class="p-4">
+          <div class="py-4 pl-4">
             <ExampleContent :colors="colorPaletteObject" />
           </div>
         </div>

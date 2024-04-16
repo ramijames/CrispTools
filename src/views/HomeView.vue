@@ -6,9 +6,9 @@ import LinksCssTools from '@/components/layout/LinksCssTools.vue';
 </script>
 
 <template>
-  <main class="flex flex-start">
+  <main class="flex flex-start max-w-screen-2xl mx-auto">
 
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full p-0 lg:p-6">
+    <section class=" w-full py-6 px-2 lg:px-0">
 
       <LinksColorTools />
       <LinksCssTools />
