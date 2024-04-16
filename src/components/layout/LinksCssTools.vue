@@ -13,7 +13,7 @@ import RoutesCssTools from '@/router/routes-css-tools';
           :to="route.path" 
           v-for="route in RoutesCssTools" 
           :key="route.name" 
-          class="bg-center bg-cover h-60 relative rounded-xl bg-white transition-shadow shadow hover:shadow-xl flex flex-col justify-between"
+          class="bg-left bg-cover h-60 relative rounded-xl bg-white transition-shadow shadow hover:shadow-xl flex flex-col justify-between"
           :style="{ backgroundImage: `url(${route.image})` }"
         >
           <section class="backdrop-blur-md text-ellipsis overflow-hidden absolute bottom-0 w-full px-6 py-4 hover:py-6 transition-all bg-slate-500/30 rounded-b-xl rounded-t-xl">

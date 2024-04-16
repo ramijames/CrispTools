@@ -27,13 +27,13 @@ const text = [
   {
     name: "Lorem Ipsum",
     description: "Generate placeholder text",
-    href: "/typography-tools/lipsum",
+    href: "/text-tools/lipsum",
     icon: DocumentTextIcon,
   },
   {
     name: "Text Analysis",
     description: "Word counter and keywords analysis tool",
-    href: "/typography-tools/word-counter",
+    href: "/text-tools/word-counter",
     icon: MagnifyingGlassCircleIcon,
   },
 ];
@@ -42,7 +42,7 @@ const css = [
   {
     name: "Static Type Scale",
     description: "Create a static typographic scale",
-    href: "/typography-tools/static-type-scale",
+    href: "/css-tools/static-type-scale",
     icon: MusicalNoteIcon,
   },
 ];
