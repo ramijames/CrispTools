@@ -40,7 +40,7 @@ const mobileMenuOpen = ref(false);
           <svg v-if="$route.path !== '/'" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.53492 6.00001H17C17.5523 6.00001 18 6.44773 18 7.00001C18 7.5523 17.5523 8.00001 17 8.00001H3.53492L6.79246 11.2576C7.20251 11.6676 7.20251 12.3324 6.79246 12.7425C6.38241 13.1525 5.71759 13.1525 5.30754 12.7425L0.307538 7.74247C-0.102513 7.33242 -0.102513 6.6676 0.307538 6.25755L5.30754 1.25755C5.71759 0.8475 6.38241 0.8475 6.79246 1.25755C7.20251 1.6676 7.20251 2.33242 6.79246 2.74247L3.53492 6.00001Z" fill="black"/>
           </svg>
-          <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
+          <img class="h-10 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/><span class="text-4xl font-black">CRISP</span>
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -49,9 +49,15 @@ const mobileMenuOpen = ref(false);
           <Bars3Icon class="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
-      <PopoverGroup class="hidden lg:flex lg:gap-x-12">
+      <!-- router-links to main pages -->
+      <div class="hidden lg:flex lg:justify-end lg:gap-x-8">
+        <router-link to="/color-tools" class="text-lg font-black leading-6 text-black">Color Tools</router-link>
+        <router-link to="/text-tools" class="text-lg font-black leading-6 text-black">Text Tools</router-link>
+        <router-link to="/css-tools" class="text-lg font-black leading-6 text-black">CSS Tools</router-link>
+      </div>
+      <!-- <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
-          <PopoverButton class="flex items-center gap-x-1 text-lg leading-6 text-black" >
+          <PopoverButton class="flex items-center gap-x-1 text-lg font-black leading-6 text-black " >
             Color Tools
             <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
           </PopoverButton>
@@ -123,7 +129,7 @@ const mobileMenuOpen = ref(false);
             </PopoverPanel>
           </transition>
         </Popover>
-      </PopoverGroup>
+      </PopoverGroup> -->
     </nav>
     <Dialog
       as="div"
