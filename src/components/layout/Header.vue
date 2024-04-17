@@ -61,7 +61,7 @@ const mobileMenuOpen = ref(false);
               <div class="p-4">
                 <div v-for="item in color" :key="item.name" class="group relative flex gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50">
                   <div class="flex-auto">
-                    <a :href="item.href" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
+                    <a :href="item.path" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@ const mobileMenuOpen = ref(false);
               <div class="p-4">
                 <div v-for="item in text" :key="item.name" class="group relative flex gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50">
                   <div class="flex-auto">
-                    <a :href="item.href" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
+                    <a :href="item.path" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
                   </div>
                 </div>
               </div>
@@ -111,7 +111,7 @@ const mobileMenuOpen = ref(false);
               <div class="p-4">
                 <div v-for="item in css" :key="item.name" class="group relative flex gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50">
                   <div class="flex-auto">
-                    <a :href="item.href" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
+                    <a :href="item.path" class="block font-semibold text-gray-900">{{ item.name }}<span class="absolute inset-0" /></a>
                   </div>
                 </div>
               </div>
@@ -136,15 +136,6 @@ const mobileMenuOpen = ref(false);
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
       >
         <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5 flex flex-row items-center">
-            <!-- <span class="sr-only">Crisp Tools</span> -->
-            <!-- <img
-              class="h-20 w-auto"
-              src="/crisp-logo-white.svg"
-              alt="Crisp Tools"
-            />
-            <span class="text-3xl ml-4 font-semibold text-green-500">Crisp Tools</span> -->
-          </a>
           <button
             type="button"
             class="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -161,6 +152,27 @@ const mobileMenuOpen = ref(false);
                 <DisclosureButton
                   class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
+                  Color Tools
+                  <ChevronDownIcon
+                    :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
+                    aria-hidden="true"
+                  />
+                </DisclosureButton>
+                <DisclosurePanel class="mt-2 space-y-2">
+                  <DisclosureButton
+                    v-for="item in [...color]"
+                    :key="item.name"
+                    as="a"
+                    :href="item.path"
+                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >{{ item.name }}</DisclosureButton
+                  >
+                </DisclosurePanel>
+              </Disclosure>
+              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
+                <DisclosureButton
+                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
                   Text Tools
                   <ChevronDownIcon
                     :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
@@ -172,7 +184,7 @@ const mobileMenuOpen = ref(false);
                     v-for="item in [...text]"
                     :key="item.name"
                     as="a"
-                    :href="item.href"
+                    :href="item.path"
                     class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >{{ item.name }}</DisclosureButton
                   >
@@ -193,7 +205,7 @@ const mobileMenuOpen = ref(false);
                     v-for="item in [...css]"
                     :key="item.name"
                     as="a"
-                    :href="item.href"
+                    :href="item.path"
                     class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >{{ item.name }}</DisclosureButton
                   >
