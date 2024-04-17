@@ -1,6 +1,6 @@
 <script setup>
-import LinksColorTools from '@/components/layout/LinksColorTools.vue';
-import RoutesColorTools from '@/router/routes-color-tools';
+import Links from '@/components/layout/Links.vue';
+import colorroutes from '@/router/routes-color-tools';
 </script>
 
 <template>
@@ -16,5 +16,5 @@ import RoutesColorTools from '@/router/routes-color-tools';
       </div>
     </section>
   </main>
-  <LinksColorTools />
+  <Links title="Color Tools" :icon="'/icon-color-tools.svg'" :routes="colorroutes" :routePath="'/color-tools'" viewType="'big'" />
 </template>

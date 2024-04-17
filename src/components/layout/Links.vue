@@ -1,17 +1,54 @@
-<script setup>
-import SectionHeaderCssTools from '@/components/layout/SectionHeaderCssTools.vue';
-import RoutesCssTools from '@/router/routes-css-tools';
+<script>
+import SectionHeader from '@/components/layout/SectionHeader.vue';
+
+export default {
+  components: {
+    SectionHeader
+  },
+  data() {
+    return {
+      
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    routes: {
+      type: Array,
+      required: true
+    },
+    routePath: {
+      type: String,
+      required: true
+    },
+    viewType: {
+      type: String,
+      required: true
+    },
+    icon: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props){
+    return {
+      props
+    }
+  }
+}
 </script>
 
 <template>
   <div class="flex flex-col gap-2 w-full">
-    <SectionHeaderCssTools />
+    <SectionHeader :title="props.title" :icon="props.icon" :routePath="props.routePath" :viewType="props.viewType" />
     <div class="rounded-2xl border border-slate-200 p-6 mb-12 w-full max-w-screen-2xl mx-auto">
       <!-- <p v-if="$route.path !== '/color-tools'" class="text-2xl text-slate-500 pb-4">Tools for building palettes and colors</p> -->
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <router-link 
           :to="route.path" 
-          v-for="route in RoutesCssTools" 
+          v-for="route in props.routes" 
           :key="route.name" 
           class="bg-left bg-cover h-60 relative rounded-xl bg-white transition-shadow shadow hover:shadow-xl flex flex-col justify-between"
           :style="{ backgroundImage: `url(${route.image})` }"

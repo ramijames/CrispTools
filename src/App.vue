@@ -3,10 +3,10 @@
     <div class="">
       <Header />
     </div>
-    <div class="w-full mx-auto">  
+    <div class="w-full max-w-screen-2xl mx-auto px-4">  
       <RouterView />
     </div>
-    <div class="w-full mx-auto p-6 border-t">
+    <div class="w-full mx-auto">
       <Footer />
     </div>
   </main>

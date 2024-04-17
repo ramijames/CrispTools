@@ -1,7 +1,8 @@
 <script setup>
-import LinksCssTools from '@/components/layout/LinksCssTools.vue';
+import cssroutes from '@/router/routes-css-tools';
+import Links from '@/components/layout/Links.vue';
 </script>
 
 <template>
-  <LinksCssTools />
+  <Links title="Css Tools" :icon="'/icon-css-tools.svg'" :routes="cssroutes" :routePath="'/css-tools'" viewType="'big'" />
 </template>

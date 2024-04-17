@@ -3,14 +3,13 @@
 import tinycolor from "tinycolor2";
 import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import CrispInput from '@/components/shared/CrispInput.vue';
-import SectionHeaderColorTools from '@/components/layout/SectionHeaderColorTools.vue';
+
 
 export default {
   name: 'LightenColorView',
   components: {
     Vue3ColorPicker,
-    CrispInput,
-    SectionHeaderColorTools
+    CrispInput
   },
   setup() {
     return {
@@ -43,7 +42,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <SectionHeaderColorTools />
+
     <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
       <section id="title" class="flex flex-col justify-center">
         <h1 class="text-slate-900 font-semibold text-md">Convert Hex and Rgb Colors</h1>

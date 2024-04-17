@@ -3,14 +3,16 @@
 import tinycolor from "tinycolor2";
 import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import CrispInput from '@/components/shared/CrispInput.vue';
-import SectionHeaderColorTools from '@/components/layout/SectionHeaderColorTools.vue';
+import SectionHeader from '@/components/layout/SectionHeader.vue';
+import PowerBar from '@/components/layout/PowerBar.vue';
 
 export default {
   name: 'DarkenColorView',
   components: {
     Vue3ColorPicker,
     CrispInput,
-    SectionHeaderColorTools
+    SectionHeader,
+    PowerBar
   },
   setup() {
     return {
@@ -25,11 +27,11 @@ export default {
   },
   watch: {
     selectedColor: function() {
-      this.darkenColors = this.generateDarkenColors(this.selectedColor);
+      this.darkenColors = this.generatedarkenColors(this.selectedColor);
     }
   },
   methods: {
-    generateDarkenColors(color) {
+    generatedarkenColors(color) {
       let colors = [];
       for (let i = 0; i < 5; i++) {
         colors.push(tinycolor(color).darken(i * 5).toHexString());
@@ -42,33 +44,25 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
-    <SectionHeaderColorTools />
-    <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
-      <section id="title" class="flex flex-col justify-center">
-        <h1 class="text-slate-900 font-semibold text-md">Darken Colors</h1>
-        <p class="text-sm text-slate-900">Select your color and we will output a set of darker values</p>
-      </section>
-    </section>
-    <section id="workspace">
-      
+  <div class="max-w-">
+    <SectionHeader :title="'Color Tools'" :icon="'/icon-color-tools.svg'" :routePath="'/color-tools'" />
+    <PowerBar :title="'Darken Colors'" :description="'Select your color and we will output a set of lighter values'" />
+    
+    <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">
       <!-- 2 column wrapper -->
       <div class="mx-auto w-full grow lg:flex">
         <!-- Left sidebar & main wrapper -->
-        <div class="shrink-0 w-full lg:w-80 border-r">
-          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs md:border-b hidden lg:block">
+        <div class="py-4 pr-4 shrink-0 w-full lg:w-min">
+          <!-- <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs md:border-b hidden lg:block">
             <span class="text-green-400">○</span> Color Selector
-          </h2>
-          <section class="flex flex-row justify-center px-8 pt-8">
-            <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
-          </section>
+          </h2> -->
+          <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
         </div>
         <div class="w-full">
-          <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b">
+          <!-- <h2 class="text-slate-900 p-4 font-semibold uppercase text-xs border-b">
             <span class="text-green-400">►</span> Output
-          </h2>
-          <section class="">
-            <div class=" lg:h-[40rem] flex flex-col lg:flex-row flex-wrap justify-center">
+          </h2> -->
+            <div class="my-4 overflow-hidden rounded-md lg:h-[20rem] flex flex-col lg:flex-row flex-wrap justify-center">
               <div 
                 v-for="color in darkenColors" 
                 :key="color" 
@@ -78,7 +72,6 @@ export default {
                 <p class="text-xs p-2 rounded bg-black/20 text-white text-center p-2">{{ tinycolor(color).toRgbString() }}</p>
               </div>
             </div>
-          </section>
         </div>
       </div>
     </section>
