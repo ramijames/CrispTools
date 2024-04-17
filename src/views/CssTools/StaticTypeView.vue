@@ -133,9 +133,9 @@ export default {
         </div>
       </section>
 
-      <section id="workspace" class="flex flex-col md:flex-row">
+      <section id="workspace" class="flex flex-col gap-4">
 
-        <div class="w-full md:w-1/2 p-6 bg-white">
+        <div class="w-full p-6 bg-white">
           <ul class="flex flex-col justify-center gap-4">
             <li
               class="flex items-center flex-row"
@@ -161,7 +161,7 @@ export default {
           </ul>
         </div>
 
-        <div class="w-full md:w-1/2 bg-blue-900 p-6 rounded-lg">
+        <div class="w-full bg-blue-900 p-6 rounded-lg">
           <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item">
             <tab name="Plain CSS" >
               <PlainCSS :typeSizes="typeSizes(typescales[selectedTypeScale].value, baseSize)" :baseSize="baseSize" :selectedUnit="selectedUnit" />
