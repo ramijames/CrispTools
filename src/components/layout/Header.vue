@@ -51,9 +51,9 @@ const mobileMenuOpen = ref(false);
       </div>
       <!-- router-links to main pages -->
       <div class="hidden lg:flex lg:justify-end lg:gap-x-8">
-        <router-link to="/color-tools" class="text-lg font-black leading-6 text-black">Color Tools</router-link>
-        <router-link to="/text-tools" class="text-lg font-black leading-6 text-black">Text Tools</router-link>
-        <router-link to="/css-tools" class="text-lg font-black leading-6 text-black">CSS Tools</router-link>
+        <router-link to="/color-tools" class="text-baseß font-black leading-6 text-black">Color Tools</router-link>
+        <router-link to="/text-tools" class="text-baseß font-black leading-6 text-black">Text Tools</router-link>
+        <router-link to="/css-tools" class="text-baseß font-black leading-6 text-black">CSS Tools</router-link>
       </div>
       <!-- <PopoverGroup class="hidden lg:flex lg:gap-x-12">
         <Popover class="relative">
