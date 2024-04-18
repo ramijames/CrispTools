@@ -13,17 +13,17 @@ export default {
 
     const bigCss = computed(() => {
       if (userStore.viewType === 'big') {
-        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-l-lg text-sm px-4' };
+        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-l-lg text-sm px-4 text-xs font-semibold uppercase' };
       } else {
-        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-l-lg text-sm px-4' };
+        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-l-lg text-sm px-4 text-xs font-semibold uppercase' };
       }
     });
 
     const listCss = computed(() => {
       if (userStore.viewType === 'list') {
-        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-r-lg text-sm px-4' };
+        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-r-lg text-sm px-4 text-xs font-semibold uppercase' };
       } else {
-        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-r-lg text-sm px-4' };
+        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-r-lg text-sm px-4 text-xs font-semibold uppercase' };
       }
     });
 
@@ -47,6 +47,7 @@ export default {
 <template>
   <section class="flex flex-row justify-end rounded-b-xl p-4 mb-4 bg-slate-200/50">
     <section class="flex flex-row justify-end">
+      <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span>
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
     </section>
