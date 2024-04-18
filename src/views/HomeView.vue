@@ -40,7 +40,7 @@ export default {
 <template>
   <main class="flex flex-start max-w-screen-2xl mx-auto">
 
-    <section class=" w-full py-6 px-2 lg:px-0">
+    <section class=" w-full pb-6 px-2 lg:px-0">
       <ViewTypeHeader :viewType="userStore.viewType" />
       <Links title="Color Tools" :icon="'/icon-color-tools.svg'" :routes="colorroutes" :routePath="'/color-tools'" viewType="big" />
       <Links title="Css Tools" :icon="'/icon-css-tools.svg'" :routes="cssroutes" :routePath="'/css-tools'" viewType="big" />

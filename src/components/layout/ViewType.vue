@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end rounded-xl p-4 mb-4 shadow bg-white">
+  <section class="flex flex-row justify-end rounded-b-xl p-4 mb-4 bg-slate-200/50">
     <section class="flex flex-row justify-end">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
