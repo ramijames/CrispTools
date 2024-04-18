@@ -11,19 +11,30 @@ export default {
     const userStore = useUserStore();
     userStore.setViewType(props.viewType);
 
+    const selected   = 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 text-sm px-4 text-xs font-semibold uppercase';
+    const unselected = 'btn shadow cursor-pointer bg-white text-black py-1 px-2 text-sm px-4 text-xs font-semibold uppercase';
+
     const bigCss = computed(() => {
       if (userStore.viewType === 'big') {
-        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-l-lg text-sm px-4 text-xs font-semibold uppercase' };
+        return { button: selected };
       } else {
-        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-l-lg text-sm px-4 text-xs font-semibold uppercase' };
+        return { button: unselected };
+      }
+    });
+
+    const iconCss = computed(() => {
+      if (userStore.viewType === 'icon') {
+        return { button: selected };
+      } else {
+        return { button: unselected };
       }
     });
 
     const listCss = computed(() => {
       if (userStore.viewType === 'list') {
-        return { button: 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 rounded-r-lg text-sm px-4 text-xs font-semibold uppercase' };
+        return { button: selected };
       } else {
-        return { button: 'btn shadow cursor-pointer bg-white text-black py-1 px-2 rounded-r-lg text-sm px-4 text-xs font-semibold uppercase' };
+        return { button: unselected };
       }
     });
 
@@ -36,6 +47,7 @@ export default {
       view,
       setViewType,
       bigCss,
+      iconCss,
       listCss
     }
     
@@ -46,9 +58,10 @@ export default {
 
 <template>
   <section class="flex flex-row justify-end rounded-b-xl p-4 mb-4 bg-slate-200/50">
-    <section class="flex flex-row justify-end">
-      <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span>
+    <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span>
+    <section class="flex flex-row justify-end rounded-lg overflow-hidden">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
+      <div :class="iconCss.button" @click="setViewType('icon')">Icon</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
     </section>
   </section>  

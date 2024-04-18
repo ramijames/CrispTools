@@ -49,8 +49,17 @@ export default {
                   p1: 'text-white drop-shadow-md font-semibold text-md mb-1 truncate text-ellipsis overflow-hidden',
                   p2: 'text-white/60 drop-shadow-md text-sm truncate text-ellipsis overflow-hidden'
                 };
+        case 'icon':
+          return {
+                  grid: 'grid grid-cols-2 lg:grid-cols-8 gap-8',
+                  routerLink: 'h-auto w-full bg-none relative flex flex-col gap-4',
+                  image: 'w-24 h-24 object-cover rounded-xl self-center',
+                  section: '',
+                  p1: 'font-semibold text-xs mb-1 truncate text-ellipsis overflow-hidden text-center',
+                  p2: 'hidden'
+                };
         default:
-        return {
+          return {
                   grid: 'grid grid-cols-1 lg:grid-cols-2 gap-8',
                   routerLink: 'h-12 bg-none relative flex flex-row gap-4',
                   image: 'w-12 h-12 object-cover rounded-xl',
