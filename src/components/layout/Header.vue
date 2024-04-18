@@ -34,7 +34,7 @@ const mobileMenuOpen = ref(false);
 
 <template>
   <header class="w-full bg-white p-6 border-b">
-    <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between gap-6 px-6" aria-label="Global" >
+    <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between gap-6 px-0 lg:px-2" aria-label="Global" >
       <div class="flex lg:flex-1">
         <a href="/" class="flex flex-row gap-2 justify-center items-center">
           <svg v-if="$route.path !== '/'" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
