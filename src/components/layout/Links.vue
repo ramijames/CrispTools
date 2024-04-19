@@ -81,7 +81,7 @@ export default {
 <template>
   <div class="flex flex-col gap-2 w-full">
     <SectionHeader :title="props.title" :icon="props.icon" :routePath="props.routePath" :viewType="props.viewType" />
-    <div class="rounded-2xl border border-slate-200 p-6 mb-12 w-full max-w-screen-2xl mx-auto">
+    <div class="rounded-2xl border border-slate-200 p-6 mb-12 w-full max-w-screen-2xl mx-auto shadow bg-white">
       <ul :class="routerCss.grid">
         <router-link 
           :to="route.path" 
