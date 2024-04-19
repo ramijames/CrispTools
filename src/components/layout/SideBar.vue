@@ -36,7 +36,7 @@ const mobileMenuOpen = ref(false);
 
 <template>
   <aside class="w-full lg:w-1/4 px-4 lg:pr-4">
-    <nav class="w-full flex flex-col px-0 lg:px-2" aria-label="Global" >
+    <nav class="w-full flex flex-col px-0 lg:px-2 py-2 lg:py-0 lg:my-4" aria-label="Global" >
       <!-- router-links to main pages -->
       <div class="flex flex-row lg:flex-col gap-4 lg:gap-1 whitespace-nowrap overflow-x-auto">
         <router-link to="/" class="text-sm font-semibold text-slate-700 flex flex-row leading-10"><SparklesIcon class="p-1 border border-slate-200 rounded-md h-7 bg-white shadow mr-3 w-auto self-center"></SparklesIcon> All Tools</router-link>
