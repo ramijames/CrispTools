@@ -3,7 +3,6 @@ import { ref, computed, watch } from "vue";
 import Button from '@/components/shared/Button.vue';
 import CrispInput from '@/components/shared/CrispInput.vue';
 import { LoremIpsum } from "lorem-ipsum";
-import SectionHeader from '@/components/layout/SectionHeader.vue';
 import PowerBar from '@/components/layout/PowerBar.vue';
 
 export default {
@@ -62,7 +61,6 @@ export default {
   components: {
     Button,
     CrispInput,
-    SectionHeader,
     PowerBar
   },
   methods: {
@@ -77,7 +75,6 @@ export default {
 <template>
   <div id="lipsum">
     <div class="wrapper">
-      <SectionHeader :title="'Text Tools'" :icon="'/icon-text-tools.svg'" :routePath="'/text-tools'" />
       <transition name="fade">
         <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
           Copied to clipboard!

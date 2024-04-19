@@ -38,15 +38,10 @@ export default {
 </script>
 
 <template>
-  <main class="flex flex-start max-w-screen-2xl mx-auto">
-
-    <section class=" w-full pb-6">
-      <ViewTypeHeader :viewType="userStore.viewType" />
-      <Links title="Color Tools" :icon="'/icon-color-tools.svg'" :routes="colorroutes" :routePath="'/color-tools'" viewType="big" />
-      <Links title="Css Tools" :icon="'/icon-css-tools.svg'" :routes="cssroutes" :routePath="'/css-tools'" viewType="big" />
-      <Links title="Text Tools" :icon="'/icon-text-tools.svg'" :routes="textroutes" :routePath="'/text-tools'" viewType="big" />
-
-    </section>
-
-  </main>
+  <section class="w-full flex flex-col max-w-screen-2xl mx-auto">
+    <ViewTypeHeader :viewType="userStore.viewType" />
+    <Links title="Color Tools" :icon="'/icon-color-tools.svg'" :routes="colorroutes" :routePath="'/color-tools'" viewType="big" />
+    <Links title="Css Tools" :icon="'/icon-css-tools.svg'" :routes="cssroutes" :routePath="'/css-tools'" viewType="big" />
+    <Links title="Text Tools" :icon="'/icon-text-tools.svg'" :routes="textroutes" :routePath="'/text-tools'" viewType="big" />
+  </section>
 </template>

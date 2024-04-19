@@ -2,7 +2,6 @@
 import { ref, watch } from "vue";
 import Button from '@/components/shared/Button.vue';
 import keywordExtractor from 'keyword-extractor';
-import SectionHeader from '@/components/layout/SectionHeader.vue';
 import PowerBar from '@/components/layout/PowerBar.vue';
 
 import {
@@ -87,7 +86,6 @@ export default {
   components: {
     Button,
     DocumentTextIcon,
-    SectionHeader,
     PowerBar
   },
   methods: {
@@ -101,7 +99,6 @@ export default {
 
 <template>
   <div id="word-counter" class="w-full">
-    <SectionHeader :title="'Text Tools'" :icon="'/icon-text-tools.svg'" :routePath="'/text-tools'" />
     <PowerBar :title="'Text Analysis'" :description="'Word analysis tool and keyword extractor'" />
 
     <section id="workspace" class="flex flex-col gap-4 p-6 bg-white mb-8 rounded-xl shadow-xl">

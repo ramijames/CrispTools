@@ -7,7 +7,6 @@ import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import tinycolor from "tinycolor2";
 import ExampleContent from '@/components/colors/ExampleContent.vue';
 import ColorInput from 'vue-color-input';
-import SectionHeader from '@/components/layout/SectionHeader.vue';
 import PowerBar from '@/components/layout/PowerBar.vue';
 
 import {
@@ -199,7 +198,6 @@ export default {
     PopoverPanel,
     ExampleContent,
     Vue3ColorPicker,
-    SectionHeader,
     PowerBar
   },
   methods: {
@@ -223,7 +221,6 @@ export default {
 <template>
   <div id="palette">
     <div class="wrapper">
-      <SectionHeader :title="'Color Tools'" :icon="'/icon-color-tools.svg'" :routePath="'/color-tools'" />
       <PowerBar :title="'User Interface Color Palette Generator'" :description="'Easy to use palette generator for building coordinated colors for use in UIs'" />
       
       <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">

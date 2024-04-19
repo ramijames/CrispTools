@@ -3,7 +3,6 @@
 import tinycolor from "tinycolor2";
 import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import CrispInput from '@/components/shared/CrispInput.vue';
-import SectionHeader from '@/components/layout/SectionHeader.vue';
 import PowerBar from '@/components/layout/PowerBar.vue';
 
 export default {
@@ -11,7 +10,6 @@ export default {
   components: {
     Vue3ColorPicker,
     CrispInput,
-    SectionHeader,
     PowerBar
   },
   setup() {
@@ -45,7 +43,6 @@ export default {
 
 <template>
   <div class="max-w-">
-    <SectionHeader :title="'Color Tools'" :icon="'/icon-color-tools.svg'" :routePath="'/color-tools'" />
     <PowerBar :title="'Darken Colors'" :description="'Select your color and we will output a set of lighter values'" />
     
     <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">
