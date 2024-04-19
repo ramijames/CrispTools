@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
-    viewType: 'big'
+    viewType: 'list'
   }),
   actions: {
     setViewType(viewType) {

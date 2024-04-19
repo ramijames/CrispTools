@@ -11,8 +11,8 @@ export default {
     const userStore = useUserStore();
     userStore.setViewType(props.viewType);
 
-    const selected   = 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 text-sm px-4 text-xs font-semibold uppercase';
-    const unselected = 'btn shadow cursor-pointer bg-white text-black py-1 px-2 text-sm px-4 text-xs font-semibold uppercase';
+    const selected   = 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
+    const unselected = 'btn shadow cursor-pointer bg-white text-black py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
 
     const bigCss = computed(() => {
       if (userStore.viewType === 'big') {

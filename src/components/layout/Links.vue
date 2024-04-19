@@ -58,11 +58,11 @@ export default {
                   p1: 'font-semibold text-xs mb-1 truncate text-ellipsis overflow-hidden text-center',
                   p2: 'hidden'
                 };
-        default:
+        default: // case 'list':
           return {
-                  grid: 'grid grid-cols-1 lg:grid-cols-2 gap-8',
-                  routerLink: 'h-12 bg-none relative flex flex-row gap-4',
-                  image: 'w-12 h-12 object-cover rounded-xl',
+                  grid: 'grid grid-cols-1 lg:grid-cols-2 gap-2',
+                  routerLink: 'h-auto bg-none relative flex flex-row gap-4 rounded-xl hover:bg-slate-200/50 p-2 transition-all',
+                  image: 'w-12 h-12 object-cover rounded-lg',
                   section: '',
                   p1: 'font-semibold text-md mb-1 truncate text-ellipsis overflow-hidden',
                   p2: 'text-xs'
