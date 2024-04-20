@@ -226,12 +226,12 @@ export default {
       <SectionHeader :title="'Color Tools'" :routePath="'/color-tools'" :routes="'/color-tools'" />
       <PowerBar :title="'User Interface Color Palette Generator'" :description="'Easy to use palette generator for building coordinated colors for use in UIs'" />
       
-      <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">
+      <section id="workspace" class="px-4 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">
         
         <!-- 3 column wrapper -->
         <div class="w-full max-w-screen-2xl mx-auto grow lg:flex">
           <!-- Left sidebar & main wrapper -->
-          <div class="shrink-0 w-70 border-r">
+          <div class="shrink-0 w-70 border-r dark:border-slate-100/10">
             <div class="py-4 xl:flex-1 pr-4">
               <Vue3ColorPicker v-model="selectedColor" mode="solid" :showColorList="false" :showEyeDrop="false" type="RGBA"/>
               <!-- 1. Preview your palette -->

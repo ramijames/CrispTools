@@ -85,7 +85,7 @@ export default {
       <SectionHeader :title="'Text Tools'" :routePath="'/text-tools'"  />
       <PowerBar :title="'Lorem Ipsum Generator'" :description="'Generate text content for use in your designs and mockups'" />
 
-      <section id="workspace" class="p-6 bg-white mb-8 rounded-xl shadow-xl">
+      <section id="workspace" class="p-6 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">
         <section id="toolbar" class="flex flex-auto flex-col md:flex-row gap-2 pt-2">
           <CrispInput v-model="numParagraphs" type="number" inputType="secondary" />
           <Button
@@ -105,8 +105,8 @@ export default {
           />
         </section>
 
-        <div class="w-full bg-white flex flex-col items-center">
-          <div class="max-w-3xl p-8 md:p-24 text-black">
+        <div class="w-full flex flex-col items-center">
+          <div class="max-w-3xl p-8 md:p-24 text-black dark:text-white">
             <h3 class="font-bold text-xl mb-2">Generated Text</h3>
             <p>{{ paragraphs }}</p>
           </div>

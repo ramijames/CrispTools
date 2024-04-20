@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 import Button from '@/components/shared/Button.vue';
 import keywordExtractor from 'keyword-extractor';
 import PowerBar from '@/components/layout/PowerBar.vue';
+import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 import {
   DocumentTextIcon
@@ -86,7 +87,8 @@ export default {
   components: {
     Button,
     DocumentTextIcon,
-    PowerBar
+    PowerBar,
+    SectionHeader
   },
   methods: {
     
@@ -98,21 +100,21 @@ export default {
 </script>
 
 <template>
-  <div id="word-counter" class="w-full">
+  <div class="wrapper px-4 lg:px-8">
+    <SectionHeader :title="'Text Tools'" :routePath="'/text-tools'"  />
     <PowerBar :title="'Text Analysis'" :description="'Word analysis tool and keyword extractor'" />
-
-    <section id="workspace" class="flex flex-col gap-4 p-6 bg-white mb-8 rounded-xl shadow-xl">
+    <section id="workspace" class="flex flex-col gap-4 p-6 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">
       <section id="toolbar" class="flex flex-row gap-2">
         <section class="count w-full">
           <div class="flex flex-row gap-6 py-2 items-center justify-start block appearance-none w-full">
-            <div class="text-lg md:text-2xl text-black">{{ wordCount }} words, 
+            <div class="text-lg md:text-2xl text-black dark:text-white">{{ wordCount }} words, 
             <span class="text-slate-400">{{ sentenceCount }} sentences, {{ paragraphCount }} paragraphs</span></div>
           </div>
         </section>
       </section>
       <section id="toolbar" class="flex flex-row gap-4">
         <div class="w-full md:w-3/4 border border-slate-100 rounded-md overflow-hidden bg-white">
-          <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white p-4 focus:outline-none">Paste your text here</textarea>
+          <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white border dark:border-slate-100/10 dark:text-white dark:bg-slate-800 p-4 focus:outline-none">Paste your text here</textarea>
         </div>
         <div class="w-full md:w-1/4 rounded-md bg-slate-50">
           <section v-if="!text" class="flex flex-col items-center text-center p-8 text-slate-200 h-full justify-center">

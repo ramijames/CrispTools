@@ -37,9 +37,8 @@ export default {
 <template>
   <div class="flex flex-row justify-between w-full max-w-screen-2xl pt-4 pb-2">
     <div class="flex flex-row gap-2">  
-      <!-- <img :src="props.icon" :alt="props.title" class="w-8 h-auto self-center opacity-10"> -->
-      <h2 class="text-lg font-semibold text-slate-500 self-center">{{ props.title }}</h2>
+      <h2 class="text-lg font-semibold text-slate-500 dark:text-slate-50 self-center">{{ props.title }}</h2>
+      <router-link v-if="route.currentRoute.value.path !== props.routePath" :to="props.routePath" class="btn text-xs py-1 px-2 bg-blue-500 rounded text-white font-semibold uppercase ml-2 self-center">View all →</router-link>
     </div>
-    <router-link v-if="route.currentRoute.value.path !== props.routePath" :to="props.routePath" class="text-sm font-semibold uppercase text-slate-500 self-center">Explore →</router-link>
   </div>
 </template>

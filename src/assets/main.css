@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ck-cp-container {
+  background-color: transparent !important;
+}
+
+.ck-cp-input-container .ck-cp-input-content .ck-cp-input-label {
+  left:0 !important;
+  border-radius: 2px !important;
+}

@@ -1,27 +1,87 @@
 <template>
   <!-- <Header /> -->
-  <section class="flex flex-col">
-      <Header />
-      <section class="flex flex-col lg:flex-row max-w-screen-2xl mx-auto w-full">
-        <section class="flex flex-col w-full lg:w-1/4 border-r">
-          <Sidebar />
-        </section>
-        <section class="w-full flex flex-col min-h-screen border-r">
-          <RouterView />
-          <Footer />
-        </section>
+  <section :class="theme" class="bg-white dark:bg-slate-900">
+    <header class="w-full p-4 border-b dark:border-slate-100/10">
+      <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between " aria-label="Global" >
+        <span class="text-xs font-semibold text-black/10 dark:text-white/10 tracking-widest">WELCOME</span>
+          <router-link to="/" class="flex flex-row gap-2 justify-center items-center">
+            <img class="h-6 w-auto" src="/crisp-logo-black.svg" alt="Crisp Tools"/>
+          </router-link>
+          <button @click="toggleTheme()" class="px-2 py-1 text-white rounded text-xs bg-gray-600 dark:bg-green-700 uppercase">{{ theme }}</button>
+      </nav>
+    </header>
+    <section class="flex flex-col lg:flex-row max-w-screen-2xl mx-auto w-full">
+      <section class="flex flex-col w-full lg:w-1/4 border-r dark:border-slate-100/10">
+        <Sidebar />
       </section>
+      <section class="w-full flex flex-col min-h-screen border-r dark:border-slate-100/10">
+        <RouterView />
+        <Footer />
+      </section>
+    </section>
   </section>
   
 </template>
 
-<script setup>
-import Header from "./components/layout/Header.vue";
+<script>
 import Sidebar from "./components/layout/SideBar.vue";
 import Footer from "./components/layout/Footer.vue";
+
+import { ref, onMounted, watch } from 'vue';
+
+export default {
+  setup() {
+    const theme = ref('light');
+
+    // Load theme from localStorage on component mount
+    onMounted(() => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        theme.value = savedTheme;
+      }
+    });
+
+    // Watch for changes in theme and save to localStorage
+    watch(theme, (newTheme) => {
+      localStorage.setItem('theme', newTheme);
+    });
+
+    const toggleTheme = () => {
+      theme.value = theme.value === 'light' ? 'dark' : 'light';
+      console.log('Theme toggled to:', theme.value);
+    };
+
+    return {
+      theme,
+      toggleTheme,
+    };
+  },
+  components: {
+    Sidebar,
+    Footer,
+  },
+};
+
 </script>
 
-<style scoped>
+<style>
+
+/* Define your light and dark theme colors */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+}
+
+/* Use the defined colors */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
 
 </style>
 

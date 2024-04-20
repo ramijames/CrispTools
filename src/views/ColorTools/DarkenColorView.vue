@@ -49,7 +49,7 @@ export default {
 
     <PowerBar :title="'Darken Colors'" :description="'Select your color and we will output a set of lighter values'" />
     
-    <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">
+    <section id="workspace" class="px-4 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">
       <!-- 2 column wrapper -->
       <div class="mx-auto w-full grow lg:flex">
         <!-- Left sidebar & main wrapper -->
