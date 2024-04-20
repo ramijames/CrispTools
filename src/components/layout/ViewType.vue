@@ -57,9 +57,9 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end px-4 mb-4 border-b dark:border-slate-100/10">
+  <section class="flex flex-row justify-end px-4 mb-4 border-b-2 dark:border-slate-100/10">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
-    <section class="flex flex-row w-full lg:w-auto text-center">
+    <section class="flex flex-row w-full lg:w-auto text-center relative">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
       <div :class="iconCss.button" @click="setViewType('icon')">Icon</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
@@ -75,7 +75,7 @@ export default {
   @apply border-b-2;
     @apply border-blue-500;
   @apply cursor-pointer;
-  @apply text-white;
+  @apply text-blue-500;
     @apply dark:text-white;
   @apply py-2;
   @apply text-xs;
@@ -85,13 +85,15 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
+  @apply -bottom-[6px];
+  @apply relative;
 }
 
 .unselected {
   @apply w-1/3;
   @apply lg:w-auto;
   @apply cursor-pointer;
-  @apply text-black;
+  @apply text-slate-300;
     @apply dark:text-white;
   @apply py-2;
   @apply text-xs;
@@ -101,6 +103,8 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
+  @apply -bottom-[6px];
+  @apply relative;
 }
 
 </style>
