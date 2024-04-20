@@ -29,6 +29,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/register',
+      component: () => import('../views/Register.vue')
+    },
+    {
+        path: '/sign-in',
+        component: () => import('../views/SignIn.vue')
+    },
+    {
       path: "/text-tools",
       name: "text-tools",
       component: TextToolsView,

@@ -1,18 +1,24 @@
 <template>
   <!-- <Header /> -->
-  <section :class="theme" class="bg-white dark:bg-slate-900">
+  <section :class="theme" class="bg-white dark:bg-slate-900 background">
     <header class="w-full p-4 border-b dark:border-slate-100/10">
       <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between lg:px-4" aria-label="Global" >
         <section class="flex flex-row justify-center">
-          <router-link to="/" class="flex flex-row gap-2 justify-center items-center">
+          <router-link to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
             <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
           </router-link>
           <span class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome</span>
         </section>
-        <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase">
-          <SunIcon class="h-4 w-auto" v-if="theme === 'light'" />
-          <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
-        </button>
+        
+        <section class="flex flex-row gap-2">
+          <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase">
+            <SunIcon class="h-4 w-auto" v-if="theme === 'light'" />
+            <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
+          </button>
+          <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button> 
+          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/register">Register</router-link>
+          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
+        </section>
       </nav>
     </header>
     <section class="flex flex-col lg:flex-row max-w-screen-2xl mx-auto w-full">
@@ -31,13 +37,14 @@
 <script>
 import Sidebar from "./components/layout/SideBar.vue";
 import Footer from "./components/layout/Footer.vue";
+import { ref, watchEffect, watch, onMounted } from 'vue'
+import { getAuth,onAuthStateChanged, signOut } from 'firebase/auth'
+import { useRouter } from 'vue-router'
 
 import {
   SunIcon,
   MoonIcon
 } from "@heroicons/vue/24/solid";
-
-import { ref, onMounted, watch } from 'vue';
 
 export default {
   setup() {
@@ -61,9 +68,30 @@ export default {
       console.log('Theme toggled to:', theme.value);
     };
 
+    const router = useRouter()
+
+    const isLoggedIn = ref(true)
+
+    // runs after firebase is initialized
+    onAuthStateChanged(getAuth(),function(user) {
+        if (user) {
+          isLoggedIn.value = true // if we have a user
+        } else {
+          isLoggedIn.value = false // if we do not
+        }
+    })
+
+    const handleSignOut = () => {
+      signOut(getAuth())
+      router.push('/')
+      console.log('Signed out')
+    }
+
     return {
       theme,
       toggleTheme,
+      isLoggedIn,
+      handleSignOut
     };
   },
   components: {

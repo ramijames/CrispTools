@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end px-4 mb-4 border-b-2 dark:border-slate-100/10">
+  <section class="flex flex-row justify-end px-4 mb-4 border-b-2 border-slate-50 dark:border-slate-700/20">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
     <section class="flex flex-row w-full lg:w-auto text-center relative">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>

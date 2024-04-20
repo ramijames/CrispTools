@@ -12,6 +12,7 @@
     "@cyhnkckali/vue3-color-picker": "^1.1.4",
     "@headlessui/vue": "^1.7.19",
     "@heroicons/vue": "^2.1.1",
+    "firebase": "^10.11.0",
     "keyword-extractor": "^0.0.28",
     "lorem-ipsum": "^2.0.8",
     "pinia": "^2.1.7",

@@ -7,6 +7,25 @@ import { createPinia } from 'pinia';
 import VueHighlightJS from 'vue3-highlightjs'
 import 'highlight.js/styles/atom-one-dark.css'
 import '@cyhnkckali/vue3-color-picker/dist/style.css'
+import { initializeApp } from 'firebase/app'
+import { getAuth,connectAuthEmulator } from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyABN1rSd281ECjUS9I1AtE3ZaSMJ5WTJJs",
+  authDomain: "crisptools-dev.firebaseapp.com",
+  projectId: "crisptools-dev",
+  storageBucket: "crisptools-dev.appspot.com",
+  messagingSenderId: "509556416944",
+  appId: "1:509556416944:web:ff8b5f5e540e3870b3f675",
+  measurementId: "G-7HW0WHNTQ0"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig)
+
+// if (location.hostname === "localhost") {
+//   connectAuthEmulator(getAuth(), "http://localhost:9099");
+// }
 
 import Vue3ColorPicker from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
@@ -14,6 +33,7 @@ import "vue3-colorpicker/style.css";
 // app.config.productionTip = false
 
 createApp(App)
+  .use(firebaseConfig)
   .use(router)
   .use(createPinia())
   .use(VueHighlightJS)
