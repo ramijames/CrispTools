@@ -11,8 +11,8 @@ export default {
     const userStore = useUserStore();
     userStore.setViewType(props.viewType);
 
-    const selected   = 'w-1/3 lg:w-auto rounded cursor-pointer bg-blue-500 text-white py-2 lg:py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
-    const unselected = 'w-1/3 lg:w-auto rounded cursor-pointer text-black dark:text-white py-2 lg:py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
+    const selected   = 'selected';
+    const unselected = 'unselected';
 
     const bigCss = computed(() => {
       if (userStore.viewType === 'big') {
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end p-4 mb-4 border-b dark:border-slate-100/10">
+  <section class="flex flex-row justify-end px-4 mb-4 border-b dark:border-slate-100/10">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
     <section class="flex flex-row w-full lg:w-auto text-center">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
@@ -66,3 +66,41 @@ export default {
     </section>
   </section>  
 </template>
+
+<style>
+
+.selected {
+  @apply w-1/3;
+    @apply lg:w-auto;
+  @apply border-b-2;
+    @apply border-blue-500;
+  @apply cursor-pointer;
+  @apply text-white;
+    @apply dark:text-white;
+  @apply py-2;
+  @apply text-xs;
+  @apply font-semibold;
+  @apply uppercase;
+  @apply transition-colors;
+  @apply ease-in-out;
+  @apply ml-0;
+    @apply lg:ml-4;
+}
+
+.unselected {
+  @apply w-1/3;
+  @apply lg:w-auto;
+  @apply cursor-pointer;
+  @apply text-black;
+    @apply dark:text-white;
+  @apply py-2;
+  @apply text-xs;
+  @apply font-semibold;
+  @apply uppercase;
+  @apply transition-colors;
+  @apply ease-in-out;
+  @apply ml-0;
+    @apply lg:ml-4;
+}
+
+</style>
