@@ -150,7 +150,7 @@ export default {
                 :style="{
                   fontSize: size + selectedUnit,
                 }"
-                class="text-ellipsis truncate"
+                class="text-ellipsis truncate max-w-screen-md w-full"
                 ><span class="text-green-500">{{ key }}</span> Vexed nymphs go
                 for quick waltz job</span
               >
