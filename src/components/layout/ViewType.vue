@@ -85,7 +85,7 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
-  @apply -bottom-[6px];
+  @apply -bottom-[2px];
   @apply relative;
 }
 
@@ -103,7 +103,7 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
-  @apply -bottom-[6px];
+  @apply -bottom-[2px];
   @apply relative;
 }
 
