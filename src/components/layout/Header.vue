@@ -33,12 +33,12 @@ const mobileMenuOpen = ref(false);
 </script>
 
 <template>
-  <header class="w-full bg-white py-4 mb-4">
+  <header class="w-full bg-white py-4 border-b">
     <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between gap-6 px-8" aria-label="Global" >
       <div class="flex lg:flex-1">
         <router-link to="/" class="flex flex-row gap-2 justify-center items-center">
-          <img class="h-8 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
-          <span class="text-xs font-semibold text-neutral-300 pl-8 tracking-widest">WELCOME add user name here</span>
+          <img class="h-8 ml-2 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
+          <span class="text-xs font-semibold text-neutral-300 tracking-widest">WELCOME</span>
         </router-link>
       </div>
     </nav>
