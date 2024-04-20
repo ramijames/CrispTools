@@ -1,12 +1,15 @@
 <template>
-  <Header />
+  <!-- <Header /> -->
   <section class="flex flex-col lg:flex-row max-w-screen-2xl mx-auto">
-      <Sidebar />
-      <section class="w-full flex flex-col min-h-screen px-4">
+      <section class="flex flex-col w-full lg:w-1/4 border-r">
+        <Sidebar />
+      </section>
+      <section class="w-full flex flex-col min-h-screen border-r">
         <RouterView />
+        <Footer />
       </section>
   </section>
-  <Footer />
+  
 </template>
 
 <script setup>

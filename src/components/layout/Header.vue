@@ -38,7 +38,7 @@ const mobileMenuOpen = ref(false);
       <div class="flex lg:flex-1">
         <router-link to="/" class="flex flex-row gap-2 justify-center items-center">
           <img class="h-8 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
-          <span class="text-xs font-semibold text-neutral-300 border-l border-slate-200 pl-8 tracking-widest">THE TOOL THAT DOES ALL THE TOOLS</span>
+          <span class="text-xs font-semibold text-neutral-300 pl-8 tracking-widest">WELCOME add user name here</span>
         </router-link>
       </div>
     </nav>

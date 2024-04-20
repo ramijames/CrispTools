@@ -55,7 +55,7 @@ export default {
                   routerLink: 'h-auto w-full bg-none relative flex flex-col gap-4',
                   image: 'w-24 h-24 object-cover rounded-xl self-center',
                   section: '',
-                  p1: 'font-semibold text-xs mb-1 truncate text-ellipsis overflow-hidden text-center',
+                  p1: 'text-slate-500 font-semibold text-xs mb-1 truncate text-ellipsis overflow-hidden text-center',
                   p2: 'hidden'
                 };
         default: // case 'list':
@@ -64,8 +64,8 @@ export default {
                   routerLink: 'h-auto bg-none relative flex flex-row gap-4 rounded-xl hover:bg-slate-200/50 p-2 transition-all',
                   image: 'w-12 h-12 object-cover rounded-lg',
                   section: '',
-                  p1: 'font-semibold text-md mb-1 truncate text-ellipsis overflow-hidden',
-                  p2: 'text-xs'
+                  p1: 'text-slate-500 font-semibold text-md mb-1 truncate text-ellipsis overflow-hidden',
+                  p2: 'text-xs text-slate-400'
                 };  
       }
     });
@@ -81,7 +81,7 @@ export default {
 <template>
   <div class="flex flex-col gap-2 w-full">
     <SectionHeader :title="props.title" :icon="props.icon" :routePath="props.routePath" :viewType="props.viewType" />
-    <div class="rounded-2xl border border-slate-200 p-6 mb-12 w-full max-w-screen-2xl mx-auto shadow bg-white">
+    <div class="px-4 mb-12 w-full max-w-screen-2xl mx-auto">
       <ul :class="routerCss.grid">
         <router-link 
           :to="route.path" 

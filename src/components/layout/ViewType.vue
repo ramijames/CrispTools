@@ -11,8 +11,8 @@ export default {
     const userStore = useUserStore();
     userStore.setViewType(props.viewType);
 
-    const selected   = 'btn shadow cursor-pointer bg-slate-900 text-white py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
-    const unselected = 'btn shadow cursor-pointer bg-white text-black py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
+    const selected   = 'w-1/3 lg:w-auto btn shadow cursor-pointer bg-slate-900 text-white py-2 lg:py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
+    const unselected = 'w-1/3 lg:w-auto btn shadow cursor-pointer bg-slate-200/50 text-black py-2 lg:py-1 px-2 text-sm px-4 text-xs font-semibold uppercase transition-colors ease-in-out';
 
     const bigCss = computed(() => {
       if (userStore.viewType === 'big') {
@@ -57,9 +57,9 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end rounded-xl p-2 my-4 bg-slate-200/50">
-    <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span>
-    <section class="flex flex-row justify-end rounded-lg overflow-hidden">
+  <section class="flex flex-row justify-end p-4 mb-4 border-b border-slate-200">
+    <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
+    <section class="flex flex-row w-full lg:w-auto text-center rounded-lg overflow-hidden">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
       <div :class="iconCss.button" @click="setViewType('icon')">Icon</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
