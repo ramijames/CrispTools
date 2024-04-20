@@ -102,16 +102,16 @@ export default {
 </script>
 
 <template>
-  <div id="static-type" class="px-4 lg:px-8">
+  <div class="wrapper px-4 lg:px-8">
     <SectionHeader :title="'Css Tools'" :routePath="'/css-tools'" :routes="'/css-tools'" />
     <PowerBar :title="'Static Type Scale'" :description="'Generate a static type scale based on a base size and a scale ratio'" />
     
-    <section id="workspace" class="p-6 bg-white mb-8 rounded-xl shadow-xl">
+    <section id="workspace" class="flex flex-col gap-4 p-6 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">
 
       <section id="toolbar" class="flex flex-auto flex-col sm:flex-row gap-2 py-4">
         <div class="w-full sm:w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Scale Ratio</label>
-          <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
+          <label class="block mb-1 font-semibold text-sm dark:text-white" for="input1">Scale Ratio</label>
+          <select v-model="selectedTypeScale" class="block appearance-none w-full bg-white dark:bg-slate-900 dark:text-white border dark:border-slate-100/10 hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
             <option disabled value="Select a type scale">Select a type scale</option>
             <option v-for="(scale, key) in typescales" :key="key" :value="key" :selected="scale.selected" >
               {{ scale.label }}
@@ -119,8 +119,8 @@ export default {
           </select>
         </div>
         <div class="w-full sm:w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Unit</label>
-          <select v-model="selectedUnit" class="block appearance-none w-full bg-white border hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
+          <label class="block mb-1 font-semibold text-sm dark:text-white" for="input1">Unit</label>
+          <select v-model="selectedUnit" class="block appearance-none w-full bg-white dark:bg-slate-900 dark:text-white border dark:border-slate-100/10 hover:border-blue-500 px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline shadow text-slate-700 shadow-sm shadow-black/5">
             <option disabled value="Select a unit">Select a unit</option>
             <option v-for="(unit, key) in units" :key="key" :value="key" :selected="unit.selected" >
               {{ unit.label }}
@@ -128,14 +128,14 @@ export default {
           </select>
         </div>
         <div class="w-full sm:w-1/3">
-          <label class="block mb-1 font-semibold text-sm" for="input1">Basesize in {{ selectedUnit }}</label>
+          <label class="block mb-1 font-semibold text-sm dark:text-white" for="input1">Basesize in {{ selectedUnit }}</label>
           <CrispInput v-model="baseSize" type="number" inputType="secondary" />
         </div>
       </section>
 
       <section id="workspace" class="flex flex-col gap-4">
 
-        <div class="w-full p-6 bg-white">
+        <div class="w-full pb-6">
           <ul class="flex flex-col justify-center gap-4">
             <li
               class="flex items-center flex-row"
@@ -146,16 +146,15 @@ export default {
               :key="key"
             >
               <span
-                class="border text-green-500 b-1 b-green-400 mr-4 rounded-md block w-24 text-center text-sm"
+                class="border text-green-500 border border-green-400/30 dark:border-green-400/10 mr-4 rounded-md block w-24 text-center text-sm"
                 >{{ size }}{{ selectedUnit }}</span
               >
               <span
                 :style="{
                   fontSize: size + selectedUnit,
                 }"
-                class="text-ellipsis truncate max-w-screen-md w-full"
-                ><span class="text-green-500">{{ key }}</span> Vexed nymphs go
-                for quick waltz job</span
+                class="text-ellipsis truncate max-w-screen-lg w-full text-slate-700 dark:text-white"
+                ><span class="text-green-500">{{ key }}</span> Vexed nymphs go for quick waltz job</span
               >
             </li>
           </ul>

@@ -39,9 +39,9 @@ export default {
         case "primary":
           return "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-400 rounded shadow text-slate-700 shadow-sm shadow-black/5";
         case "secondary":
-          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
+          return "dark:bg-slate-900 dark:text-white w-full border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
         default:
-          return "w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
+          return "dark:bg-slate-900 dark:text-white w-full border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5";
       }
     });
 
