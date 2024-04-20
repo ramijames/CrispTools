@@ -9,7 +9,7 @@
           </router-link>
           <button @click="toggleTheme()" class="flex flex-row gap-2 px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase">
             <SunIcon class="h-4 w-auto" v-if="theme === 'light'" />
-            <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> {{ theme }}
+            <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
           </button>
       </nav>
     </header>
