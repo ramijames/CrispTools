@@ -113,11 +113,11 @@ export default {
         </section>
       </section>
       <section id="toolbar" class="flex flex-row gap-4">
-        <div class="w-full md:w-3/4 border border-slate-100 rounded-md overflow-hidden bg-white">
-          <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="block appearance-none w-full bg-white border dark:border-slate-100/10 dark:text-white dark:bg-slate-800 p-4 focus:outline-none">Paste your text here</textarea>
+        <div class="w-full md:w-3/4">
+          <textarea placeholder="Paste your text here" v-model="text" id="wordCounterBox" rows="30" class="rounded-md block appearance-none w-full bg-white border border-blue-500 overflow-hidden dark:text-white dark:bg-slate-800 p-4 focus:outline-none">Paste your text here</textarea>
         </div>
-        <div class="w-full md:w-1/4 rounded-md bg-slate-50">
-          <section v-if="!text" class="flex flex-col items-center text-center p-8 text-slate-200 h-full justify-center">
+        <div class="w-full md:w-1/4 rounded-md bg-slate-50 dark:bg-slate-800">
+          <section v-if="!text" class="flex flex-col items-center text-center p-8 text-slate-200 dark:text-slate-700 h-full justify-center">
             <DocumentTextIcon class="h-12 w-12 mb-2" />
             No text to analyze
           </section>
