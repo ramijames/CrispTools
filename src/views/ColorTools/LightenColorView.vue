@@ -4,13 +4,15 @@ import tinycolor from "tinycolor2";
 import {Vue3ColorPicker} from '@cyhnkckali/vue3-color-picker';
 import CrispInput from '@/components/shared/CrispInput.vue';
 import PowerBar from '@/components/layout/PowerBar.vue';
+import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 export default {
   name: 'LightenColorView',
   components: {
     Vue3ColorPicker,
     CrispInput,
-    PowerBar
+    PowerBar,
+    SectionHeader
   },
   setup() {
     return {
@@ -42,7 +44,8 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-">
+  <div class="wrapper px-4 lg:px-8">
+    <SectionHeader :title="'Color Tools'" :routePath="'/color-tools'" :routes="'/color-tools'" />
     <PowerBar :title="'Lighten Colors'" :description="'Select your color and we will output a set of lighter values'" />
     
     <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">

@@ -4,6 +4,7 @@ import Button from '@/components/shared/Button.vue';
 import CrispInput from '@/components/shared/CrispInput.vue';
 import { LoremIpsum } from "lorem-ipsum";
 import PowerBar from '@/components/layout/PowerBar.vue';
+import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 export default {
   data() {
@@ -61,7 +62,8 @@ export default {
   components: {
     Button,
     CrispInput,
-    PowerBar
+    PowerBar,
+    SectionHeader
   },
   methods: {
 
@@ -74,12 +76,13 @@ export default {
 
 <template>
   <div id="lipsum">
-    <div class="wrapper">
+    <div class="wrapper px-4 lg:px-8">
       <transition name="fade">
         <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">
           Copied to clipboard!
         </div>
       </transition>
+      <SectionHeader :title="'Text Tools'" :routePath="'/text-tools'"  />
       <PowerBar :title="'Lorem Ipsum Generator'" :description="'Generate text content for use in your designs and mockups'" />
 
       <section id="workspace" class="p-6 bg-white mb-8 rounded-xl shadow-xl">

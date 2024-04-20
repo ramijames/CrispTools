@@ -8,6 +8,7 @@ import tinycolor from "tinycolor2";
 import ExampleContent from '@/components/colors/ExampleContent.vue';
 import ColorInput from 'vue-color-input';
 import PowerBar from '@/components/layout/PowerBar.vue';
+import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 import {
   Popover,
@@ -198,7 +199,8 @@ export default {
     PopoverPanel,
     ExampleContent,
     Vue3ColorPicker,
-    PowerBar
+    PowerBar,
+    SectionHeader
   },
   methods: {
     toggleColorFormat() {
@@ -220,7 +222,8 @@ export default {
 
 <template>
   <div id="palette">
-    <div class="wrapper">
+    <div class="wrapper px-4 lg:px-8">
+      <SectionHeader :title="'Color Tools'" :routePath="'/color-tools'" :routes="'/color-tools'" />
       <PowerBar :title="'User Interface Color Palette Generator'" :description="'Easy to use palette generator for building coordinated colors for use in UIs'" />
       
       <section id="workspace" class="px-4 bg-white mb-8 rounded-xl shadow-xl">
@@ -234,7 +237,15 @@ export default {
               <!-- 1. Preview your palette -->
               <section id="intro" class="flex flex-col gap-4 items-center w-full">
                 <!-- <color-input v-model="selectedColor" position="right bottom" disable-alpha /> -->
-                <section id="colorpreview" class="w-full">
+                
+              </section>
+            </div>
+          </div>
+
+          <div class="flex w-full flex-col">
+            <div class="py-4 pl-4">
+              <!-- <ExampleContent :colors="colorPaletteObject" /> -->
+              <section id="colorpreview" class="w-full">
                   <div class="flex flex-col">
                     <div class="flex flex-row">
                       <div class="w-full py-8 rounded-tl-lg flex flex-col justify-between" :style="{ backgroundColor: selectedColor }">
@@ -394,13 +405,6 @@ export default {
                     class="w-full"
                   />
                 </section>
-              </section>
-            </div>
-          </div>
-
-          <div class="flex w-full flex-col">
-            <div class="py-4 pl-4">
-              <ExampleContent :colors="colorPaletteObject" />
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import CSSVariables from "@/components/statictypegen/cssvariables.vue";
 import SASSVariables from "@/components/statictypegen/sassvariables.vue";
 import TailwindStyles from "@/components/statictypegen/tailwindstyles.vue";
 import PowerBar from '@/components/layout/PowerBar.vue';
+import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 export default {
   data() {
@@ -84,7 +85,8 @@ export default {
     CSSVariables,
     SASSVariables,
     TailwindStyles,
-    PowerBar
+    PowerBar,
+    SectionHeader
   },
   methods: {
     copyToClipboard() {
@@ -100,7 +102,8 @@ export default {
 </script>
 
 <template>
-  <div id="static-type" class="w-full">
+  <div id="static-type" class="px-4 lg:px-8">
+    <SectionHeader :title="'Css Tools'" :routePath="'/css-tools'" :routes="'/css-tools'" />
     <PowerBar :title="'Static Type Scale'" :description="'Generate a static type scale based on a base size and a scale ratio'" />
     
     <section id="workspace" class="p-6 bg-white mb-8 rounded-xl shadow-xl">

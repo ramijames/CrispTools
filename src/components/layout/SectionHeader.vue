@@ -35,10 +35,10 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full max-w-screen-2xl px-6 pt-4 pb-2">
+  <div class="flex flex-row justify-between w-full max-w-screen-2xl pt-4 pb-2">
     <div class="flex flex-row gap-2">  
       <!-- <img :src="props.icon" :alt="props.title" class="w-8 h-auto self-center opacity-10"> -->
-      <h2 class="text-xl font-semibold text-slate-500 self-center">{{ props.title }}</h2>
+      <h2 class="text-lg font-semibold text-slate-500 self-center">{{ props.title }}</h2>
     </div>
     <router-link v-if="route.currentRoute.value.path !== props.routePath" :to="props.routePath" class="text-sm font-semibold uppercase text-slate-500 self-center">Explore →</router-link>
   </div>
