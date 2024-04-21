@@ -7,18 +7,27 @@
           <router-link to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
             <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
           </router-link>
-          <!-- <span v-if="isLoggedIn" class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome, {{ user.name }}</span> -->
+          <!-- <span v-if="isLoggedIn && user.displayName" class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome, {{ user.displayName }}</span> -->
+          <!-- <span v-else class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome</span> -->
         </section>
         
         <section class="flex flex-row gap-2">
-          <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase">
-            <SunIcon class="h-4 w-auto" v-if="theme === 'light'" />
-            <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
+          <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-blue-500 rounded self-center">
+            <SunIcon class="h-5 w-auto" v-if="theme === 'light'" />
+            <MoonIcon class="h-5 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
           </button>
           <!-- <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button>  -->
-          <router-link class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" to="/settings"><Cog8ToothIcon class="w-4 h-4 text-white" /></router-link> 
-          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/register">Register</router-link>
-          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
+          <router-link class="flex flex-row justify-center p-0.5 text-white *:hover:text-white rounded-full text-xs hover:bg-blue-500 *:hover:stroke-white bg-slate-50 dark:bg-slate-800 uppercase self-center" v-if="isLoggedIn" to="/settings">
+            <img v-if="user.photoURL" class="rounded-full h-8 w-8" :src="user.photoURL">
+            <Cog8ToothIcon class="text-blue-500 h-4 w-auto" v-else />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 mx-1 w-auto self-center stroke-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+
+          </router-link> 
+          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/register">Register</router-link>
+          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
+          <!-- <span v-if="isLoggedIn && user.photoURL" class="self-center ml-4"></span> -->
         </section>
       </nav>
     </header>
@@ -108,7 +117,8 @@ export default {
       theme,
       toggleTheme,
       isLoggedIn,
-      auth
+      auth,
+      user
     };
   },
   components: {
