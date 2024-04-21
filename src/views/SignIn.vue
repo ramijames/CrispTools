@@ -19,7 +19,7 @@
       <!-- Sign in with Email/password -->
       <input class="dark:bg-slate-900 mb-2 dark:text-white w-full lg:w-1/2 mx-auto border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5" type='text' placeholder="Email" v-model='email'/>
       <input class="dark:bg-slate-900 dark:text-white w-full lg:w-1/2 mx-auto border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5" type='password' placeholder="Password" v-model='password'/>
-      <p v-if="errMsg">{{ errMsg }}</p>
+      <p v-if="errMsg" class="w-full lg:w-1/2 mx-auto my-2 bg-red-500 text-white">{{ errMsg }}</p>
       <Button
             btnType="primary"
             btnText="Sign in with email"
