@@ -18,7 +18,7 @@
           </button>
           <!-- <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button>  -->
           <router-link class="flex flex-row justify-center p-0.5 text-white *:hover:text-white rounded-full text-xs hover:bg-blue-500 *:hover:stroke-white bg-slate-50 dark:bg-slate-800 uppercase self-center" v-if="isLoggedIn" to="/settings">
-            <img v-if="user.photoURL" class="rounded-full h-8 w-8" :src="user.photoURL">
+            <img v-if="user && user.photoURL" class="rounded-full h-8 w-8" :src="user.photoURL">
             <Cog8ToothIcon class="text-blue-500 h-4 w-auto" v-else />
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 mx-1 w-auto self-center stroke-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
