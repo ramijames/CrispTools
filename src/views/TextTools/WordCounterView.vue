@@ -7,7 +7,7 @@ import SectionHeader from "@/components/layout/SectionHeader.vue";
 
 import {
   DocumentTextIcon
-} from "@heroicons/vue/24/outline";
+} from "@heroicons/vue/24/solid";
 
 
 export default {
