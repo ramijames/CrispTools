@@ -15,7 +15,8 @@
             <SunIcon class="h-4 w-auto" v-if="theme === 'light'" />
             <MoonIcon class="h-4 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
           </button>
-          <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button> 
+          <!-- <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button>  -->
+          <router-link class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" to="/settings"><Cog8ToothIcon class="w-4 h-4 text-white" /></router-link> 
           <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/register">Register</router-link>
           <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
         </section>
@@ -38,12 +39,13 @@
 import Sidebar from "./components/layout/SideBar.vue";
 import Footer from "./components/layout/Footer.vue";
 import { ref, watchEffect, watch, onMounted } from 'vue'
-import { getAuth,onAuthStateChanged, signOut } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 
 import {
   SunIcon,
-  MoonIcon
+  MoonIcon,
+  Cog8ToothIcon
 } from "@heroicons/vue/24/solid";
 
 export default {
@@ -81,24 +83,18 @@ export default {
         }
     })
 
-    const handleSignOut = () => {
-      signOut(getAuth())
-      router.push('/')
-      console.log('Signed out')
-    }
-
     return {
       theme,
       toggleTheme,
-      isLoggedIn,
-      handleSignOut
+      isLoggedIn
     };
   },
   components: {
     Sidebar,
     Footer,
     SunIcon,
-    MoonIcon
+    MoonIcon,
+    Cog8ToothIcon
   },
 };
 

@@ -37,6 +37,10 @@ const router = createRouter({
         component: () => import('../views/SignIn.vue')
     },
     {
+      path: '/settings',
+      component: () => import('../views/Settings.vue')
+  },
+    {
       path: "/text-tools",
       name: "text-tools",
       component: TextToolsView,
