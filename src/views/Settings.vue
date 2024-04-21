@@ -8,15 +8,18 @@ export default {
   setup() {
     const router = useRouter()
 
-    const isLoggedIn = ref(true)
+    // const isLoggedIn = ref(true)
+    // const isGoogleUser = ref(false)
+    const user = ref(null);
 
-    // runs after firebase is initialized
-    onAuthStateChanged(getAuth(),function(user) {
-        if (user) {
-          isLoggedIn.value = true // if we have a user
-        } else {
-          isLoggedIn.value = false // if we do not
-        }
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        user.value = currentUser
+      } else {
+        user.value = null
+      }
     })
 
     const handleSignOut = () => {
@@ -25,23 +28,10 @@ export default {
       console.log('Signed out')
     }
 
-    const uid = ref('')
-
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        // ...
-      }
-    });
-
     return {
-      isLoggedIn,
       handleSignOut,
-      uid,
+      user,
       auth,
-      user: auth.currentUser
     }
   },
   components: {
@@ -56,13 +46,20 @@ export default {
     <section class="flex flex-col justify-center px-4 lg:px-12">
       <h2 class="text-slate-900 dark:text-white text-4xl mb-2">Settings</h2>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Account details</p>
-      <div class="flex flex-row justify-between py-2 border-b border-slate-200 dark:border-slate-200/10">
-        <p class="text-slate-500 dark:text-white/50 text-sm">Account type</p>
-        <p class="text-slate-900 dark:text-white text-sm">{{ auth.currentUser.providerData[0].providerId }}</p>
+
+      <!-- {{ auth.currentUser }} -->
+
+      <div v-if="user" class="flex flex-row justify-between py-2 border-b border-slate-200 dark:border-slate-200/10">
+        <p class="text-slate-500 dark:text-white/50 text-sm">Display name</p>
+        <p class="text-slate-900 dark:text-white text-sm">{{ user.displayName }}</p>
       </div>
-      <div class="flex flex-row justify-between py-2">
+      <div v-if="user" class="flex flex-row justify-between py-2 border-b border-slate-200 dark:border-slate-200/10">
+        <p class="text-slate-500 dark:text-white/50 text-sm">Account type</p>
+        <p class="text-slate-900 dark:text-white text-sm">{{ user.providerData[0].providerId }}</p>
+      </div>
+      <div v-if="user" class="flex flex-row justify-between py-2">
         <p class="text-slate-500 dark:text-white/50 text-sm">Associated email</p>
-        <p class="text-slate-900 dark:text-white text-sm">{{ auth.currentUser.email }}</p>
+        <p class="text-slate-900 dark:text-white text-sm">{{ user.email }}</p>
       </div>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Sign out of your account</p>
       <button @click="handleSignOut" class="btn text-xs py-1 px-2 bg-blue-500 rounded text-white font-semibold uppercase self-start">Sign out</button>

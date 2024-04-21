@@ -7,7 +7,7 @@
           <router-link to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
             <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
           </router-link>
-          <span class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome</span>
+          <!-- <span v-if="isLoggedIn" class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome, {{ user.name }}</span> -->
         </section>
         
         <section class="flex flex-row gap-2">
@@ -39,7 +39,7 @@
 import Sidebar from "./components/layout/SideBar.vue";
 import Footer from "./components/layout/Footer.vue";
 import { ref, watchEffect, watch, onMounted } from 'vue'
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 
 import {
@@ -51,6 +51,11 @@ import {
 export default {
   setup() {
     const theme = ref('light');
+    const auth = getAuth();
+    const user = ref(null);
+    const router = useRouter();
+    const isLoggedIn = ref(true);
+    const isGoogleUser = ref(false);
 
     // Load theme from localStorage on component mount
     onMounted(() => {
@@ -70,23 +75,40 @@ export default {
       console.log('Theme toggled to:', theme.value);
     };
 
-    const router = useRouter()
-
-    const isLoggedIn = ref(true)
+    // // runs after firebase is initialized
+    // onAuthStateChanged(getAuth(),function(user) {
+    //     if (user) {
+    //       isLoggedIn.value = true // if we have a user
+    //     } else {
+    //       isLoggedIn.value = false // if we do not
+    //     }
+    // })
 
     // runs after firebase is initialized
-    onAuthStateChanged(getAuth(),function(user) {
-        if (user) {
-          isLoggedIn.value = true // if we have a user
-        } else {
-          isLoggedIn.value = false // if we do not
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        isLoggedIn.value = true
+        user.value = currentUser
+        if (currentUser.providerData[0].providerId === 'google.com') {
+          isGoogleUser.value = true
         }
+      } else {
+        isLoggedIn.value = false
+        user.value = null
+      }
     })
+
+    const handleSignOut = () => {
+      signOut(getAuth())
+      router.push('/')
+      console.log('Signed out')
+    }
 
     return {
       theme,
       toggleTheme,
-      isLoggedIn
+      isLoggedIn,
+      auth
     };
   },
   components: {
