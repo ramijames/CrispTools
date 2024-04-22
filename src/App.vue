@@ -17,7 +17,7 @@
             <MoonIcon class="h-5 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
           </button>
           <!-- <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button>  -->
-          <router-link class="flex flex-row justify-center p-0.5 text-white *:hover:text-white rounded-full text-xs hover:bg-blue-500 *:hover:stroke-white bg-slate-50 dark:bg-slate-800 uppercase self-center" v-if="isLoggedIn" to="/settings">
+          <router-link class="flex flex-row justify-center p-0.5 text-white *:hover:text-white rounded-full text-xs hover:bg-blue-500 *:hover:stroke-white bg-slate-50 dark:bg-slate-800 uppercase self-center" v-if="isLoggedIn" to="/user">
             <img v-if="user && user.photoURL" class="rounded-full h-8 w-8" :src="user.photoURL">
             <Cog8ToothIcon class="text-blue-500 h-4 w-auto" v-else />
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 mx-1 w-auto self-center stroke-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -35,17 +35,19 @@
       <section class="flex flex-col w-full lg:w-1/4 border-r dark:border-slate-100/10">
         <Sidebar />
       </section>
-      <section class="w-full flex flex-col min-h-screen border-r dark:border-slate-100/10">
+      <section class="w-full flex flex-col min-h-screen border-r dark:border-slate-100/10 pb-[20rem]">
         <RouterView />
-        <Footer />
+        <!-- <Footer /> -->
       </section>
     </section>
+    <!-- <BottomNav /> -->
   </section>
   
 </template>
 
 <script>
 import Sidebar from "./components/layout/SideBar.vue";
+import BottomNav from "./components/layout/BottomNav.vue";
 import Footer from "./components/layout/Footer.vue";
 import { ref, watchEffect, watch, onMounted } from 'vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -126,7 +128,8 @@ export default {
     Footer,
     SunIcon,
     MoonIcon,
-    Cog8ToothIcon
+    Cog8ToothIcon,
+    BottomNav
   },
 };
 

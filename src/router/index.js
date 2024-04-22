@@ -37,9 +37,17 @@ const router = createRouter({
         component: () => import('../views/SignIn.vue')
     },
     {
-      path: '/settings',
-      component: () => import('../views/Settings.vue')
-  },
+      path: '/user',
+      component: () => import('../views/UserView.vue')
+    },
+    {
+      path: '/build',
+      component: () => import('../views/Topics/BuildTopics.vue')
+    },
+    {
+      path: '/trends',
+      component: () => import('../views/Topics/TrendsTopics.vue')
+    },
     {
       path: "/text-tools",
       name: "text-tools",

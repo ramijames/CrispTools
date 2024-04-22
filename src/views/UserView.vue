@@ -8,16 +8,22 @@ export default {
   setup() {
     const router = useRouter()
 
-    // const isLoggedIn = ref(true)
-    // const isGoogleUser = ref(false)
+    const isLoggedIn = ref(true)
+    const isGoogleUser = ref(false)
     const user = ref(null);
 
     const auth = getAuth();
 
+    // runs after firebase is initialized
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
+        isLoggedIn.value = true
         user.value = currentUser
+        if (currentUser.providerData[0].providerId === 'google.com') {
+          isGoogleUser.value = true
+        }
       } else {
+        isLoggedIn.value = false
         user.value = null
       }
     })
@@ -32,6 +38,7 @@ export default {
       handleSignOut,
       user,
       auth,
+      isLoggedIn
     }
   },
   components: {
@@ -43,11 +50,12 @@ export default {
 
 <template>
   <main id="register-form" class="flex flex-col justify-center py-8">
-    <section class="flex flex-col justify-center px-4 lg:px-12">
-      <h2 class="text-slate-900 dark:text-white text-4xl mb-2">Settings</h2>
+    <section v-if="isLoggedIn" class="flex flex-col justify-center px-4 lg:px-12">
+      <h2 v-if="isLoggedIn && user" class="text-slate-900 dark:text-white text-4xl mb-2">Welcome, {{ user.displayName }}</h2>
+      <h2 v-else class="text-slate-900 dark:text-white text-4xl mb-2">Welcome</h2>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Account details</p>
 
-      <!-- {{ auth.currentUser }} -->
+      <!-- {{ user }} -->
 
       <div v-if="user" class="flex flex-row justify-between py-2 border-b border-slate-200 dark:border-slate-200/10">
         <p class="text-slate-500 dark:text-white/50 text-sm">Display name</p>
@@ -71,5 +79,9 @@ export default {
       - Default Theme
       - Default ViewType -->
     </section>
+    <section v-else class="flex flex-col justify-center px-4 lg:px-12">
+      <h2 class="text-slate-900 dark:text-white text-4xl mb-2">Restricted</h2>
+      <p class="text-slate">Please sign in or register.</p>
+    </section>  
   </main>
 </template>
