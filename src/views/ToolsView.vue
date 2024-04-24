@@ -38,7 +38,7 @@ export default {
 
 <template>
   <section class="w-full flex flex-col lg:flex-row max-w-screen-2xl mx-auto">
-    <section class="flex flex-col w-full lg:w-1/4 pr-8">
+    <section class="flex flex-col w-screen lg:w-1/4 lg:pr-8 mb-8 -m-4">
       <Sidebar />
     </section>
     <section class="w-full flex flex-col min-h-screenpb-[20rem]">
