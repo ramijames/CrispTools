@@ -59,10 +59,30 @@ export default {
 <template>
   <section class="flex flex-row justify-end">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
-    <section class="w-full flex flex-row lg:w-auto text-center relative border-b-2 border-slate-50 dark:border-slate-700/20">
-      <div :class="bigCss.button" @click="setViewType('big')">Big</div>
-      <div :class="iconCss.button" @click="setViewType('icon')">Icon</div>
-      <div :class="listCss.button" @click="setViewType('list')">List</div>
+    <section class="w-full flex flex-row lg:w-auto text-center relative border-r pr-6">
+      <div :class="bigCss.button" @click="setViewType('big')">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="14" height="14" rx="4" fill="#D9D9D9"/>
+        </svg>
+      </div>
+      <div :class="listCss.button" @click="setViewType('list')">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="4" height="4" rx="2" fill="#D9D9D9"/>
+          <rect x="2" y="7" width="4" height="4" rx="2" fill="#D9D9D9"/>
+          <rect x="2" y="12" width="4" height="4" rx="2" fill="#D9D9D9"/>
+          <rect x="7" y="3" width="9" height="2" rx="1" fill="#D9D9D9"/>
+          <rect x="7" y="8" width="9" height="2" rx="1" fill="#D9D9D9"/>
+          <rect x="7" y="13" width="9" height="2" rx="1" fill="#D9D9D9"/>
+        </svg>
+      </div>
+      <div :class="iconCss.button" @click="setViewType('icon')">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="6" height="6" rx="3" fill="#D9D9D9"/>
+          <rect x="2" y="10" width="6" height="6" rx="3" fill="#D9D9D9"/>
+          <rect x="10" y="2" width="6" height="6" rx="3" fill="#D9D9D9"/>
+          <rect x="10" y="10" width="6" height="6" rx="3" fill="#D9D9D9"/>
+        </svg>
+      </div>
     </section>
   </section>  
 </template>
@@ -71,8 +91,6 @@ export default {
 
 .selected {
     @apply lg:w-auto;
-  @apply border-b-2;
-    @apply border-blue-500;
   @apply cursor-pointer;
   @apply text-blue-500;
     @apply dark:text-white;
@@ -85,8 +103,10 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
-  @apply -bottom-[2px];
-  @apply relative;
+}
+
+.selected svg * {
+  @apply fill-blue-500;
 }
 
 .unselected {
@@ -103,7 +123,6 @@ export default {
   @apply ease-in-out;
   @apply ml-0;
     @apply lg:ml-4;
-  @apply -bottom-[2px];
   @apply relative;
 }
 
