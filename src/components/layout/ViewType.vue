@@ -59,7 +59,7 @@ export default {
 <template>
   <section class="flex flex-row justify-end">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
-    <section class="w-full flex flex-row lg:w-auto text-center relative border-r pr-6">
+    <section class="w-full flex flex-row lg:w-auto text-center relative border-r dark:border-slate-200/10 pr-6">
       <div :class="bigCss.button" @click="setViewType('big')">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="2" width="14" height="14" rx="4" fill="#D9D9D9"/>
@@ -109,6 +109,10 @@ export default {
   @apply fill-blue-500;
 }
 
+.dark .selected svg * {
+  @apply fill-white;
+}
+
 .unselected {
   @apply lg:w-auto;
   @apply cursor-pointer;
@@ -124,6 +128,11 @@ export default {
   @apply ml-0;
     @apply lg:ml-4;
   @apply relative;
+}
+
+.dark .unselected svg * {
+  @apply fill-blue-500;
+
 }
 
 </style>
