@@ -45,7 +45,7 @@ export default {
                   grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8',
                   routerLink: 'bg-left bg-cover h-60 relative rounded-xl bg-white shadow flex flex-col justify-between',
                   image: 'w-full h-60 object-cover rounded-xl',
-                  section: 'backdrop-blur-md text-ellipsis overflow-hidden absolute bottom-0 w-full px-6 py-4 hover:py-6 bg-slate-500/30 rounded-b-xl rounded-t-xl',
+                  section: 'backdrop-blur-md text-ellipsis overflow-hidden absolute bottom-0 w-full px-6 py-4 bg-slate-500/30 rounded-b-xl rounded-t-xl',
                   p1: 'text-white drop-shadow-md font-semibold text-md mb-1 truncate text-ellipsis overflow-hidden',
                   p2: 'text-white/60 drop-shadow-md text-sm truncate text-ellipsis overflow-hidden'
                 };
