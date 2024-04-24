@@ -13,7 +13,7 @@
           </router-link>
         </section>
         
-        <section class="flex flex-row gap-6">
+        <section class="flex flex-row gap-3">
           <ViewTypeHeader v-if="isLoggedIn" :viewType="userStore.viewType" />
           <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-blue-500 rounded self-center">
             <SunIcon class="h-5 w-auto" v-if="theme === 'light'" />
