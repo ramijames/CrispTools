@@ -57,9 +57,9 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-row justify-end px-4 mb-4 border-b-2 border-slate-50 dark:border-slate-700/20">
+  <section class="flex flex-row justify-end">
     <!-- <span class="cursor-default mr-4 text-xs font-semibold uppercase text-slate-400/60 self-center">Viewtype</span> -->
-    <section class="flex flex-row w-full lg:w-auto text-center relative">
+    <section class="w-full flex flex-row lg:w-auto text-center relative border-b-2 border-slate-50 dark:border-slate-700/20">
       <div :class="bigCss.button" @click="setViewType('big')">Big</div>
       <div :class="iconCss.button" @click="setViewType('icon')">Icon</div>
       <div :class="listCss.button" @click="setViewType('list')">List</div>
@@ -70,7 +70,6 @@ export default {
 <style>
 
 .selected {
-  @apply w-1/3;
     @apply lg:w-auto;
   @apply border-b-2;
     @apply border-blue-500;
@@ -78,6 +77,7 @@ export default {
   @apply text-blue-500;
     @apply dark:text-white;
   @apply py-2;
+  @apply px-2;
   @apply text-xs;
   @apply font-semibold;
   @apply uppercase;
@@ -90,12 +90,12 @@ export default {
 }
 
 .unselected {
-  @apply w-1/3;
   @apply lg:w-auto;
   @apply cursor-pointer;
   @apply text-slate-300;
     @apply dark:text-white;
   @apply py-2;
+  @apply px-2;
   @apply text-xs;
   @apply font-semibold;
   @apply uppercase;

@@ -100,7 +100,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper px-4 lg:px-8">
+  <div class="w-full wrapper px-4 lg:px-8">
     <SectionHeader :title="'Text Tools'" :routePath="'/text-tools'"  />
     <PowerBar :title="'Text Analysis'" :description="'Word analysis tool and keyword extractor'" />
     <section id="workspace" class="flex flex-col gap-4 p-6 border dark:border-slate-100/10 mb-8 rounded-xl shadow-xl">

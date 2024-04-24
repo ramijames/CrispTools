@@ -1,6 +1,6 @@
 <template>
-  <main id="register-form" class="flex flex-col justify-center pt-20 pb-36">
-    <section class="flex flex-col justify-center px-12">
+  <main id="register-form" class="h-full w-full flex flex-col justify-center">
+    <section class="h-full w-full flex flex-col justify-center px-12">
       <h2 class="text-slate-900 dark:text-white text-4xl mb-2 self-center">Register an account</h2>
       <p class="text-slate-500 dark:text-white/50 text-lg mb-2 self-center">Already have an account? <router-link class="underline text-blue-500" to="/sign-in">Sign in</router-link></p>
       <!-- Sign in with Google -->
@@ -19,7 +19,7 @@
       <!-- Sign in with Email/password -->
       <input class="dark:bg-slate-900 mb-2 dark:text-white w-full lg:w-1/2 mx-auto border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5" type='text' placeholder="Email" v-model='email'/>
       <input class="dark:bg-slate-900 dark:text-white w-full lg:w-1/2 mx-auto border dark:border-slate-100/10  px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-700 shadow text-slate-700 shadow-sm shadow-black/5" type='password' placeholder="Password" v-model='password'/>
-      <p v-if="errMsg" class="w-full lg:w-1/2 mx-auto my-2 bg-red-500 text-white">{{ errMsg }}</p>
+      <p v-if="errMsg" class="w-full lg:w-1/2 mx-auto my-4 bg-red-50 text-red-500 rounded p-4">{{ errMsg }}</p>
       <Button
             btnType="primary"
             btnText="Register account with email"

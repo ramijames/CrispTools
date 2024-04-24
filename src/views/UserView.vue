@@ -31,6 +31,7 @@ export default {
     const handleSignOut = () => {
       signOut(getAuth())
       router.push('/')
+      isLoggedIn.value = false
       console.log('Signed out')
     }
 
@@ -49,14 +50,10 @@ export default {
 </script>
 
 <template>
-  <main id="register-form" class="flex flex-col justify-center py-8">
-    <section v-if="isLoggedIn" class="flex flex-col justify-center px-4 lg:px-12">
-      <h2 v-if="isLoggedIn && user" class="text-slate-900 dark:text-white text-4xl mb-2">Welcome, {{ user.displayName }}</h2>
-      <h2 v-else class="text-slate-900 dark:text-white text-4xl mb-2">Welcome</h2>
+  <main id="register-form" class="w-full flex flex-col justify-start">
+    <section v-if="isLoggedIn" class="flex flex-col justify-center">
+      <h1 class="text-2xl dark:text-white font-semibold mb-2">Welcome, {{ user.displayName }}</h1>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Account details</p>
-
-      <!-- {{ user }} -->
-
       <div v-if="user" class="flex flex-row justify-between py-2 border-b border-slate-200 dark:border-slate-200/10">
         <p class="text-slate-500 dark:text-white/50 text-sm">Display name</p>
         <p class="text-slate-900 dark:text-white text-sm">{{ user.displayName }}</p>
@@ -71,13 +68,13 @@ export default {
       </div>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Sign out of your account</p>
       <button @click="handleSignOut" class="btn text-xs py-1 px-2 bg-blue-500 rounded text-white font-semibold uppercase self-start">Sign out</button>
-    <!-- - Logout button
-    - User details
-    - Change password?
-    - Delete account?
-    - App settings
-      - Default Theme
-      - Default ViewType -->
+      <!-- - Logout button
+      - User details
+      - Change password?
+      - Delete account?
+      - App settings
+        - Default Theme
+        - Default ViewType -->
     </section>
     <section v-else class="flex flex-col justify-center px-4 lg:px-12">
       <h2 class="text-slate-900 dark:text-white text-4xl mb-2">Restricted</h2>

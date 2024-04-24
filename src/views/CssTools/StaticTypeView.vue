@@ -102,7 +102,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper px-4 lg:px-8">
+  <div class="w-full wrapper px-4 lg:px-8">
     <SectionHeader :title="'Css Tools'" :routePath="'/css-tools'" :routes="'/css-tools'" />
     <PowerBar :title="'Static Type Scale'" :description="'Generate a static type scale based on a base size and a scale ratio'" />
     

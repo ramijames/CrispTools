@@ -1,6 +1,7 @@
 <script>
 
 import Links from '@/components/layout/Links.vue';
+import Sidebar from "@/components/layout/SideBar.vue";
 
 import colorroutes from '@/router/routes-color-tools';
 import cssroutes from '@/router/routes-css-tools';
@@ -16,9 +17,7 @@ export default {
   },
   data() {
     return {
-      colorroutes,
-      cssroutes,
-      textroutes
+      
     }
   },
   setup() {
@@ -31,17 +30,24 @@ export default {
   },
   components: {
     ViewTypeHeader,
-    Links
+    Links,
+    Sidebar
   }
 }
 
 </script>
 
 <template>
-  <section class="w-full flex flex-col max-w-screen-2xl mx-auto">
-    <ViewTypeHeader :viewType="userStore.viewType" />
-    <Links title="Color Tools" :icon="'/icon-color-tools.svg'" :routes="colorroutes" :routePath="'/color-tools'" viewType="big" />
-    <Links title="Css Tools" :icon="'/icon-css-tools.svg'" :routes="cssroutes" :routePath="'/css-tools'" viewType="big" />
-    <Links title="Text Tools" :icon="'/icon-text-tools.svg'" :routes="textroutes" :routePath="'/text-tools'" viewType="big" />
+  <section class="h-full w-full flex flex-col max-w-screen-2xl mx-auto">
+    <section class="h-screen flex flex-col w-full py-4 lg:pr-12">
+      <p class="w-full lg:w-2/3 mx-auto text-slate-500 dark:text-white/50 uppercase text-sm font-semibold mb-8">Pitch</p>
+      <h1 class="w-full lg:w-2/3 mx-auto text-slate-900 dark:text-white text-5xl mb-4">Control what content you see</h1>
+      <p class="w-full lg:w-2/3 pr-40 mx-auto text-slate-500 dark:text-white/70 text-base">
+        Every site that you browse content for has its own agenda, and it's own algorithm 
+        that defines what you see. What about how you want to use the web? With our tools 
+        you can see only the topics and trends most important to you.
+      </p>
+    </section>
+    
   </section>
 </template>

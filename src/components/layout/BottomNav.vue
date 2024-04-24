@@ -1,17 +1,38 @@
+<script setup>
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { ref } from 'vue'
+
+const isLoggedIn = ref(true);
+const user = ref(null);
+const auth = getAuth();
+
+onAuthStateChanged(auth, (currentUser) => {
+  if (currentUser) {
+    isLoggedIn.value = true
+  } else {
+    isLoggedIn.value = false
+  }
+})
+
+</script>
+
 <template>
-  <main id="bottomNav" class="flex flex-row border-t border-slate-200 bottom-0 fixed left-0 right-0 w-full bg-white h-24 justify-center">
-    <!-- <router-link to="/" class="flex flex-col h-24 w-24 justify-center text-xs font-semibold uppercase text-slate-500">Home</router-link> -->
-    <router-link to="/" class="flex flex-col py-4 h-24 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
-      <img src="/crisp-nav-tools.svg" alt="Tools" class="h-8 w-8 self-center" />
-      Tools
+  <main id="bottomNav" class="flex flex-row border-t border-slate-200 dark:border-slate-100/10 bottom-0 fixed left-0 right-0 w-full bg-white h-[80px] justify-center bg-white dark:bg-slate-900 ">
+    <router-link v-if="!isLoggedIn" to="/" class="flex flex-col py-8 h-18 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
+      <img src="/crisp-nav-home.svg" alt="Trends" class="h-8 w-8 self-center" />
+      Home
     </router-link>
-    <router-link to="/trends" class="flex flex-col py-8 h-24 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
+    <router-link v-if="isLoggedIn" to="/trends" class="flex flex-col py-8 h-18 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
       <img src="/crisp-nav-trending.svg" alt="Trends" class="h-8 w-8 self-center" />
       Trends
     </router-link>
-    <router-link to="/build" class="flex flex-col py-8 h-24 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
+    <router-link v-if="isLoggedIn" to="/build" class="flex flex-col py-8 h-18 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
       <img src="/crisp-nav-build.svg" alt="Build" class="h-8 w-8 self-center" />
       Build
+    </router-link>
+    <router-link v-if="isLoggedIn" to="/tools" class="flex flex-col py-4 h-18 w-24 justify-center text-xs font-semibold uppercase text-slate-500 justify-center text-center">
+      <img src="/crisp-nav-tools.svg" alt="Tools" class="h-8 w-8 self-center" />
+      Tools
     </router-link>
   </main>
 </template>
@@ -20,5 +41,6 @@
 .router-link-active, 
 .router-link-exact-active {
   @apply bg-blue-50/50;
+  @apply dark:bg-slate-800 !important;
 }
 </style>

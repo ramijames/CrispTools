@@ -51,7 +51,7 @@ export default {
                 };
         case 'icon':
           return {
-                  grid: 'grid grid-cols-2 lg:grid-cols-8 gap-8',
+                  grid: 'grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8',
                   routerLink: 'h-auto w-full bg-none relative flex flex-col gap-4',
                   image: 'w-24 h-24 object-cover rounded-xl self-center',
                   section: '',
@@ -80,8 +80,8 @@ export default {
 
 <template>
   <div class="flex flex-col gap-2 w-full">
-    <SectionHeader class="px-6" :title="props.title" :icon="props.icon" :routePath="props.routePath" :viewType="props.viewType" />
-    <div class="px-4 mb-12 w-full max-w-screen-2xl mx-auto">
+    <SectionHeader :title="props.title" :icon="props.icon" :routePath="props.routePath" :viewType="props.viewType" />
+    <div class="mb-12 w-full max-w-screen-2xl mx-auto">
       <ul :class="routerCss.grid">
         <router-link 
           :to="route.path" 

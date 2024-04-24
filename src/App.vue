@@ -1,22 +1,24 @@
 <template>
   <!-- <Header /> -->
   <section :class="theme" class="bg-white dark:bg-slate-900 background">
-    <header class="w-full p-4 border-b dark:border-slate-100/10">
+
+    <header class="w-full fixed top-0 left-0 right-0 h-[80px] bg-white dark:bg-slate-900 p-4 border-b dark:border-slate-100/10">
       <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between lg:px-4" aria-label="Global" >
         <section class="flex flex-row justify-center">
-          <router-link to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
+          <router-link v-if="isLoggedIn" to="/trends" class="flex flex-row gap-2 justify-center items-center ml-2">
             <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
           </router-link>
-          <!-- <span v-if="isLoggedIn && user.displayName" class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome, {{ user.displayName }}</span> -->
-          <!-- <span v-else class="self-center ml-4 text-sm font-semibold text-slate-700 dark:text-slate-500">Welcome</span> -->
+          <router-link v-else to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
+            <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
+          </router-link>
         </section>
         
-        <section class="flex flex-row gap-2">
+        <section class="flex flex-row gap-6">
+          <ViewTypeHeader v-if="isLoggedIn" :viewType="userStore.viewType" />
           <button @click="toggleTheme()" class="flex flex-row px-2 py-1 text-blue-500 rounded self-center">
             <SunIcon class="h-5 w-auto" v-if="theme === 'light'" />
             <MoonIcon class="h-5 w-auto" v-if="theme === 'dark'" /> <span class="hidden">{{ theme }}</span>
           </button>
-          <!-- <button class="flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase" v-if="isLoggedIn" @click="handleSignOut">Logout</button>  -->
           <router-link class="flex flex-row justify-center p-0.5 text-white *:hover:text-white rounded-full text-xs hover:bg-blue-500 *:hover:stroke-white bg-slate-50 dark:bg-slate-800 uppercase self-center" v-if="isLoggedIn" to="/user">
             <img v-if="user && user.photoURL" class="rounded-full h-8 w-8" :src="user.photoURL">
             <Cog8ToothIcon class="text-blue-500 h-4 w-auto" v-else />
@@ -25,33 +27,31 @@
             </svg>
 
           </router-link> 
-          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/register">Register</router-link>
-          <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
-          <!-- <span v-if="isLoggedIn && user.photoURL" class="self-center ml-4"></span> -->
+          <section class="flex flex-row gap-2">
+            <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/register">Register</router-link>
+            <router-link class="button flex flex-row px-2 py-1 text-white rounded text-xs bg-blue-500 dark:bg-slate-800 uppercase self-center" v-if="!isLoggedIn" to="/sign-in">Sign in</router-link>
+          </section>
         </section>
       </nav>
     </header>
-    <section class="flex flex-col lg:flex-row max-w-screen-2xl mx-auto w-full">
-      <section class="flex flex-col w-full lg:w-1/4 border-r dark:border-slate-100/10">
-        <Sidebar />
-      </section>
-      <section class="w-full flex flex-col min-h-screen border-r dark:border-slate-100/10 pb-[20rem]">
-        <RouterView />
-        <!-- <Footer /> -->
-      </section>
+
+    <section class="bg-white dark:bg-slate-900 fixed top-[80px] bottom-[80px] overflow-auto left-0 right-0 flex flex-col lg:flex-row pt-4 lg:pt-8 px-4 lg:px-12 pb-[20rem]">
+      <RouterView />
     </section>
-    <!-- <BottomNav /> -->
+
+    <BottomNav />
   </section>
   
 </template>
 
 <script>
-import Sidebar from "./components/layout/SideBar.vue";
+import ViewTypeHeader from "./components/layout/ViewType.vue";
 import BottomNav from "./components/layout/BottomNav.vue";
 import Footer from "./components/layout/Footer.vue";
 import { ref, watchEffect, watch, onMounted } from 'vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user';
 
 import {
   SunIcon,
@@ -67,6 +67,7 @@ export default {
     const router = useRouter();
     const isLoggedIn = ref(true);
     const isGoogleUser = ref(false);
+    const userStore = useUserStore();
 
     // Load theme from localStorage on component mount
     onMounted(() => {
@@ -86,15 +87,6 @@ export default {
       console.log('Theme toggled to:', theme.value);
     };
 
-    // // runs after firebase is initialized
-    // onAuthStateChanged(getAuth(),function(user) {
-    //     if (user) {
-    //       isLoggedIn.value = true // if we have a user
-    //     } else {
-    //       isLoggedIn.value = false // if we do not
-    //     }
-    // })
-
     // runs after firebase is initialized
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -109,27 +101,22 @@ export default {
       }
     })
 
-    const handleSignOut = () => {
-      signOut(getAuth())
-      router.push('/')
-      console.log('Signed out')
-    }
-
     return {
       theme,
       toggleTheme,
       isLoggedIn,
       auth,
-      user
+      user,
+      userStore
     };
   },
   components: {
-    Sidebar,
     Footer,
     SunIcon,
     MoonIcon,
     Cog8ToothIcon,
-    BottomNav
+    BottomNav,
+    ViewTypeHeader
   },
 };
 

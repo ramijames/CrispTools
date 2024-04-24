@@ -41,7 +41,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="w-full wrapper">
 
     <section id="powerbar" class="flex flex-1 flex-col p-4 border-b bg-white w-full justify-between">
       <section id="title" class="flex flex-col justify-center">

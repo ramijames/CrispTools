@@ -44,7 +44,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper px-4 lg:px-8">
+  <div class="w-full wrapper px-4 lg:px-8">
     <SectionHeader :title="'Color Tools'" :routePath="'/color-tools'" :routes="'/color-tools'" />
     <PowerBar :title="'Lighten Colors'" :description="'Select your color and we will output a set of lighter values'" />
     

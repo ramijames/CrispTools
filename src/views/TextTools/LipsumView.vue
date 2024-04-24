@@ -75,7 +75,7 @@ export default {
 </script>
 
 <template>
-  <div id="lipsum">
+  <div id="lipsum" class="w-full">
     <div class="wrapper px-4 lg:px-8">
       <transition name="fade">
         <div v-if="showPopup" class="fixed top-0 right-0 m-4 p-2 bg-green-500 text-white rounded shadow text-slate-700 shadow-md shadow-black/5 ring-1 ring-slate-700/10">

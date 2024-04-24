@@ -221,7 +221,7 @@ export default {
 </script>
 
 <template>
-  <div id="palette">
+  <div id="palette" class="w-full">
     <div class="wrapper px-4 lg:px-8">
       <SectionHeader :title="'Color Tools'" :routePath="'/color-tools'" :routes="'/color-tools'" />
       <PowerBar :title="'User Interface Color Palette Generator'" :description="'Easy to use palette generator for building coordinated colors for use in UIs'" />
