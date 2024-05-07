@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <main id="register-form" class="w-full flex flex-col justify-start">
+  <main id="register-form" class="max-w-screen-2xl mx-auto lg:px-4 w-full flex flex-col justify-start">
     <section v-if="isLoggedIn" class="flex flex-col justify-center">
       <h1 class="text-2xl dark:text-white font-semibold mb-2">Welcome, {{ user.displayName }}</h1>
       <p class="text-slate-900 dark:text-white text-lg mb-4 mt-4">Account details</p>

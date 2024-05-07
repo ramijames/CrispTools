@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import ToolsView from "../views/ToolsView.vue";
 
 // Icon Tools
@@ -27,11 +26,6 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
-    },
-    {
-      path: "/tools",
-      name: "tools",
       component: ToolsView,
     },
     {
@@ -45,14 +39,6 @@ const router = createRouter({
     {
       path: '/user',
       component: () => import('../views/UserView.vue')
-    },
-    {
-      path: '/build',
-      component: () => import('../views/Topics/BuildTopics.vue')
-    },
-    {
-      path: '/trends',
-      component: () => import('../views/Topics/TrendsTopics.vue')
     },
     {
       path: "/text-tools",

@@ -5,7 +5,7 @@
     <header class="w-full fixed top-0 left-0 right-0 h-[80px] bg-white dark:bg-slate-900 py-4 border-b dark:border-slate-100/10">
       <nav class="max-w-screen-2xl w-full mx-auto flex flex-row items-center justify-between lg:px-4" aria-label="Global" >
         <section class="flex flex-row justify-center">
-          <router-link v-if="isLoggedIn" to="/trends" class="flex flex-row gap-2 justify-center items-center ml-6">
+          <router-link v-if="isLoggedIn" to="/" class="flex flex-row gap-2 justify-center items-center ml-6">
             <img class="h-12 w-auto" src="/crisp-logo-white.svg" alt="Crisp Tools"/>
           </router-link>
           <router-link v-else to="/" class="flex flex-row gap-2 justify-center items-center ml-2">
